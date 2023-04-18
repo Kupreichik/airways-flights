@@ -1,5 +1,6 @@
 :root {
   --primary-blue: #11397E;
+  --text-color-neutral10: #49454F;
 }
 
 * {
@@ -20,6 +21,18 @@ body {
 .container {
   width: 1128px;
   margin: 0 auto;
+}
+
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  color: var(--primary-blue);
+}
+
+.mat-mdc-select-value-text {
+  color: #ffffff;
+}
+
+.mat-mdc-select-arrow path {
+  fill: #ffffff;
 }
 
 @media (max-width: 1200px) {

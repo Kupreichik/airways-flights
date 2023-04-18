@@ -8,7 +8,13 @@
   align-items: center;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .logo {
+  cursor: pointer;
   color: var(--primary-blue);
   font-size: 16px;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -18,4 +24,35 @@
 
 .logo-img {
   margin-right: 7px;
+}
+
+.header-right-container {
+  color: #ffffff;
+}
+
+.header-btn {
+  height: 40px;
+  background: #f1f3f626;
+  border: 0.5px solid #CECECE;
+  border-radius: 4px;
+  color: inherit;
+}
+
+.date-format {
+  width: 162px;
+  padding: 8px 16px;
+  font-size: 1rem;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  option {
+    line-height: 3rem;
+    color: var(--text-color-neutral10);
+  }
+}
+
+.currency {
+  width: 62px;
 }
