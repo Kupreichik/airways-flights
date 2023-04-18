@@ -8,13 +8,13 @@
 
   <div class="header-right-container">
 
-    <mat-select class="header-btn date-format">
-      <mat-option value="MM/dd/yyyy">MM/DD/YYYY</mat-option>
-      <mat-option value="dd/MM/yyyy">DD/MM/YYYY</mat-option>
-      <mat-option value="yyyy/dd/MM">YYYY/DD/MM</mat-option>
-      <mat-option value="yyyy/MM/dd">YYYY/MM/DD</mat-option>
+    <mat-select class="header-btn date-format" [(value)]="dateFormat">
+      <mat-option [value]="option" *ngFor="let option of dateFormats">{{ option | uppercase }}</mat-option>
     </mat-select>
 
+    <mat-select class="header-btn currency" [(value)]="currency">
+      <mat-option [value]="option" *ngFor="let option of currencies">{{ option }}</mat-option>
+    </mat-select>
   </div>
 
 </header>
