@@ -31,7 +31,14 @@
 .header-right-container {
   color: #ffffff;
   display: flex;
+  align-items: center;
   gap: 41px;
+}
+
+.heading {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
 }
 
 .header-btn {
@@ -44,7 +51,6 @@
 
 .date-format {
   width: 162px;
-  padding: 8px 16px;
   font-size: 1rem;
 
   &:focus-visible {
@@ -57,7 +63,20 @@
   }
 }
 
+.date-format,
+.currency {
+  display: flex;
+}
+
 .currency {
   width: 62px;
-  padding: 8px 14px;
+}
+
+.auth-btn {
+  height: 40px;
+  color: inherit !important;
+}
+
+.basket {
+  cursor: pointer;
 }

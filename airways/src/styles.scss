@@ -27,6 +27,15 @@ body {
   color: var(--primary-blue);
 }
 
+.mat-mdc-select-value {
+  width: auto !important;
+}
+
+.mat-mdc-select-trigger {
+  justify-content: center;
+  gap: 10px;
+}
+
 .mat-mdc-select-value-text {
   color: #ffffff;
 }
