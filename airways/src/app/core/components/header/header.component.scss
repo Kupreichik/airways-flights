@@ -80,3 +80,29 @@
 .basket {
   cursor: pointer;
 }
+
+::ng-deep .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  color: var(--primary-blue);
+}
+
+::ng-deep .mat-mdc-select-value {
+  width: auto !important;
+}
+
+::ng-deep .mat-mdc-select-trigger {
+  justify-content: center;
+  gap: 10px;
+}
+
+::ng-deep .mat-mdc-select-value-text {
+  color: #ffffff;
+}
+
+::ng-deep .mat-mdc-select-arrow path {
+  fill: #ffffff;
+}
+
+::ng-deep .currency .mat-mdc-select-arrow-wrapper {
+  display: none;
+}
+

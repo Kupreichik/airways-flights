@@ -28,31 +28,6 @@ body {
   margin: 0 auto;
 }
 
-.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
-  color: var(--primary-blue);
-}
-
-.mat-mdc-select-value {
-  width: auto !important;
-}
-
-.mat-mdc-select-trigger {
-  justify-content: center;
-  gap: 10px;
-}
-
-.mat-mdc-select-value-text {
-  color: #ffffff;
-}
-
-.mat-mdc-select-arrow path {
-  fill: #ffffff;
-}
-
-.currency .mat-mdc-select-arrow-wrapper {
-  display: none;
-}
-
 @media (max-width: 1200px) {
   .container {
     width: 100%;
