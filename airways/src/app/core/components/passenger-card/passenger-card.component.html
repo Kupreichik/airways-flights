@@ -1,0 +1,109 @@
+<div class="passenger__card">
+  <h3 class="passenger__card-title">{{ sequenceNumber }}. {{ passenger.title }}</h3>
+  <form class="passenger__form" [formGroup]="form">
+    <section class="passenger__form-top">
+      <mat-form-field class="passenger__input" appearance="outline">
+        <mat-label>First name</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="name"
+          (input)="onInputChange('name', $event)"
+        />
+        <mat-icon
+          class="passenger__icon"
+          matSuffix
+          [matTooltip]="tooltipText"
+          matTooltipPosition="right"
+          matTooltipClass="mat-tooltip"
+          [ngClass]="{
+            error: name?.errors && name?.touched,
+            '': !name?.errors || !name?.touched
+          }"
+        >
+          {{ name?.errors && name?.touched ? 'error' : 'error_outline' }}
+        </mat-icon>
+        <mat-error *ngIf="name?.hasError('required')">Please enter a name</mat-error>
+        <mat-error *ngIf="name?.hasError('pattern')">Invalid character</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="passenger__input" appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="lastName"
+          (input)="onInputChange('lastName', $event)"
+        />
+        <mat-icon
+          class="passenger__icon"
+          matSuffix
+          [matTooltip]="tooltipText"
+          matTooltipPosition="right"
+          [ngClass]="{
+            error: lastName?.errors && lastName?.touched,
+            '': !lastName?.errors || !lastName?.touched
+          }"
+        >
+          {{ lastName?.errors && lastName?.touched ? 'error' : 'error_outline' }}
+        </mat-icon>
+        <mat-error *ngIf="lastName?.hasError('required')">Please enter a last name</mat-error>
+        <mat-error *ngIf="lastName?.hasError('pattern')">Invalid character</mat-error>
+      </mat-form-field>
+
+      <mat-button-toggle-group class="passenger__checkbox" formControlName="gender">
+        <mat-button-toggle
+          class="passenger__checkbox-item"
+          value="Male"
+          [ngClass]="{ active: form.controls['gender'].value === 'Male' }"
+        >
+          <mat-icon *ngIf="form.controls['gender'].value === 'Male'">check-small</mat-icon>
+          Male
+        </mat-button-toggle>
+        <mat-button-toggle
+          class="passenger__checkbox-item"
+          value="Female"
+          [ngClass]="{ active: form.controls['gender'].value === 'Female' }"
+        >
+          <mat-icon *ngIf="form.controls['gender'].value === 'Female'">check-small</mat-icon>
+          Female
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <mat-form-field class="passenger__input" appearance="outline">
+        <mat-label>MM/DD/YYYY</mat-label>
+        <input
+          matInput
+          formControlName="date"
+          mask="00/00/0000"
+          maxlength="10"
+          (change)="onDateInputChange()"
+          #dateInput
+        />
+        <input
+          matInput
+          [matDatepicker]="picker"
+          style="display: none"
+          (dateChange)="onDatepickerChange($event)"
+        />
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>
+            <img src="../../../../assets/calendar.svg" alt="calendar" />
+          </mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="date?.hasError('required')">Please enter a creation date!</mat-error>
+        <mat-error *ngIf="date?.hasError('isFuture')">The date is invalid!</mat-error>
+      </mat-form-field>
+    </section>
+
+    <section class="passenger__form-bottom" *ngIf="passenger.title !== 'Infant'">
+      <mat-slide-toggle color="primary" class="passenger__toggle">
+        <mat-icon class="passenger__toggle-icon">
+          <img src="../../../../assets/person-assist.svg" alt="calendar" />
+        </mat-icon>
+        Need special assistance?
+      </mat-slide-toggle>
+    </section>
+  </form>
+</div>

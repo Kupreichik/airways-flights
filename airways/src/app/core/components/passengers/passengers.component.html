@@ -9,6 +9,12 @@
         Enter the passenger's names as they appear on document (passport or ID).
       </p>
     </div>
-    <div class="passengers__cards"></div>
+    <div class="passengers__cards">
+      <app-passenger-card
+        *ngFor="let passenger of passengers; let i = index"
+        [passenger]="passenger"
+        [sequenceNumber]="i + 1"
+      ></app-passenger-card>
+    </div>
   </div>
 </div>
