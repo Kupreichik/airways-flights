@@ -1,13 +1,13 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BreakpointObserverService implements OnDestroy {
   destroyed$ = new Subject<void>();
-  currentScreenSize$ = new Subject<string>();
+  currentScreenSize$ = new BehaviorSubject<string>('');
 
   displayNameMap = new Map([
     [Breakpoints.XSmall, 'XS'],
