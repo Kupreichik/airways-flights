@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { expandHeader } from '../../animations/animations';
+import { HeaderHeight, ScreenSizes } from '../../models';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentScreen!: string;
   currentScreenSubscription!: Subscription;
   isHeaderExpanded = false;
-  headerHeight = 'initial';
+  headerHeight = HeaderHeight.initial;
   settingsVisibility!: boolean;
 
   constructor(
@@ -39,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       (size) => {
         this.currentScreen = size;
         if (!this.isSmallScreen()) {
-          this.headerHeight = 'initial';
+          this.headerHeight = HeaderHeight.initial;
           this.isHeaderExpanded = false;
         }
         if (!this.isHeaderExpanded) this.settingsVisibility = !this.isSmallScreen();
@@ -52,19 +53,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   isSmallScreen(): boolean {
-    return this.currentScreen === 'S' || this.currentScreen === 'XS';
+    return this.currentScreen === ScreenSizes.Small || this.currentScreen === ScreenSizes.XSmall;
   }
 
   toggleSettingsVisibility(): void {
     this.isHeaderExpanded = !this.isHeaderExpanded;
-    this.headerHeight = this.isHeaderExpanded ? 'expanded' : 'initial';
+    this.headerHeight = this.isHeaderExpanded ? HeaderHeight.expanded : HeaderHeight.initial;
   }
 
   onAnimationEnd(toState: string): void {
-    if (toState === 'expanded' && this.isSmallScreen()) this.settingsVisibility = true;
+    if (toState === HeaderHeight.expanded && this.isSmallScreen()) this.settingsVisibility = true;
   }
 
   onAnimationStart(toState: string): void {
-    if (toState === 'initial' && this.isSmallScreen()) this.settingsVisibility = false;
+    if (toState === HeaderHeight.initial && this.isSmallScreen()) this.settingsVisibility = false;
   }
 }
