@@ -27,7 +27,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.currentScreenSubscription = this.breakpointObserver.currentScreenSize$.subscribe(
       (size) => {
         this.currentScreen = size;
-        this.settingsVisibility = !this.isSmallScreen();
+        if (!this.isSmallScreen()) {
+          this.headerHeight = 'initial';
+          this.isHeaderExpanded = false;
+        }
+        if (!this.isHeaderExpanded) this.settingsVisibility = !this.isSmallScreen();
       },
     );
   }
