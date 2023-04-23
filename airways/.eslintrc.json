@@ -1,20 +1,20 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "projects/**/*"
-  ],
+  "ignorePatterns": ["projects/**/*"],
+  "parserOptions": {
+    "project": ["tsconfig.json"]
+  },
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "airbnb-typescript/base",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:import/recommended"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -32,25 +32,19 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@typescript-eslint/lines-between-class-members": "off",
+        "import/named": "off"
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
     },
     {
-      "files": [
-        "*.ts"
-      ],
-      "extends": [
-        "plugin:@ngrx/recommended"
-      ]
+      "files": ["*.ts"],
+      "extends": ["plugin:@ngrx/recommended"]
     }
   ]
 }
