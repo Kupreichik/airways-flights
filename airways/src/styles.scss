@@ -1,12 +1,15 @@
 :root {
   --primary-blue: #11397E;
-  --secondary-0:#0090BD;
-  --secondary-60: #E9EDF1;
-  --secondary-90: #F4F6F9;
-  --secondary-100:#FAFAFA;
   --text-color-neutral10: #49454F;
   --text-color-neutral30: #74767A;
   --text-color-neutral60: #CECECE;
+  --background-main: #F5F5F5;
+  --background-secondary-0:#0090BD;
+  --background-secondary-60: #E9EDF1;
+  --background-secondary40: #D0D9DF;
+  --background-secondary50: #E1E5EB;
+  --background-secondary90: #F4F6F9;
+  --background-secondary-100:#FAFAFA;
 }
 
 * {
@@ -29,21 +32,9 @@ body {
   margin: 0 auto;
 }
 
-.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
-  color: var(--primary-blue);
-}
-
-.mat-mdc-select-value-text {
-  color: #ffffff;
-}
-
-.mat-mdc-select-arrow path {
-  fill: #ffffff;
-}
-
 @media (max-width: 1200px) {
   .container {
-    width: 100%;
+    width: 94%;
     margin: 0 3vw;
   }
 }

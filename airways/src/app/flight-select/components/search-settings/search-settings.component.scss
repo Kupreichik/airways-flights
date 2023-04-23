@@ -1,7 +1,7 @@
 :host {
   display: flex;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-  background: var(--secondary-100);
+  background: var(--background-secondary-100);
   padding: 22px 0;
   position: relative;
 }
@@ -28,7 +28,7 @@
 
 .dot {
   display: inline-flex;
-  background: var(--secondary-0);
+  background: var(--background-secondary-0);
   height: 4px;
   width: 4px;
   border-radius: 50%;
@@ -36,5 +36,5 @@
 }
 
 button {
-  background: var(--secondary-90);
+  background: var(--background-secondary90);
 }
