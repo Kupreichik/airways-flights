@@ -1,4 +1,4 @@
-<div class="container ticket-select">
+<div class="container date-select">
   <div class="title">
     <mat-icon fontIcon="flight" style="transform: rotate(90deg);" color="primary"></mat-icon>
     <h3 class="title__name">Dublin to Warsaw Modlin </h3>
@@ -12,7 +12,7 @@
         <span class="card__date" [ngClass]="{'active': cardId === selectedCardIndex}">{{ item }} Mar</span>
         <span class="card__day" [ngClass]="{'active': cardId === selectedCardIndex}"> Wednesday</span>
         <span class="card__price" [ngClass]="{'active': cardId === selectedCardIndex}">&euro;146.70</span>
-        <img class="card__icon" src="../../../../assets/do_not_fly_24px.svg" alt="icon do not fly">
+        <img class="card__icon" src="assets/do_not_fly_24px.svg" alt="icon do not fly">
       </div>
     </div>
     <div class="slider__btn" (click)="handleNext()">&#10095;</div>

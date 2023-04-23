@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-ticket-select',
-  templateUrl: './ticket-select.component.html',
-  styleUrls: ['./ticket-select.component.scss'],
+  selector: 'app-date-select',
+  templateUrl: './date-select.component.html',
+  styleUrls: ['./date-select.component.scss'],
 })
-export class TicketSelectComponent {
+export class DateSelectComponent {
   isTransformed = false;
 
   selectedCardIndex = 2;

@@ -5,10 +5,10 @@ import { FlightSelectRoutingModule } from './flight-select-routing.module';
 import { FlightSelectPageComponent } from './pages/flight-select-page/flight-select-page.component';
 import { SearchSettingsComponent } from './components/search-settings/search-settings.component';
 import { SharedModule } from '../shared/shared.module';
-import { TicketSelectComponent } from './components/ticket-select/ticket-select.component';
+import { DateSelectComponent } from './components/date-select/date-select.component';
 
 @NgModule({
-  declarations: [SearchSettingsComponent, FlightSelectPageComponent, TicketSelectComponent],
+  declarations: [SearchSettingsComponent, FlightSelectPageComponent, DateSelectComponent],
   imports: [CommonModule, SharedModule, FlightSelectRoutingModule],
 })
 export class FlightSelectModule {}
