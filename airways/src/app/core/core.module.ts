@@ -8,9 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { PassengerCardComponent } from './components/passenger-card/passenger-card.component';
+import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 
 @NgModule({
-  declarations: [HeaderComponent, PassengersComponent, PassengerCardComponent],
+  declarations: [HeaderComponent, PassengersComponent, PassengerCardComponent, ContactDetailsComponent],
   imports: [
     CommonModule,
     SharedModule,

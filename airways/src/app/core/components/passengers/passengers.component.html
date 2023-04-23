@@ -14,7 +14,58 @@
         *ngFor="let passenger of passengers; let i = index"
         [passenger]="passenger"
         [sequenceNumber]="i + 1"
-      ></app-passenger-card>
+      >
+      </app-passenger-card>
+      <div class="passengers-header">
+        <div class="passengers-header__inner">
+          <img
+            class="passengers-header__img"
+            src="../../../../assets/contact-details.svg"
+            alt="contact-details"
+          />
+          <h2 class="passengers-header__title">Contact details</h2>
+        </div>
+        <p class="passengers-header__description">
+          We need contact details to be able to deliver the latest information regarding your
+          flight.
+        </p>
+      </div>
+
+      <form class="passenger-contact" [formGroup]="contactForm">
+        <mat-form-field class="passenger-contact__select" appearance="outline">
+          <mat-label>Country code</mat-label>
+          <mat-select [(value)]="selectedCountry" required="">
+            <mat-option *ngFor="let country of countriesList" value="{{ country.countryName }}">
+              {{ country.countryName }} ({{ country.countryPrefixNumber }})
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="passenger-contact__input" appearance="outline">
+          <mat-label>Mobile phone number</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="phone"
+            mask="0000000000"
+            placeholder="e.g. 1111111111"
+          />
+          <mat-error *ngIf="phone?.hasError('required')">Please enter a phone number</mat-error>
+          <mat-error *ngIf="phone?.hasError('minlength')">Number too short</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="passenger-contact__input email" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="email"
+            placeholder="e.g. example@email.com"
+          />
+          <mat-error *ngIf="email?.hasError('required')">Please enter a email</mat-error>
+          <mat-error *ngIf="email?.hasError('pattern')">Invalid email format</mat-error>
+        </mat-form-field>
+      </form>
     </div>
   </div>
 </div>

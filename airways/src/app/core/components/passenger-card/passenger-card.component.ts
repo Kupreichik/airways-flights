@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { dateValidation } from '../../directives/date-validation/date-validation.directive';
 import * as moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -19,7 +19,7 @@ export class PassengerCardComponent {
   tooltipText =
     "Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname.";
 
-  form = this.formBuilder.group({
+  passengerForm = this.formBuilder.group({
     name: ['', [Validators.required, Validators.pattern(nameRegex)]],
     lastName: ['', [Validators.required, Validators.pattern(nameRegex)]],
     gender: ['Male'],
@@ -29,30 +29,30 @@ export class PassengerCardComponent {
   constructor(private formBuilder: FormBuilder) {}
 
   get name() {
-    return this.form.get('name');
+    return this.passengerForm.get('name');
   }
 
   get lastName() {
-    return this.form.get('lastName');
+    return this.passengerForm.get('lastName');
   }
 
   get date() {
-    return this.form.get('date');
+    return this.passengerForm.get('date');
   }
 
   onDatepickerChange(event: MatDatepickerInputEvent<Date>) {
     const selectedDate = moment(event.value).format('MM/DD/YYYY');
-    this.form.controls['date'].patchValue(selectedDate);
+    this.passengerForm.controls['date'].patchValue(selectedDate);
 
     this.dateInput.nativeElement.focus();
   }
 
   onDateInputChange() {
-    this.form.controls['date'].updateValueAndValidity();
+    this.passengerForm.controls['date'].updateValueAndValidity();
   }
 
   onInputChange(controlName: string, event: Event) {
     const value = (event.target as HTMLInputElement)?.value?.toUpperCase() || '';
-    this.form.get(controlName)?.setValue(value);
+    this.passengerForm.get(controlName)?.setValue(value);
   }
 }

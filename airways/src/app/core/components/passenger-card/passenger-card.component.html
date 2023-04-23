@@ -1,6 +1,6 @@
 <div class="passenger__card">
   <h3 class="passenger__card-title">{{ sequenceNumber }}. {{ passenger.title }}</h3>
-  <form class="passenger__form" [formGroup]="form">
+  <form class="passenger__form" [formGroup]="passengerForm">
     <section class="passenger__form-top">
       <mat-form-field class="passenger__input" appearance="outline">
         <mat-label>First name</mat-label>
@@ -40,6 +40,7 @@
           matSuffix
           [matTooltip]="tooltipText"
           matTooltipPosition="right"
+          matTooltipClass="mat-tooltip"
           [ngClass]="{
             error: lastName?.errors && lastName?.touched,
             '': !lastName?.errors || !lastName?.touched
@@ -55,17 +56,19 @@
         <mat-button-toggle
           class="passenger__checkbox-item"
           value="Male"
-          [ngClass]="{ active: form.controls['gender'].value === 'Male' }"
+          [ngClass]="{ active: passengerForm.controls['gender'].value === 'Male' }"
         >
-          <mat-icon *ngIf="form.controls['gender'].value === 'Male'">check-small</mat-icon>
+          <mat-icon *ngIf="passengerForm.controls['gender'].value === 'Male'">check-small</mat-icon>
           Male
         </mat-button-toggle>
         <mat-button-toggle
           class="passenger__checkbox-item"
           value="Female"
-          [ngClass]="{ active: form.controls['gender'].value === 'Female' }"
+          [ngClass]="{ active: passengerForm.controls['gender'].value === 'Female' }"
         >
-          <mat-icon *ngIf="form.controls['gender'].value === 'Female'">check-small</mat-icon>
+          <mat-icon *ngIf="passengerForm.controls['gender'].value === 'Female'">
+            check-small
+          </mat-icon>
           Female
         </mat-button-toggle>
       </mat-button-toggle-group>
