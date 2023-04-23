@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserverService } from '../../services/breakpoint-observer.service';
 import { Subscription } from 'rxjs';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { expandHeader } from '../../animations/animations';
 
 @Component({
@@ -21,7 +23,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   headerHeight = 'initial';
   settingsVisibility!: boolean;
 
-  constructor(private breakpointObserver: BreakpointObserverService) {}
+  constructor(
+    private breakpointObserver: BreakpointObserverService,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+  ) {
+    iconRegistry.addSvgIcon(
+      'basket',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/basket-icon.svg'),
+    );
+  }
 
   ngOnInit(): void {
     this.currentScreenSubscription = this.breakpointObserver.currentScreenSize$.subscribe(
