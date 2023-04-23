@@ -45,7 +45,7 @@
 }
 
 .card__date {
-  color: var(--background-secondary-0);
+  color: var(--background-secondary0);
   font-weight: 500;
   transition: all 0.3s ease;
   &.active {
@@ -88,7 +88,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--background-secondary-60);
+  background: var(--background-secondary60);
   height: 24px;
   width: 24px;
   border-radius: 50%;
