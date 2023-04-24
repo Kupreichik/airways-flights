@@ -6,10 +6,19 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, CoreModule, BrowserAnimationsModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CoreModule,
+    BrowserAnimationsModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
+  ],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
