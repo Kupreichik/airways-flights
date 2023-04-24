@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { PassengersComponent } from './components/passengers/passengers.component';
-import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
@@ -11,11 +10,15 @@ import { PassengerCardComponent } from './components/passenger-card/passenger-ca
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 
 @NgModule({
-  declarations: [HeaderComponent, PassengersComponent, PassengerCardComponent, ContactDetailsComponent],
+  declarations: [
+    HeaderComponent,
+    PassengersComponent,
+    PassengerCardComponent,
+    ContactDetailsComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
-    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     NgxMaskDirective,

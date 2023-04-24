@@ -56,19 +56,17 @@
         <mat-button-toggle
           class="passenger__checkbox-item"
           value="Male"
-          [ngClass]="{ active: passengerForm.controls['gender'].value === 'Male' }"
+          [ngClass]="{ active: checkGender(gender.MALE) }"
         >
-          <mat-icon *ngIf="passengerForm.controls['gender'].value === 'Male'">check-small</mat-icon>
+          <mat-icon *ngIf="checkGender(gender.MALE)">check-small</mat-icon>
           Male
         </mat-button-toggle>
         <mat-button-toggle
           class="passenger__checkbox-item"
           value="Female"
-          [ngClass]="{ active: passengerForm.controls['gender'].value === 'Female' }"
+          [ngClass]="{ active: checkGender(gender.FEMALE) }"
         >
-          <mat-icon *ngIf="passengerForm.controls['gender'].value === 'Female'">
-            check-small
-          </mat-icon>
+          <mat-icon *ngIf="checkGender(gender.FEMALE)"> check-small </mat-icon>
           Female
         </mat-button-toggle>
       </mat-button-toggle-group>

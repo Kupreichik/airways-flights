@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { countries } from '../../../mock/countries';
 import { Validators, FormBuilder } from '@angular/forms';
-
-const emailRegex = /^[_a-z0-9-+-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i;
+import { EMAIL_REGEX } from '../../../shared/constants/constants';
 
 @Component({
   selector: 'app-passengers',
@@ -17,7 +16,7 @@ export class PassengersComponent {
 
   contactForm = this.formBuilder.group({
     phone: ['', [Validators.required, Validators.minLength(10)]],
-    email: ['', [Validators.required, Validators.pattern(emailRegex)]],
+    email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
   });
 
   constructor(private formBuilder: FormBuilder) {}

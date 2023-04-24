@@ -3,7 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { dateValidation } from '../../directives/date-validation/date-validation.directive';
 import * as moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-const nameRegex = /^[a-zA-Z]+(-[a-zA-Z]+)*$/;
+import { NAME_REGEX, TOOLTIP_TEXT } from '../../../shared/constants/constants';
+import { GENDER } from './types';
 
 @Component({
   selector: 'app-passenger-card',
@@ -16,13 +17,12 @@ export class PassengerCardComponent {
   @Input() passenger!: { title: string };
   @Input() sequenceNumber!: number;
 
-  tooltipText =
-    "Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname.";
+  tooltipText = TOOLTIP_TEXT;
 
   passengerForm = this.formBuilder.group({
-    name: ['', [Validators.required, Validators.pattern(nameRegex)]],
-    lastName: ['', [Validators.required, Validators.pattern(nameRegex)]],
-    gender: ['Male'],
+    name: ['', [Validators.required, Validators.pattern(NAME_REGEX)]],
+    lastName: ['', [Validators.required, Validators.pattern(NAME_REGEX)]],
+    gender: [GENDER.MALE],
     date: ['', [Validators.required, dateValidation()]],
   });
 
@@ -40,6 +40,11 @@ export class PassengerCardComponent {
     return this.passengerForm.get('date');
   }
 
+  get gender() {
+    console.log('1');
+    return GENDER;
+  }
+
   onDatepickerChange(event: MatDatepickerInputEvent<Date>) {
     const selectedDate = moment(event.value).format('MM/DD/YYYY');
     this.passengerForm.controls['date'].patchValue(selectedDate);
@@ -52,7 +57,12 @@ export class PassengerCardComponent {
   }
 
   onInputChange(controlName: string, event: Event) {
-    const value = (event.target as HTMLInputElement)?.value?.toUpperCase() || '';
-    this.passengerForm.get(controlName)?.setValue(value);
+    const value = (event.target as HTMLInputElement)?.value || '';
+    const capitalizedValue = value.slice(0, 1).toUpperCase() + value.slice(1).toLowerCase();
+    this.passengerForm.get(controlName)?.setValue(capitalizedValue);
+  }
+
+  checkGender(gender: GENDER) {
+    return this.passengerForm.controls['gender'].value === gender;
   }
 }
