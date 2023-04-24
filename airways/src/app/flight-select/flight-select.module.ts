@@ -5,9 +5,10 @@ import { FlightSelectRoutingModule } from './flight-select-routing.module';
 import { FlightSelectPageComponent } from './pages/flight-select-page/flight-select-page.component';
 import { SearchSettingsComponent } from './components/search-settings/search-settings.component';
 import { SharedModule } from '../shared/shared.module';
-import { DateSelectComponent } from './components/date-select/date-select.component';
-import { FlightInfoComponent } from './components/flight-info/flight-info.component';
-import { FlightDateCityComponent } from './components/flight-info/flight-date-city/flight-date-city.component';
+import { DateSelectComponent } from './components/flight-select/date-select/date-select.component';
+import { FlightInfoComponent } from './components/flight-select/flight-info/flight-info.component';
+import { FlightDateCityComponent } from './components/flight-select/flight-info/flight-date-city/flight-date-city.component';
+import { FlightSelectComponent } from './components/flight-select/flight-select.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FlightDateCityComponent } from './components/flight-info/flight-date-ci
     DateSelectComponent,
     FlightInfoComponent,
     FlightDateCityComponent,
+    FlightSelectComponent,
   ],
   imports: [CommonModule, SharedModule, FlightSelectRoutingModule],
 })

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-date-select',
@@ -9,6 +9,8 @@ export class DateSelectComponent {
   isTransformed = false;
 
   selectedCardIndex = 2;
+
+  @Input() isReturnFlight = false;
 
   handleSelectCard(id: number) {
     this.selectedCardIndex = id;

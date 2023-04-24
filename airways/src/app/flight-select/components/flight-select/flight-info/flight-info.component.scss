@@ -1,7 +1,3 @@
-:host {
-  padding-top: 10px;
-}
-
 .flight-info {
   display: flex;
   background: var(--background-secondary100);
@@ -31,6 +27,10 @@
     height: 24px;
     z-index: 1;
     background: var(--background-secondary100);
+
+    &.rotate {
+      transform: scale(-1,1);
+    }
   }
 
   &::before {

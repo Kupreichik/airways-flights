@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FlightInfo } from '../../../models/mock-data.model';
+import { FlightInfo } from '../../../../models/mock-data.model';
 
 @Component({
   selector: 'app-flight-date-city',
