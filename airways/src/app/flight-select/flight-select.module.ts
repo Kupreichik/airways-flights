@@ -7,6 +7,7 @@ import { SearchSettingsComponent } from './components/search-settings/search-set
 import { SharedModule } from '../shared/shared.module';
 import { DateSelectComponent } from './components/date-select/date-select.component';
 import { FlightInfoComponent } from './components/flight-info/flight-info.component';
+import { FlightDateCityComponent } from './components/flight-info/flight-date-city/flight-date-city.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FlightInfoComponent } from './components/flight-info/flight-info.compon
     FlightSelectPageComponent,
     DateSelectComponent,
     FlightInfoComponent,
+    FlightDateCityComponent,
   ],
   imports: [CommonModule, SharedModule, FlightSelectRoutingModule],
 })
