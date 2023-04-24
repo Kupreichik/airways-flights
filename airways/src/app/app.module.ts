@@ -7,7 +7,6 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
-import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +18,7 @@ import { DatePipe } from '@angular/common';
     NgxMaskDirective,
     NgxMaskPipe,
   ],
-  providers: [DatePipe, provideNgxMask()],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

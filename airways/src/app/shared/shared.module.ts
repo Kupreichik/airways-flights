@@ -11,16 +11,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   exports: [
     MatSelectModule,
-     MatFormFieldModule,
+    MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatButtonModule,
@@ -30,6 +28,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTooltipModule,
-  ]
+    MatMenuModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

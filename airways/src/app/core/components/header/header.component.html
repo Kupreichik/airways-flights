@@ -1,20 +1,39 @@
-<header class="container header">
+<header class="container header"
+  [@expandHeader]="headerHeight"
+  (@expandHeader.start)="onAnimationStart($event.toState)"
+  (@expandHeader.done)="onAnimationEnd($event.toState)">
   <h1 class="logo">
-    <img class="logo-img" src="../../../../assets/logo.png" alt="logo">
+    <img class="logo-img" src="assets/logo.png" alt="logo">
     AIRWAYS
   </h1>
 
   <div class="booking-steps"></div>
 
   <div class="header-right-container">
+    <h2 class="heading">Book flights</h2>
+    <button *ngIf="isSmallScreen()" (click)="toggleSettingsVisibility()" mat-icon-button>
+      <mat-icon>settings</mat-icon>
+    </button>
 
-    <mat-select class="header-btn date-format">
-      <mat-option value="MM/dd/yyyy">MM/DD/YYYY</mat-option>
-      <mat-option value="dd/MM/yyyy">DD/MM/YYYY</mat-option>
-      <mat-option value="yyyy/dd/MM">YYYY/DD/MM</mat-option>
-      <mat-option value="yyyy/MM/dd">YYYY/MM/DD</mat-option>
-    </mat-select>
+    <div class="settings-container"
+      [ngClass]="{'hidden-settings': isSmallScreen()}"
+      [ngStyle]="{height: settingsVisibility ? 'auto' : 0}">
 
+      <mat-select class="header-btn date-format" [(value)]="dateFormat">
+        <mat-option [value]="option" *ngFor="let option of dateFormats">{{ option | uppercase }}</mat-option>
+      </mat-select>
+      
+      <mat-select class="header-btn currency" [(value)]="currency">
+        <mat-option [value]="option" *ngFor="let option of currencies">{{ option }}</mat-option>
+      </mat-select>
+      
+      <button mat-stroked-button class="auth-btn">
+        <mat-icon>person</mat-icon>
+        Sign in
+      </button>
+    </div>
+
+    <mat-icon class="basket" svgIcon="basket" aria-hidden="false"></mat-icon>
   </div>
 
 </header>

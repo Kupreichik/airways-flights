@@ -1,14 +1,11 @@
 :root {
   --primary-blue: #11397e;
   --text-color-neutral10: #49454f;
-}
-
-::ng-deep .mdc-tooltip__surface {
-  color: black !important;
-  background: white !important;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2) !important;
-  padding: 16px 24px !important;
-  font-size: 12px !important;
+  --text-color-neutral30: #74767a;
+  --background-main: #f5f5f5;
+  --background-secondary40: #d0d9df;
+  --background-secondary50: #e1e5eb;
+  --background-secondary90: #f4f6f9;
 }
 
 * {
@@ -55,7 +52,7 @@ body {
 
 @media (max-width: 1200px) {
   .container {
-    width: 100%;
+    width: 94%;
     margin: 0 3vw;
   }
 }

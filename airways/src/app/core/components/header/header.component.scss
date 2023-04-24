@@ -1,20 +1,22 @@
 :host {
   position: fixed;
   z-index: 1;
-  height: 88px;
+  padding-top: 25px;
+  height: fit-content;
   width: 100%;
   background: #74767a33;
-  display: flex;
-  align-items: center;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  overflow: hidden;
 }
 
 .logo {
   cursor: pointer;
+  margin-bottom: 0;
   color: var(--primary-blue);
   font-size: 16px;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -28,6 +30,15 @@
 
 .header-right-container {
   color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 41px;
+}
+
+.heading {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
 }
 
 .header-btn {
@@ -40,7 +51,6 @@
 
 .date-format {
   width: 162px;
-  padding: 8px 16px;
   font-size: 1rem;
 
   &:focus-visible {
@@ -53,6 +63,88 @@
   }
 }
 
+.date-format,
+.currency {
+  display: flex;
+}
+
 .currency {
   width: 62px;
+}
+
+.auth-btn {
+  height: 40px;
+  color: inherit !important;
+}
+
+.basket {
+  cursor: pointer;
+}
+
+::ng-deep .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  color: var(--primary-blue);
+}
+
+::ng-deep .mat-mdc-select-value {
+  width: auto !important;
+}
+
+::ng-deep .mat-mdc-select-trigger {
+  justify-content: center;
+  gap: 10px;
+}
+
+::ng-deep .mat-mdc-select-value-text {
+  color: #ffffff;
+}
+
+::ng-deep .mat-mdc-select-arrow path {
+  fill: #ffffff;
+}
+
+::ng-deep .currency .mat-mdc-select-arrow-wrapper {
+  display: none;
+}
+
+.settings-container {
+  display: flex;
+  gap: 40px
+}
+
+.hidden-settings {
+  position: absolute;
+  overflow: hidden;
+  top: 88px;
+  right: 3%;
+  height: auto;
+}
+
+@media (max-width: 470px) {
+  .heading {
+    display: none;
+  }
+
+  .auth-btn {
+    padding: 0 2px;
+
+    mat-icon {
+    display: none;
+    }
+  }
+
+  .settings-container {
+    gap: 4px;
+  }
+
+  .date-format {
+  width: 138px;
+  }
+
+  .currency {
+  width: 56px;
+  }
+
+  mat-pseudo-checkbox {
+    display: none;
+  }
 }
