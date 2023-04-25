@@ -1,5 +1,5 @@
 <div class="flight-date-city" *ngIf="flightDetails">
-  <span class="date">{{ (isDepartureDate ? flightDetails.departure : flightDetails.arrival) | date:'EE, MMMM d, y'}}</span>
+  <span class="date" [style.textAlign] = "isDepartureDate ? '' : 'right'">{{ (isDepartureDate ? flightDetails.departure : flightDetails.arrival) | date:'EE, MMMM d, y'}}</span>
   <div class="time" >
     <span class="time__time" [style.order] = "isDepartureDate ? '' : '1'">{{ (isDepartureDate ? flightDetails.departure : flightDetails.arrival) | date:'HH:mm' }}</span>
     <span class="time__utc">{{ flightDetails.timeZone }}</span>

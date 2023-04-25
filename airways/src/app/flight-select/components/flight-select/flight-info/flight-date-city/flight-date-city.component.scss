@@ -4,11 +4,20 @@
   flex-direction: column;
   gap: 10px;
   padding: 10px;
+
+  @media (max-width: 768px) {
+    gap: 5px;
+    padding: 5px;
+  }
 }
 
 .date {
   font-size: 16px;
   color: var(--text-color-neutral30);
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 }
 
 .time {
@@ -20,6 +29,10 @@
 .time__time {
   font-size: 30px;
   font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 }
 
 .time__utc {

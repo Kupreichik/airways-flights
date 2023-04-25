@@ -21,11 +21,20 @@ mat-icon {
   font-weight: 700;
   font-size: 24px;
   padding-left: 7px;
+
+  @media (max-width: 440px) {
+    font-size: 20px;
+  }
 }
 
 .slider {
   overflow: hidden;
   position: relative;
+  background: var(--background-secondary100);
+
+  @media (max-width: 500px) {
+    overflow-x: scroll;
+  }
 }
 
 .slider__container {
@@ -43,7 +52,7 @@ mat-icon {
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
-  border: 1px solid var(--text-color-neutral60);
+  border-left: 1px solid var(--text-color-neutral60);
   cursor: pointer;
 
   &.active {
@@ -112,5 +121,9 @@ mat-icon {
 
   &:hover {
     background: lightgray;
+  }
+
+  @media (max-width: 500px) {
+    display: none;
   }
 }

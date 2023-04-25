@@ -2,6 +2,11 @@
   display: flex;
   background: var(--background-secondary100);
   border-radius: 5px;
+
+  @media (max-width: 670px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .flight-info__content {
@@ -11,6 +16,19 @@
   column-gap: 30px;
   padding: 0 30px;
   border-right: 2px dashed var(--background-secondary40);
+
+  @media (max-width: 1280px) {
+    column-gap: 5px;
+    padding: 0 10px;
+  }
+
+  @media (max-width: 670px) {
+    column-gap: 5px;
+    padding: unset;
+    position: relative;
+    border-right: unset;
+    border-bottom: 2px dashed var(--background-secondary40);
+  }
 }
 
 .flight-duration-type {
@@ -41,6 +59,10 @@
     top: 50%;
     background: var(--background-secondary40);
   }
+
+  @media (max-width: 670px) {
+    gap: unset;
+  }
 }
 
 .flight-number {
@@ -49,6 +71,12 @@
   & span {
     color: black;
   };
+
+  @media (max-width: 670px) {
+    position: absolute;
+    top: 135%;
+    max-width: 65px;
+  }
 }
 
 .flight-info__price {
@@ -56,6 +84,15 @@
   padding: 15px;
   align-items: center;
   gap: 30px;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+    padding: 5px;
+  }
+
+  @media (max-width: 440px) {
+    align-self: self-end;
+  }
 }
 
 .price-container {
@@ -77,4 +114,9 @@
 .price {
   font-size: 30px;
   color: var(--primary-blue);
+}
+
+.select-btn {
+  background: linear-gradient(108.75deg, #0090BD 59.91%, #073590 95.36%);
+  border: 1px solid var(--primary-blue);
 }
