@@ -33,6 +33,10 @@
   display: flex;
   align-items: center;
   gap: 41px;
+
+  ::ng-deep.mat-mdc-outlined-button:not(:disabled) {
+    border-color: #cecece
+  }
 }
 
 .heading {
@@ -52,6 +56,11 @@
 .date-format {
   width: 162px;
   font-size: 1rem;
+  
+  ::ng-deep .mat-mdc-select-trigger {
+    justify-content: center;
+    gap: 10px;
+  }
 
   &:focus-visible {
     outline: none;
@@ -70,6 +79,10 @@
 
 .currency {
   width: 62px;
+
+  ::ng-deep .mat-mdc-select-trigger {
+    justify-content: center;
+  }
 }
 
 .auth-btn {
@@ -87,11 +100,6 @@
 
 ::ng-deep .mat-mdc-select-value {
   width: auto !important;
-}
-
-::ng-deep .mat-mdc-select-trigger {
-  justify-content: center;
-  gap: 10px;
 }
 
 ::ng-deep .mat-mdc-select-value-text {

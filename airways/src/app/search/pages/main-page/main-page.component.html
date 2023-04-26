@@ -1,1 +1,69 @@
+<div class="container">
+  <form class="search-form">
 
+    <mat-radio-group class="radio">
+      <mat-radio-button value="round-trip">Round Trip</mat-radio-button>
+      <mat-radio-button value="one-way">One Way</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field class="destination" appearance="fill" hideRequiredMarker="always" floatLabel="always">
+      <mat-label>From</mat-label>
+      <mat-select required>
+        <mat-option>Choose your destination</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option>Choose your destination</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option>Choose your destination</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option value="option">Option</mat-option>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="destination" appearance="fill" hideRequiredMarker="always" floatLabel="always">
+      <mat-label>Destination</mat-label>
+      <mat-select required>
+        <mat-option>Choose your destination</mat-option>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-stroked-button class="change-btn">
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
+
+    <div class="field-wrapper">
+      <mat-form-field class="date-input" appearance="fill" hideRequiredMarker="always" floatLabel="always">
+        <mat-label>Dates</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date">
+          <input matEndDate placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker>
+          <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button mat-button matDateRangePickerApply>Ok</button>
+          </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+      </mat-form-field>
+
+      <mat-form-field class="passengers" appearance="fill" hideRequiredMarker="always" floatLabel="always">
+        <mat-label>Passengers</mat-label>
+        <mat-select multiple class="passengers-input">
+          <mat-option *ngFor="let passengerCategory of passengerCategories" [value]="passengerCategory">{{passengerCategory}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button class="submit-btn" type="submit" routerLink="/select">Search</button>
+  </form>
+</div>

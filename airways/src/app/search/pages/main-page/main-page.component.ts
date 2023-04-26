@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent {
-  x = 5;
+  passengers = {
+    Adults: 0,
+    Child: 0,
+    Infant: 0,
+  };
+  passengerCategories = Object.keys(this.passengers);
 }

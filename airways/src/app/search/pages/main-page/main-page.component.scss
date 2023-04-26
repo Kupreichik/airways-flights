@@ -7,6 +7,135 @@
   background-position: right;
 }
 
+.search-form {
+  position: relative;
+  margin-top: 150px;
+  height: 390px;
+  width: 580px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffffd9;
+  border-radius: 8px;
+
+  &::ng-deep .mat-mdc-text-field-wrapper {
+    border: 0.5px solid #cecece;
+    border-radius: 4px;
+  }
+
+  &::ng-deep mat-hint {
+    color: var(--text-color-neutral10);
+  }
+}
+
+.radio {
+  gap: 62px;
+  display: flex;
+  margin-bottom: 26px;
+
+  &::ng-deep .mat-mdc-radio-button .mdc-form-field{
+    color: var(--primary-blue);
+  }
+
+  &::ng-deep .mat-mdc-radio-button.mat-accent {
+    --mdc-radio-selected-focus-icon-color: #11397E;
+    --mdc-radio-selected-hover-icon-color: #11397E;
+    --mdc-radio-selected-icon-color: #11397E;
+    --mdc-radio-selected-pressed-icon-color: #11397E;
+    --mat-mdc-radio-checked-ripple-color: #11397e00;
+  }
+}
+
+  .destination {
+    &::ng-deep .mdc-line-ripple::before {
+      border-bottom: none;
+    }
+
+    &::ng-deep .mdc-line-ripple::after {
+      border-bottom: none;
+    }
+
+    &::ng-deep .mat-mdc-select-arrow-wrapper {
+      display: none;
+    }
+
+    &::ng-deep .mat-mdc-form-field-subscript-wrapper {
+      height: 4px;
+    }
+  }
+
+::ng-deep .cdk-overlay-pane {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--primary-blue);
+  }
+}
+
+.field-wrapper {
+  margin-top: 26px;
+  display: flex;
+  gap: 20px;
+}
+
+.date-input {
+  color: var(--text-color-neutral0);
+  width: 311px;
+
+  &::ng-deep.mdc-line-ripple::before {
+    border-bottom: none;
+  }
+}
+
+.passengers {
+  width: 201px;
+
+  &::ng-deep .mat-mdc-select-arrow path {
+    fill: var(--text-color-neutral0);
+  }
+
+  &::ng-deep.mdc-line-ripple::before {
+    border-bottom: none;
+  }
+
+  &::ng-deep.mdc-line-ripple::after {
+    border-bottom: none;
+  }
+
+  &::ng-deep.mat-mdc-select-value-text {
+    color: var(--text-color-neutral0);
+  }
+
+  &::ng-deep.mat-mdc-select-trigger {
+    justify-content: space-between;
+  }
+}
+
+.change-btn {
+  position: absolute;
+  top: 130px;
+  right: 44px;
+  border-radius: 50%;
+  min-width: 40px;
+  height: 40px;
+  padding: 0;
+  background-color: #ffffff;
+
+  mat-icon {
+    margin: 0;
+  }
+}
+
+.submit-btn {
+  width: 126px;
+  height: 60px;
+  color: #cecece;
+  background-color: var(--primary-blue);
+  align-self: flex-end;
+}
+
 @media (max-width: 768px) {
   :host {
     background-position-x: 81%;
