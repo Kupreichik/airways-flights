@@ -5,4 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './search-settings.component.html',
   styleUrls: ['./search-settings.component.scss'],
 })
-export class SearchSettingsComponent {}
+export class SearchSettingsComponent {
+  startDate = new Date();
+  endDate = new Date(new Date().setDate(new Date().getDate() + 17));
+}

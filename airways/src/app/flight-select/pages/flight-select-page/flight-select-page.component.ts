@@ -4,7 +4,7 @@ import { FlightInfo } from '../../models/mock-data.model';
 const mockFlightData: FlightInfo[] = [
   {
     flightNumber: 'FR 1925',
-    fligthType: 'direct',
+    flightType: 'direct',
     direction: 'forward',
     duration: '2h 50m',
     seats: 100,
@@ -16,7 +16,7 @@ const mockFlightData: FlightInfo[] = [
   },
   {
     flightNumber: 'FR 1925',
-    fligthType: 'direct',
+    flightType: 'direct',
     direction: 'backward',
     duration: '5h 50m',
     seats: 20,

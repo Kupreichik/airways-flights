@@ -23,4 +23,8 @@ export class DateSelectComponent {
   handleNext() {
     this.isTransformed = true;
   }
+
+  checkCardSelected(cardId: number): boolean {
+    return cardId === this.selectedCardIndex;
+  }
 }

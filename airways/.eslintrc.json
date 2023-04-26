@@ -8,7 +8,7 @@
       ],
       "parserOptions": {
         "project": [
-          "./airways/tsconfig.json"
+          "tsconfig.json"
         ]
       },
       "extends": [

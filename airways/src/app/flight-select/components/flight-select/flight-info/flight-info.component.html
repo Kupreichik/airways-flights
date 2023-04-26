@@ -6,7 +6,7 @@
     <div class="flight-duration-type">
       <span class="duration"> {{ flightData.duration }} </span>
       <img src="assets/airplane_takeoff_24px.svg" alt="airplane_takeoff" [ngClass]="{'rotate': flightData.direction === 'backward'}">
-      <span class="flight-type"> {{ flightData.fligthType }} </span>
+      <span class="flight-type"> {{ flightData.flightType }} </span>
     </div>
 
     <app-flight-date-city [flightDetails]="flightData" [isDepartureDate]="false"></app-flight-date-city>
