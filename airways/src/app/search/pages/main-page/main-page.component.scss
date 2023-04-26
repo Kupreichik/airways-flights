@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  min-height: 100%;
+  flex-grow: 1;
+  background-image: url('../../../../assets/background.webp');
+  background-size: cover;
+  background-position: right;
+}
+
+@media (max-width: 768px) {
+  :host {
+    background-position-x: 81%;
+  }
+}
