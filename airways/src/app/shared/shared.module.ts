@@ -12,6 +12,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -29,6 +32,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatNativeDateModule,
     MatTooltipModule,
     MatMenuModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatTabsModule,
   ],
 })
 export class SharedModule {}

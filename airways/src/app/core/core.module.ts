@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { PassengerCardComponent } from './components/passenger-card/passenger-card.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
     PassengersComponent,
     PassengerCardComponent,
     ContactDetailsComponent,
+    AuthComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,6 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
     LayoutModule,
     HttpClientModule,
   ],
-  exports: [HeaderComponent, FooterComponent, PassengersComponent],
+  exports: [HeaderComponent, FooterComponent, PassengersComponent, AuthComponent],
 })
 export class CoreModule {}
