@@ -41,7 +41,6 @@ export class PassengerCardComponent {
   }
 
   get gender() {
-    console.log('1');
     return GENDER;
   }
 

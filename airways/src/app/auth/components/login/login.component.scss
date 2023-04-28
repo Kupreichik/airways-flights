@@ -1,0 +1,40 @@
+.login__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+
+  &::ng-deep .mdc-text-field {
+    background: whitesmoke;
+  }
+  &::ng-deep .mdc-text-field--focused {
+    background: rgba(0, 0, 0, 0.12);
+  }
+}
+
+.login__form-input {
+  width: 100%;
+
+  &::ng-deep .mdc-text-field {
+    background: whitesmoke;
+  }
+  &::ng-deep .mdc-text-field--focused {
+    background: rgba(0, 0, 0, 0.12);
+  }
+}
+
+.login__button-forgot {
+  margin-left: auto;
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.login__button-auth {
+  width: 100%;
+  padding: 28px;
+  font-size: 16px;
+}
