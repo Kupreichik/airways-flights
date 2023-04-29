@@ -37,6 +37,14 @@
   ::ng-deep.mat-mdc-outlined-button:not(:disabled) {
     border-color: #cecece
   }
+
+  ::ng-deep .mat-mdc-select-value-text {
+    color: #ffffff;
+  }
+
+  ::ng-deep .mat-mdc-select-arrow path {
+    fill: #ffffff;
+  }
 }
 
 .heading {
@@ -100,14 +108,6 @@
 
 ::ng-deep .mat-mdc-select-value {
   width: auto !important;
-}
-
-::ng-deep .mat-mdc-select-value-text {
-  color: #ffffff;
-}
-
-::ng-deep .mat-mdc-select-arrow path {
-  fill: #ffffff;
 }
 
 ::ng-deep .currency .mat-mdc-select-arrow-wrapper {

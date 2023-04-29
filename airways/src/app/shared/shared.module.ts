@@ -14,11 +14,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
   exports: [
+    FormsModule,
+    ReactiveFormsModule,
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,

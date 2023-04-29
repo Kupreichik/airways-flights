@@ -40,7 +40,9 @@
           }
         ],
         "@typescript-eslint/lines-between-class-members": "off",
-        "import/named": "off"
+        "import/named": "off",
+        "import/no-unresolved": "off",
+        "class-methods-use-this": "off"
       }
     },
     {

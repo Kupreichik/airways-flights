@@ -1,8 +1,9 @@
+/* eslint-disable class-methods-use-this */
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { dateValidation } from '../../directives/date-validation/date-validation.directive';
 import * as moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { dateValidation } from '../../directives/date-validation/date-validation.directive';
 import { NAME_REGEX, TOOLTIP_TEXT } from '../../../shared/constants/constants';
 import { GENDER } from './types';
 
@@ -41,19 +42,18 @@ export class PassengerCardComponent {
   }
 
   get gender() {
-    console.log('1');
     return GENDER;
   }
 
   onDatepickerChange(event: MatDatepickerInputEvent<Date>) {
     const selectedDate = moment(event.value).format('MM/DD/YYYY');
-    this.passengerForm.controls['date'].patchValue(selectedDate);
+    this.passengerForm.controls.date.patchValue(selectedDate);
 
     this.dateInput.nativeElement.focus();
   }
 
   onDateInputChange() {
-    this.passengerForm.controls['date'].updateValueAndValidity();
+    this.passengerForm.controls.date.updateValueAndValidity();
   }
 
   onInputChange(controlName: string, event: Event) {
@@ -63,6 +63,6 @@ export class PassengerCardComponent {
   }
 
   checkGender(gender: GENDER) {
-    return this.passengerForm.controls['gender'].value === gender;
+    return this.passengerForm.controls.gender.value === gender;
   }
 }
