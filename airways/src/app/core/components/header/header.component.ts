@@ -5,6 +5,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { expandHeader } from '../../animations/animations';
 import { HeaderHeight, ScreenSizes } from '../../models';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private breakpointObserver: BreakpointObserverService,
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
+    public dialog: MatDialog,
   ) {
     iconRegistry.addSvgIcon(
       'basket',

@@ -32,10 +32,13 @@
         <mat-option [value]="option" *ngFor="let option of currencies">{{ option }}</mat-option>
       </mat-select>
 
-      <button mat-stroked-button class="auth-btn">
+      <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="menu">
         <mat-icon>person</mat-icon>
         Sign in
       </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <app-auth (click)="$event.stopPropagation()"></app-auth>
+      </mat-menu>
     </div>
 
     <mat-icon class="basket" svgIcon="basket" aria-hidden="false"></mat-icon>

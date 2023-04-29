@@ -50,6 +50,20 @@ body {
   }
 }
 
+.cdk-overlay-pane {
+  max-width: 494px;
+  width: 100%;
+
+  & > .mat-mdc-menu-panel.mat-mdc-menu-panel {
+    max-width: 494px;
+    width: 100%;
+
+    & > .mat-mdc-menu-content {
+      padding: 0;
+    }
+  }
+}
+
 @media (max-width: 1200px) {
   .container {
     width: 94%;
