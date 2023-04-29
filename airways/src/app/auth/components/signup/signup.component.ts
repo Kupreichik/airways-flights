@@ -31,7 +31,7 @@ export class SignupComponent {
     ],
     signupDateBirth: ['', [Validators.required, dateValidation()]],
     signupGender: [GENDER.MALE],
-    signupPhone: ['', [Validators.required]],
+    signupPhone: ['', [Validators.required, Validators.minLength(10)]],
     signupCitizenship: ['', [Validators.required]],
     signupCheckbox: ['', [Validators.required]],
   });
