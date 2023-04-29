@@ -1,3 +1,9 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
 .signup-form__input {
   width: 100%;
 
@@ -81,11 +87,17 @@
 }
 
 .signup-form__terms {
-  margin-bottom: 24px;
+  margin-bottom: 21px;
 }
 
 .signup-form__button {
   width: 100%;
   padding: 28px;
   font-size: 16px;
+}
+
+@media (max-width: 550px) {
+  .signup-form__block {
+    flex-direction: column;
+  }
 }
