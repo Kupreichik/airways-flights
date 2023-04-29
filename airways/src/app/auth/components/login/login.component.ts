@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { EMAIL_REGEX } from '../../../shared/constants/constants';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -9,19 +8,19 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   loginForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
-    password: ['', [Validators.required, Validators.minLength(3)]],
+    loginEmail: ['', [Validators.required, Validators.email]],
+    loginPassword: ['', [Validators.required, Validators.minLength(3)]],
   });
 
   hidePassword = true;
 
   constructor(private formBuilder: FormBuilder) {}
 
-  get email() {
-    return this.loginForm.get('email');
+  get loginEmail() {
+    return this.loginForm.get('loginEmail');
   }
 
-  get password() {
-    return this.loginForm.get('password');
+  get loginPassword() {
+    return this.loginForm.get('loginPassword');
   }
 }

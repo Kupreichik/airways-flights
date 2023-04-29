@@ -2,6 +2,7 @@
   <mat-form-field class="login__form-input" appearance="outline">
     <mat-label>Email</mat-label>
     <input type="text" matInput formControlName="loginEmail" />
+    <mat-error *ngIf="loginEmail?.hasError('required')">Please enter email</mat-error>
   </mat-form-field>
 
   <mat-form-field class="login__form-input" appearance="outline">
@@ -14,6 +15,7 @@
     <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
       <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
     </button>
+    <mat-error *ngIf="loginPassword?.hasError('required')">Please enter password</mat-error>
   </mat-form-field>
 
   <button mat-button color="primary" class="login__button-forgot">Forgot password?</button>

@@ -1,0 +1,91 @@
+.signup-form__input {
+  width: 100%;
+
+  &::ng-deep .mdc-text-field {
+    background: whitesmoke;
+  }
+  &::ng-deep .mdc-text-field--focused {
+    background: rgba(0, 0, 0, 0.12);
+  }
+}
+
+.signup-form__icon {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a8a9ad;
+
+  &.calendar {
+    color: black;
+  }
+
+  &.error {
+    color: #b3261e;
+  }
+
+  &:hover {
+    cursor: url('../../../../assets/custom-cursor.svg'), pointer;
+  }
+}
+
+.signup-form__checkbox {
+  width: 100%;
+  margin-bottom: 22px;
+  height: 56px;
+}
+
+.signup-form__checkbox-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #9e9e9e;
+  background: #f4f6f9;
+
+  &.active {
+    color: var(--primary-blue);
+  }
+}
+
+.signup-form__block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.signup-form__select {
+  width: 100%;
+
+  &::ng-deep .mat-mdc-select-value-text {
+    color: black;
+  }
+
+  &::ng-deep .mat-mdc-select-arrow path {
+    fill: black;
+  }
+
+  &::ng-deep .mdc-text-field {
+    background: whitesmoke;
+  }
+
+  &::ng-deep .mdc-text-field--focused {
+    background: rgba(0, 0, 0, 0.12);
+  }
+
+  &::ng-deep .mat-mdc-select-trigger {
+    justify-content: space-between;
+  }
+}
+
+.signup-form__terms {
+  margin-bottom: 24px;
+}
+
+.signup-form__button {
+  width: 100%;
+  padding: 28px;
+  font-size: 16px;
+}
