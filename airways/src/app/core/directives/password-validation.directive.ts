@@ -18,12 +18,10 @@ export function passwordValidation(): ValidatorFn {
     }
 
     if (!PASSWORD_NUMBER_REGEX.test(control.value)) {
-      console.log(control.value, 'numbers');
       return numberError;
     }
 
     if (!PASSWORD_SYMBOL_REGEX.test(control.value)) {
-      console.log(control.value, 'symbol');
       return symbolError;
     }
 

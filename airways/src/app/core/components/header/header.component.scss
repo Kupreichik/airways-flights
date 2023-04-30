@@ -108,7 +108,7 @@
 
 .settings-container {
   display: flex;
-  gap: 40px
+  gap: 40px;
 }
 
 .hidden-settings {
@@ -117,6 +117,13 @@
   top: 88px;
   right: 3%;
   height: auto;
+}
+
+.close-button {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: 5;
 }
 
 @media (max-width: 470px) {
@@ -128,7 +135,7 @@
     padding: 0 2px;
 
     mat-icon {
-    display: none;
+      display: none;
     }
   }
 
@@ -137,11 +144,11 @@
   }
 
   .date-format {
-  width: 138px;
+    width: 138px;
   }
 
   .currency {
-  width: 56px;
+    width: 56px;
   }
 
   mat-pseudo-checkbox {

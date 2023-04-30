@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { dateValidation } from '../../directives/date-validation/date-validation.directive';
-import * as moment from 'moment';
+import moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { NAME_REGEX, TOOLTIP_TEXT } from '../../../shared/constants/constants';
 import { GENDER } from '../../../shared/constants/types';

@@ -53,7 +53,9 @@
       {{ signupFirstName?.errors && signupFirstName?.touched ? 'error' : 'error_outline' }}
     </mat-icon>
     <mat-error *ngIf="signupFirstName?.hasError('required')">Please enter a first name</mat-error>
-    <mat-error *ngIf="signupFirstName?.hasError('minlength')">Your first name must be at least 3 characters</mat-error>
+    <mat-error *ngIf="signupFirstName?.hasError('minlength')"
+      >Your first name must be at least 3 characters</mat-error
+    >
     <mat-error *ngIf="signupFirstName?.hasError('pattern')">Invalid character</mat-error>
   </mat-form-field>
 
@@ -79,7 +81,9 @@
       {{ signupLastName?.errors && signupLastName?.touched ? 'error' : 'error_outline' }}
     </mat-icon>
     <mat-error *ngIf="signupLastName?.hasError('required')">Please enter a last name</mat-error>
-        <mat-error *ngIf="signupFirstName?.hasError('minlength')">Your last name must be at least 3 characters</mat-error>
+    <mat-error *ngIf="signupFirstName?.hasError('minlength')"
+      >Your last name must be at least 3 characters</mat-error
+    >
     <mat-error *ngIf="signupLastName?.hasError('pattern')">Invalid character</mat-error>
   </mat-form-field>
 
@@ -176,5 +180,5 @@
     Accept terms is required
   </mat-error>
 
-  <button mat-raised-button class="signup-form__button" color="primary">Log in</button>
+  <button mat-raised-button class="signup-form__button" color="primary">Sign up</button>
 </form>

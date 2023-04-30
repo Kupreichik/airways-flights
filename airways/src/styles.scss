@@ -58,6 +58,10 @@ body {
     max-width: 494px;
     width: 100%;
 
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     & > .mat-mdc-menu-content {
       padding: 0;
     }

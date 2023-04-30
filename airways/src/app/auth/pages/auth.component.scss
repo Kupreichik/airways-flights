@@ -4,6 +4,8 @@
   background: white;
   max-width: 494px;
   width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 .auth__tabs::ng-deep {
@@ -44,6 +46,3 @@
     padding: 0;
   }
 }
-
-// .cdk-overlay-pane
-// .mat-mdc-menu-panel.mat-mdc-menu-panel

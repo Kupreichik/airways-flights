@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NAME_REGEX, TOOLTIP_TEXT } from '../../../shared/constants/constants';
 import { dateValidation } from '../../../core/directives/date-validation/date-validation.directive';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import * as moment from 'moment';
+import moment from 'moment';
 
 import { GENDER } from '../../../shared/constants/types';
 import { countriesMockList } from '../../../mock/countries';
@@ -80,7 +80,6 @@ export class SignupComponent {
   }
 
   get signupCheckbox() {
-    console.log(this.signupForm.get('signupCheckbox')?.value);
     return this.signupForm.get('signupCheckbox');
   }
 
