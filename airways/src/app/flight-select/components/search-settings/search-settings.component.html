@@ -1,15 +1,15 @@
 <div class="container search-settings">
     <div class="from-to">
-      <span>Dublin</span>
+      <span>{{ searchDataService.origin }}</span>
       <img src="assets/return_trip_24px.svg" alt="icon-trip-type">
-      <span>Warsaw Modlin</span>
+      <span> {{ searchDataService.destination }}</span>
     </div>
     <div class="trip-info">
       <span>Return</span>
       <span class="dot"></span>
-      <span>{{ startDate | date: 'dMMM' }} - {{ endDate | date: 'dMMM' }}</span>
+      <span>{{ searchDataService.startDate | date: 'dMMM' }} - {{ searchDataService.endDate | date: 'dMMM' }}</span>
       <span class="dot"></span>
-      <span>3</span>
+      <span>{{ searchDataService.passengers }}</span>
       <img src="assets/account_24px.svg" alt="icon-person">
     </div>
     <button mat-button color="primary">Edit</button>

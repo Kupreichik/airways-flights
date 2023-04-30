@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FlightInfo } from '../../models/mock-data.model';
+import { FlightSelectService } from '../../services/flight-select.service';
 
 @Component({
   selector: 'app-flight-select',
@@ -7,6 +7,7 @@ import { FlightInfo } from '../../models/mock-data.model';
   styleUrls: ['./flight-select.component.scss'],
 })
 export class FlightSelectComponent {
-  @Input() flightData?: FlightInfo;
   @Input() isReturnFlight = false;
+
+  constructor(private flightService: FlightSelectService) {}
 }

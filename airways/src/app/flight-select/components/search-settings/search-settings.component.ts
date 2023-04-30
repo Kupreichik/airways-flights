@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SearchDataService } from 'src/app/core/services/search-data.service';
 
 @Component({
   selector: 'app-search-settings',
@@ -6,6 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-settings.component.scss'],
 })
 export class SearchSettingsComponent {
-  startDate = new Date();
-  endDate = new Date(new Date().setDate(new Date().getDate() + 17));
+  constructor(public searchDataService: SearchDataService) {}
 }

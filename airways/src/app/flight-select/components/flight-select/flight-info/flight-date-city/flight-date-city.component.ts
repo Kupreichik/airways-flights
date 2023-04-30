@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { FlightInfo } from '../../../../models/mock-data.model';
 
 @Component({
   selector: 'app-flight-date-city',
@@ -7,6 +6,7 @@ import { FlightInfo } from '../../../../models/mock-data.model';
   styleUrls: ['./flight-date-city.component.scss'],
 })
 export class FlightDateCityComponent {
-  @Input() flightDetails?: FlightInfo;
   @Input() isDepartureDate = false;
+
+  @Input() flightDate?: string;
 }
