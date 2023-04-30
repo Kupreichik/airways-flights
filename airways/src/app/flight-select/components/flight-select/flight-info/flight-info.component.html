@@ -1,0 +1,29 @@
+<div class="container flight-info" *ngIf="flightData">
+  <div class="flight-info__content">
+
+    <app-flight-date-city [flightDetails]="flightData" [isDepartureDate]="true"></app-flight-date-city>
+
+    <div class="flight-duration-type">
+      <span class="duration"> {{ flightData.duration }} </span>
+      <img src="assets/airplane_takeoff_24px.svg" alt="airplane_takeoff" [ngClass]="{'rotate': flightData.direction === 'backward'}">
+      <span class="flight-type"> {{ flightData.flightType }} </span>
+    </div>
+
+    <app-flight-date-city [flightDetails]="flightData" [isDepartureDate]="false"></app-flight-date-city>
+
+    <div class="flight-number">
+      Flight no.
+      <span>{{ flightData.flightNumber }}</span>
+    </div>
+
+  </div>
+
+  <div class="flight-info__price">
+    <div class="price-container">
+      <span class="seats"> {{ flightData.seats }} seats <br> available</span>
+      <span>Price</span>
+      <span class="price"> {{ flightData.price | currency:'EUR':'symbol' }} </span>
+    </div>
+    <button mat-raised-button color="primary" class="select-btn">Select</button>
+  </div>
+</div>

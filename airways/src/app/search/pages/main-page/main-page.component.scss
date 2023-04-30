@@ -1,0 +1,240 @@
+:host {
+  display: block;
+  min-height: 100%;
+  flex-grow: 1;
+  background-image: url('../../../../assets/background.webp');
+  background-size: cover;
+  background-position: right;
+}
+
+.search-form {
+  margin-top: 150px;
+  height: 390px;
+  width: 580px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffffd9;
+  border-radius: 8px;
+
+  &::ng-deep .mat-mdc-text-field-wrapper {
+    border: 0.5px solid #cecece;
+    border-radius: 4px;
+  }
+
+  &::ng-deep .mdc-text-field--invalid{
+    border: 0.5px solid #B3261E;
+
+    &::ng-deep.mat-mdc-select-placeholder {
+      color: #B3261E;
+    }
+
+    .mdc-floating-label {
+      color: #B3261E;
+    }
+  }
+
+  &::ng-deep mat-hint {
+    color: var(--text-color-neutral10);
+  }
+}
+
+.radio {
+  gap: 62px;
+  display: flex;
+  margin-bottom: 26px;
+
+  &::ng-deep .mat-mdc-radio-button .mdc-form-field{
+    color: var(--primary-blue);
+  }
+
+  &::ng-deep .mat-mdc-radio-button.mat-accent {
+    --mdc-radio-selected-focus-icon-color: #11397E;
+    --mdc-radio-selected-hover-icon-color: #11397E;
+    --mdc-radio-selected-icon-color: #11397E;
+    --mdc-radio-selected-pressed-icon-color: #11397E;
+    --mat-mdc-radio-checked-ripple-color: #11397e00;
+  }
+}
+
+.destination-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.destination-reverse {
+  flex-direction: column-reverse;
+}
+
+.destination {
+  &::ng-deep .mdc-line-ripple::before {
+    border-bottom: none;
+  }
+
+  &::ng-deep .mdc-line-ripple::after {
+    border-bottom: none;
+  }
+
+  &::ng-deep .mat-mdc-select-arrow-wrapper {
+    display: none;
+  }
+
+  &::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    height: 4px;
+  }
+}
+
+::ng-deep .cdk-overlay-pane {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--primary-blue);
+  }
+}
+
+.field-wrapper {
+  margin-top: 26px;
+  display: flex;
+  gap: 20px;
+}
+
+.date-input {
+  color: var(--text-color-neutral0);
+  width: 311px;
+
+  &::ng-deep.mdc-line-ripple::before {
+    border-bottom: none;
+  }
+
+  ::ng-deep.mat-date-range-input-inner[disabled] {
+    color: var(--text-color-neutral0);
+  }
+}
+
+.passengers {
+  width: 201px;
+
+  &::ng-deep .mat-mdc-select-arrow path {
+    fill: var(--text-color-neutral0);
+  }
+
+  &::ng-deep.mdc-line-ripple::before {
+    border-bottom: none;
+  }
+
+  &::ng-deep.mdc-line-ripple::after {
+    border-bottom: none;
+  }
+
+  &::ng-deep.mat-mdc-select-value-text,
+  &::ng-deep.mat-mdc-select-placeholder {
+    color: var(--text-color-neutral0);
+  }
+
+  &::ng-deep.mat-mdc-select-trigger {
+    justify-content: space-between;
+  }
+}
+
+::ng-deep.passengers-option.mat-mdc-option .mdc-list-item__primary-text{
+  margin-right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.country-code,
+.passengers-description {
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--text-color-neutral30);
+}
+
+.passengers-option button {
+  padding: 0;
+  min-width: 24px;
+  height: 24px;
+}
+
+.passengers-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.counter-wrapper {
+  display: flex;
+  gap: 4px;
+}
+
+.active {
+  color: var(--primary-blue);
+}
+
+.change-btn {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  border-radius: 50%;
+  min-width: 40px;
+  height: 40px;
+  padding: 0;
+  background-color: #ffffff;
+
+  mat-icon {
+    margin: 0;
+  }
+}
+
+.disabled-input {
+  pointer-events: none;
+
+  ::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-form-field-infix .mat-mdc-floating-label {
+    pointer-events: none;
+  }
+}
+
+.submit-btn {
+  width: 126px;
+  height: 60px;
+  color: #ffffff;
+  background-color: var(--primary-blue);
+  align-self: flex-end;
+
+  &:disabled {
+    background-color: #374a69;
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    background-position-x: 81%;
+  }
+}
+
+@media (max-width: 624px) {
+  .search-form {
+    height: 494px;
+    width: 300px;
+    padding: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+
+    .radio {
+      gap: 30px;
+    }
+
+    .field-wrapper {
+      flex-direction: column;
+    }
+
+    .passengers,
+    .date-input {
+      width: 272px;
+    }
+  }
+}

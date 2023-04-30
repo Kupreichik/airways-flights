@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PassengerCardComponent } from './passenger-card.component';
+import { DateSelectComponent } from './date-select.component';
 
-describe('PassengerCardComponent', () => {
-  let component: PassengerCardComponent;
-  let fixture: ComponentFixture<PassengerCardComponent>;
+describe('dateSelectComponent', () => {
+  let component: DateSelectComponent;
+  let fixture: ComponentFixture<DateSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PassengerCardComponent],
+      declarations: [DateSelectComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PassengerCardComponent);
+    fixture = TestBed.createComponent(DateSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

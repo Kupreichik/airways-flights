@@ -15,11 +15,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule } from '@angular/material/radio';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
   exports: [
+    FormsModule,
+    ReactiveFormsModule,
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
@@ -33,8 +37,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatTooltipModule,
     MatMenuModule,
     MatDialogModule,
-    MatCheckboxModule,
     MatTabsModule,
+    MatCheckboxModule,
+    MatRadioModule,
   ],
 })
 export class SharedModule {}
