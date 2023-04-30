@@ -1,5 +1,5 @@
-<header
-  class="container header"
+<header class="container header"
+  [ngClass]="{'white-header': !isMainPage}"
   [@expandHeader]="headerHeight"
   (@expandHeader.start)="onAnimationStart($event.toState)"
   (@expandHeader.done)="onAnimationEnd($event.toState)"

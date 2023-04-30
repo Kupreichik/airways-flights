@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { expandHeader } from '../../animations/animations';
 import { HeaderHeight, ScreenSizes } from '../../models';
 import { BreakpointObserverService } from '../../services/breakpoint-observer.service';
+import { NavigateService } from '../../services/navigate.service';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ import { BreakpointObserverService } from '../../services/breakpoint-observer.se
   animations: [expandHeader],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  isMainPage = true;
   currencies = ['EUR', 'USA', 'RUB', 'PLS'];
   dateFormats = ['MM/dd/yyyy', 'dd/MM/yyyy', 'yyyy/dd/MM', 'yyyy/MM/dd'];
   // these variables probably will be moved to the store
@@ -25,10 +27,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isHeaderExpanded = false;
   headerHeight = HeaderHeight.initial;
   settingsVisibility!: boolean;
+  isMainPageCurrentSubscription!: Subscription;
 
   constructor(
     private router: Router,
     private breakpointObserver: BreakpointObserverService,
+    private urlObserver: NavigateService,
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
     public dialog: MatDialog,
@@ -50,10 +54,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (!this.isHeaderExpanded) this.settingsVisibility = !this.isSmallScreen();
       },
     );
+
+    this.isMainPageCurrentSubscription = this.urlObserver.isMainPageCurrent$.subscribe((val) => {
+      this.isMainPage = val;
+    });
   }
 
   ngOnDestroy(): void {
     this.currentScreenSubscription.unsubscribe();
+    this.isMainPageCurrentSubscription.unsubscribe();
   }
 
   onLogoClick() {
