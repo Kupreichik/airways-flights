@@ -58,13 +58,13 @@
         </mat-date-range-picker>
       </mat-form-field>
       <ng-template #oneWayInput>
-      <mat-form-field class="date-input"
+      <mat-form-field class="date-input disabled-input"
           appearance="fill"
           hideRequiredMarker="always"
           floatLabel="always">
-        <mat-label>Date</mat-label>
-        <input matInput placeholder="Start date" formControlName="startDate" [matDatepicker]="picker"
-          ngDefaultControl>
+        <mat-label class="disabled-input">Date</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Start date"
+          formControlName="startDate" ngDefaultControl>
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker disabled="false">
