@@ -1,5 +1,5 @@
 :host {
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -7,5 +7,7 @@
 }
 
 .main {
-  height: 100%;
+  display: flex;
+  min-height: 100%;
+  flex-grow: 1;
 }

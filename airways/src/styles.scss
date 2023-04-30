@@ -1,5 +1,6 @@
 :root {
   --primary-blue: #11397E;
+  --text-color-neutral0: #1C1B1F;
   --text-color-neutral10: #49454F;
   --text-color-neutral30: #74767A;
   --text-color-neutral60: #CECECE;
@@ -34,14 +35,6 @@ body {
 
 .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
   color: var(--primary-blue);
-}
-
-.mat-mdc-select-value-text {
-  color: #ffffff;
-}
-
-.mat-mdc-select-arrow path {
-  fill: #ffffff;
 }
 
 .mat-tooltip {

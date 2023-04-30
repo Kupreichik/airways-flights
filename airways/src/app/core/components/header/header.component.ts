@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BreakpointObserverService } from '../../services/breakpoint-observer.service';
 import { Subscription } from 'rxjs';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { expandHeader } from '../../animations/animations';
 import { HeaderHeight, ScreenSizes } from '../../models';
+import { BreakpointObserverService } from '../../services/breakpoint-observer.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ import { HeaderHeight, ScreenSizes } from '../../models';
 export class HeaderComponent implements OnInit, OnDestroy {
   currencies = ['EUR', 'USA', 'RUB', 'PLS'];
   dateFormats = ['MM/dd/yyyy', 'dd/MM/yyyy', 'yyyy/dd/MM', 'yyyy/MM/dd'];
-  //these variables probably will be moved to the store
+  // these variables probably will be moved to the store
   currency = this.currencies[2];
   dateFormat = this.dateFormats[1];
   currentScreen!: string;
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   settingsVisibility!: boolean;
 
   constructor(
+    private router: Router,
     private breakpointObserver: BreakpointObserverService,
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
@@ -50,6 +52,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.currentScreenSubscription.unsubscribe();
+  }
+
+  onLogoClick() {
+    this.router.navigateByUrl('/');
   }
 
   isSmallScreen(): boolean {
