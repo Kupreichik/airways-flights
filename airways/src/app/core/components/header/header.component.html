@@ -1,9 +1,11 @@
-<header class="container header"
+<header
+  class="container header"
   [@expandHeader]="headerHeight"
   (@expandHeader.start)="onAnimationStart($event.toState)"
-  (@expandHeader.done)="onAnimationEnd($event.toState)">
+  (@expandHeader.done)="onAnimationEnd($event.toState)"
+>
   <h1 class="logo" (click)="onLogoClick()">
-    <img class="logo-img" src="assets/logo.png" alt="logo">
+    <img class="logo-img" src="assets/logo.png" alt="logo" />
     AIRWAYS
   </h1>
 
@@ -15,25 +17,35 @@
       <mat-icon>settings</mat-icon>
     </button>
 
-    <div class="settings-container"
-      [ngClass]="{'hidden-settings': isSmallScreen()}"
-      [ngStyle]="{height: settingsVisibility ? 'auto' : 0}">
-
+    <div
+      class="settings-container"
+      [ngClass]="{ 'hidden-settings': isSmallScreen() }"
+      [ngStyle]="{ height: settingsVisibility ? 'auto' : 0 }"
+    >
       <mat-select class="header-btn date-format" [(value)]="dateFormat">
-        <mat-option [value]="option" *ngFor="let option of dateFormats">{{ option | uppercase }}</mat-option>
+        <mat-option [value]="option" *ngFor="let option of dateFormats">{{
+          option | uppercase
+        }}</mat-option>
       </mat-select>
-      
+
       <mat-select class="header-btn currency" [(value)]="currency">
         <mat-option [value]="option" *ngFor="let option of currencies">{{ option }}</mat-option>
       </mat-select>
-      
-      <button mat-stroked-button class="auth-btn">
+
+      <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="menu">
         <mat-icon>person</mat-icon>
         Sign in
       </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <ng-template matMenuContent>
+          <button mat-icon-button class="close-button">
+            <mat-icon>close</mat-icon>
+          </button>
+          <app-auth (click)="$event.stopImmediatePropagation()"></app-auth>
+        </ng-template>
+      </mat-menu>
     </div>
 
     <mat-icon class="basket" svgIcon="basket" aria-hidden="false"></mat-icon>
   </div>
-
 </header>

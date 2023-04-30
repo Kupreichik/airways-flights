@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { expandHeader } from '../../animations/animations';
 import { HeaderHeight, ScreenSizes } from '../../models';
 import { BreakpointObserverService } from '../../services/breakpoint-observer.service';
@@ -30,6 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private breakpointObserver: BreakpointObserverService,
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
+    public dialog: MatDialog,
   ) {
     iconRegistry.addSvgIcon(
       'basket',

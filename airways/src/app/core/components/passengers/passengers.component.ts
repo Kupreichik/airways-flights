@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { countries } from '../../../mock/countries';
+import { countriesMockList } from '../../../mock/countries';
 import { Validators, FormBuilder } from '@angular/forms';
-import { EMAIL_REGEX } from '../../../shared/constants/constants';
 
 @Component({
   selector: 'app-passengers',
@@ -11,12 +10,12 @@ import { EMAIL_REGEX } from '../../../shared/constants/constants';
 export class PassengersComponent {
   passengers = [{ title: 'Adult' }, { title: 'Child' }, { title: 'Infant' }];
 
-  countriesList = [countries[0], countries[1], countries[2]];
+  countriesList = [countriesMockList[0], countriesMockList[1], countriesMockList[2]];
   selectedCountry = this.countriesList[0].countryName;
 
   contactForm = this.formBuilder.group({
     phone: ['', [Validators.required, Validators.minLength(10)]],
-    email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
+    email: ['', [Validators.required, Validators.email]],
   });
 
   constructor(private formBuilder: FormBuilder) {}

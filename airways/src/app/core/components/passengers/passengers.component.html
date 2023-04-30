@@ -63,7 +63,7 @@
             placeholder="e.g. example@email.com"
           />
           <mat-error *ngIf="email?.hasError('required')">Please enter a email</mat-error>
-          <mat-error *ngIf="email?.hasError('pattern')">Invalid email format</mat-error>
+          <mat-error *ngIf="email?.hasError('email')">Invalid email format</mat-error>
         </mat-form-field>
       </form>
     </div>
