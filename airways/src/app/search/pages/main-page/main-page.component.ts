@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CITIES } from 'src/app/mock/cities';
 import { Router } from '@angular/router';
+import { SearchDataService } from 'src/app/core/services/search-data.service';
 import { ValidateService } from '../../services/validate.service';
 
 interface Passengers {
@@ -31,6 +32,7 @@ export class MainPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private validateService: ValidateService,
     private router: Router,
+    private searchDataService: SearchDataService,
   ) {}
 
   ngOnInit(): void {
@@ -87,6 +89,11 @@ export class MainPageComponent implements OnInit {
   }
 
   onSubmit() {
+    this.searchDataService.startDate = this.searchForm.value.startDate;
+    this.searchDataService.endDate = this.searchForm.value.endDate;
+    this.searchDataService.origin = this.searchForm.value.destinationFrom;
+    this.searchDataService.destination = this.searchForm.value.destinationTo;
+    this.searchDataService.passengers = this.searchForm.value.passengers;
     if (this.searchForm.valid) this.router.navigateByUrl('/select');
   }
 }

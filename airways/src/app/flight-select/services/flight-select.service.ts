@@ -21,22 +21,24 @@ export class FlightSelectService {
 
   constructor(private http: HttpClient) {}
 
-  getData(searchDate: string) {
+  getData(searchDate: string, origin: string, destination: string, currency: string) {
     return this.http.get<FlightSearchResponse>(BASE_URL, {
       params: {
-        origin: 'MOW',
-        destination: 'LED',
+        origin,
+        destination,
+        currency,
         departure_at: searchDate,
         one_way: true,
-        currency: 'eur',
         limit: 10,
         token: API_TOKEN,
       },
     });
   }
 
-  getListData(dataList: Date[]) {
-    const requests = dataList.map((item) => this.getData(item.toISOString().slice(0, 10)));
+  getListData(dataList: Date[], origin: string, destination: string, currency: string) {
+    const requests = dataList.map((item) =>
+      this.getData(item.toISOString().slice(0, 10), origin, destination, currency),
+    );
     forkJoin(requests).subscribe((data) => {
       this.itemsResponse = data;
       this.selectedCardId$.next(initialSelectedDateId);

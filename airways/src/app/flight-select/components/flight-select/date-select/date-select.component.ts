@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SearchDataService } from 'src/app/core/services/search-data.service';
 import { FlightSelectService } from '../../../services/flight-select.service';
 import { getDatesArray } from '../../../utils/utils';
 
@@ -8,8 +9,6 @@ import { getDatesArray } from '../../../utils/utils';
   styleUrls: ['./date-select.component.scss'],
 })
 export class DateSelectComponent implements OnInit {
-  dateForSearch = '2023-05-23';
-
   searchDates?: Date[];
 
   isTransformed = false;
@@ -18,11 +17,20 @@ export class DateSelectComponent implements OnInit {
 
   @Input() isReturnFlight = false;
 
-  constructor(private flightSelectService: FlightSelectService) {}
+  constructor(
+    private flightSelectService: FlightSelectService,
+    public searchDataService: SearchDataService,
+  ) {}
 
   ngOnInit(): void {
-    this.searchDates = getDatesArray(new Date(this.dateForSearch));
-    this.flightSelectService.getListData(this.searchDates);
+    this.searchDates = getDatesArray(new Date(this.searchDataService.startDate));
+    this.flightSelectService.getListData(this.searchDates, 'MOW', 'LED', 'eur');
+    // this.flightSelectService.getListData(
+    //   this.searchDates,
+    //   this.searchDataService.origin,
+    //   this.searchDataService.destination,
+    //   this.searchDataService.currency,
+    // );
   }
 
   getPriceById(id: number) {
