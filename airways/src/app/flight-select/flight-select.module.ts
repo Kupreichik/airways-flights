@@ -9,6 +9,8 @@ import { DateSelectComponent } from './components/flight-select/date-select/date
 import { FlightInfoComponent } from './components/flight-select/flight-info/flight-info.component';
 import { FlightDateCityComponent } from './components/flight-select/flight-info/flight-date-city/flight-date-city.component';
 import { FlightSelectComponent } from './components/flight-select/flight-select.component';
+import { MinToHoursPipe } from './pipes/min-to-hours.pipe';
+import { ArrivalTimePipe } from './pipes/arrival-time.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { FlightSelectComponent } from './components/flight-select/flight-select.
     FlightInfoComponent,
     FlightDateCityComponent,
     FlightSelectComponent,
+    MinToHoursPipe,
+    ArrivalTimePipe,
   ],
   imports: [CommonModule, SharedModule, FlightSelectRoutingModule],
 })

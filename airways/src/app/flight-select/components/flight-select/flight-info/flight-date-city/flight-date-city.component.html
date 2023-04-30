@@ -1,8 +1,8 @@
-<div class="flight-date-city" *ngIf="flightDetails">
-  <span class="date" [style.textAlign] = "isDepartureDate ? '' : 'right'">{{ (isDepartureDate ? flightDetails.departure : flightDetails.arrival) | date:'EE, MMMM d, y'}}</span>
+<div class="flight-date-city" *ngIf="flightDate">
+  <span class="date" [style.textAlign] = "isDepartureDate ? '' : 'right'">{{ flightDate | date:'EE, MMMM d, y'}}</span>
   <div class="time" >
-    <span class="time__time" [style.order] = "isDepartureDate ? '' : '1'">{{ (isDepartureDate ? flightDetails.departure : flightDetails.arrival) | date:'HH:mm' }}</span>
-    <span class="time__utc">{{ flightDetails.timeZone }}</span>
+    <span class="time__time" [style.order] = "isDepartureDate ? '' : '1'">{{ flightDate | date:'HH:mm' }}</span>
+    <span class="time__utc">UTC {{ flightDate.slice(-6) }}</span>
   </div>
-  <span class="city" [style.textAlign] = "isDepartureDate ? '' : 'right'">{{ flightDetails.city }}</span>
+  <span class="city" [style.textAlign] = "isDepartureDate ? '' : 'right'">city FIX THIS!</span>
 </div>
