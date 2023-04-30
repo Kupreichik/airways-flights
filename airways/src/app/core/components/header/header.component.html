@@ -37,10 +37,12 @@
         Sign in
       </button>
       <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-icon-button class="close-button">
-          <mat-icon>close</mat-icon>
-        </button>
-        <app-auth (click)="$event.stopImmediatePropagation()"></app-auth>
+        <ng-template matMenuContent>
+          <button mat-icon-button class="close-button">
+            <mat-icon>close</mat-icon>
+          </button>
+          <app-auth (click)="$event.stopImmediatePropagation()"></app-auth>
+        </ng-template>
       </mat-menu>
     </div>
 
