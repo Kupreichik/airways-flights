@@ -1,6 +1,5 @@
-<app-header></app-header>
+<app-header [ngStyle]="{'background-color': isMainPage ? '#74767a33' : '#fafafa' }"></app-header>
 <main class="main">
-  <!-- <app-passengers></app-passengers> -->
   <router-outlet></router-outlet>
 </main>
 <app-footer></app-footer>
