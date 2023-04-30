@@ -4,7 +4,7 @@ interface Country {
   countryPrefixNumber: string;
 }
 
-export const countries: Country[] = [
+export const countriesMockList: Country[] = [
   {
     countryName: 'Afghanistan',
     countryNameRu: 'Афганистан',
