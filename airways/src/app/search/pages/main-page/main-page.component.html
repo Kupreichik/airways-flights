@@ -16,7 +16,8 @@
       <mat-form-field class="destination" appearance="fill" hideRequiredMarker="always" floatLabel="always">
         <mat-label>{{isDestinationReverse ? 'Destination' : 'From'}}</mat-label>
         <mat-select required placeholder="Choose your destination from" formControlName="destinationFrom">
-          <mat-option *ngFor="let city of citiesList" value="{{city.code}}">
+          <mat-option *ngFor="let city of citiesList" value="{{city.code}}"
+          [disabled]="city.code === searchForm.value.destinationTo">
             {{city.name}} ({{city.code}})
             <div class="country-code">{{city.country_code}}</div>
           </mat-option>
@@ -26,7 +27,8 @@
       <mat-form-field class="destination" appearance="fill" hideRequiredMarker="always" floatLabel="always">
         <mat-label>{{isDestinationReverse ? 'From' : 'Destination'}}</mat-label>
         <mat-select required placeholder="Choose your destination" formControlName="destinationTo">
-          <mat-option *ngFor="let city of citiesList" value="{{city.code}}">
+          <mat-option *ngFor="let city of citiesList" value="{{city.code}}"
+          [disabled]="city.code === searchForm.value.destinationFrom">
             {{city.name}} ({{city.code}})
             <div class="country-code">{{city.country_code}}</div>
           </mat-option>

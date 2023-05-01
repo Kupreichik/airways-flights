@@ -22,14 +22,14 @@
       [ngClass]="{ 'hidden-settings': isSmallScreen() }"
       [ngStyle]="{ height: settingsVisibility ? 'auto' : 0 }"
     >
-      <mat-select class="header-btn date-format" [(value)]="dateFormat">
+      <mat-select class="header-btn date-format" [(value)]="dateFormat" (selectionChange)="setDateFormat()">
         <mat-option [value]="option" *ngFor="let option of dateFormats">{{
           option | uppercase
         }}</mat-option>
       </mat-select>
 
-      <mat-select class="header-btn currency" [(value)]="currency">
-        <mat-option [value]="option" *ngFor="let option of currencies">{{ option }}</mat-option>
+      <mat-select class="header-btn currency" [(value)]="currency" (selectionChange)="setCurrency()">
+        <mat-option [value]="option" *ngFor="let option of currencies">{{ option | uppercase}}</mat-option>
       </mat-select>
 
       <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="menu">

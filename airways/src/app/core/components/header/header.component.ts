@@ -8,6 +8,7 @@ import { expandHeader } from '../../animations/animations';
 import { HeaderHeight, ScreenSizes } from '../../models';
 import { BreakpointObserverService } from '../../services/breakpoint-observer.service';
 import { NavigateService } from '../../services/navigate.service';
+import { SearchDataService } from '../../services/search-data.service';
 
 @Component({
   selector: 'app-header',
@@ -17,11 +18,10 @@ import { NavigateService } from '../../services/navigate.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isMainPage = true;
-  currencies = ['EUR', 'USA', 'RUB', 'PLS'];
+  currencies = ['eur', 'usa', 'rub', 'pls'];
   dateFormats = ['MM/dd/yyyy', 'dd/MM/yyyy', 'yyyy/dd/MM', 'yyyy/MM/dd'];
-  // these variables probably will be moved to the store
-  currency = this.currencies[2];
-  dateFormat = this.dateFormats[1];
+  currency!: string;
+  dateFormat!: string;
   currentScreen!: string;
   currentScreenSubscription!: Subscription;
   isHeaderExpanded = false;
@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private breakpointObserver: BreakpointObserverService,
     private urlObserver: NavigateService,
+    private searchDataService: SearchDataService,
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
     public dialog: MatDialog,
@@ -58,6 +59,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isMainPageCurrentSubscription = this.urlObserver.isMainPageCurrent$.subscribe((val) => {
       this.isMainPage = val;
     });
+
+    this.currency = this.searchDataService.currency;
+    this.dateFormat = this.searchDataService.dateFormat;
   }
 
   ngOnDestroy(): void {
@@ -84,5 +88,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onAnimationStart(toState: string): void {
     if (toState === HeaderHeight.initial && this.isSmallScreen()) this.settingsVisibility = false;
+  }
+
+  setCurrency(): void {
+    this.searchDataService.currency = this.currency;
+  }
+
+  setDateFormat(): void {
+    this.searchDataService.dateFormat = this.dateFormat;
   }
 }

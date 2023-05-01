@@ -97,9 +97,32 @@ export class MainPageComponent implements OnInit, DoCheck {
   onSubmit() {
     this.searchDataService.startDate = this.searchForm.value.startDate;
     this.searchDataService.endDate = this.searchForm.value.endDate;
-    this.searchDataService.origin = this.searchForm.value.destinationFrom;
-    this.searchDataService.destination = this.searchForm.value.destinationTo;
-    this.searchDataService.passengers = this.searchForm.value.passengers;
+
+    this.searchDataService.origin = this.isDestinationReverse
+      ? this.searchForm.value.destinationTo
+      : this.searchForm.value.destinationFrom;
+
+    this.searchDataService.destination = this.isDestinationReverse
+      ? this.searchForm.value.destinationFrom
+      : this.searchForm.value.destinationTo;
+
+    this.searchDataService.passengers = this.passengerCategories.reduce(
+      (acc, cur) => acc + this.passengers[cur].count,
+      0,
+    );
+
+    this.searchDataService.originName =
+      this.citiesList.find((item) => item.code === this.searchDataService.origin)?.name || '';
+
+    this.searchDataService.destinationName =
+      this.citiesList.find((item) => item.code === this.searchDataService.destination)?.name || '';
+
+    this.searchDataService.isOneWay = !this.isRoundTrip();
+
+    this.searchDataService.passengersCategories.Adults = this.passengers['Adults'].count;
+    this.searchDataService.passengersCategories.Child = this.passengers['Child'].count;
+    this.searchDataService.passengersCategories.Infant = this.passengers['Infant'].count;
+
     if (this.searchForm.valid) this.router.navigateByUrl('/select');
   }
 }
