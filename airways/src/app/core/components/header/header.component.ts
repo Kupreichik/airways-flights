@@ -77,6 +77,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return this.currentScreen === ScreenSizes.Small || this.currentScreen === ScreenSizes.XSmall;
   }
 
+  isLargeScreen(): boolean {
+    return this.currentScreen === ScreenSizes.Large || this.currentScreen === ScreenSizes.XLarge;
+  }
+
   toggleSettingsVisibility(): void {
     this.isHeaderExpanded = !this.isHeaderExpanded;
     this.headerHeight = this.isHeaderExpanded ? HeaderHeight.expanded : HeaderHeight.initial;

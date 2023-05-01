@@ -9,10 +9,12 @@
     AIRWAYS
   </h1>
 
-  <div class="booking-steps"></div>
+  <div class="booking-steps" *ngIf="!isMainPage && isLargeScreen()">
+    <app-stepper></app-stepper>
+  </div>
 
   <div class="header-right-container">
-    <h2 class="heading">Book flights</h2>
+    <h2 class="heading" *ngIf="isMainPage">Book flights</h2>
     <button *ngIf="isSmallScreen()" (click)="toggleSettingsVisibility()" mat-icon-button>
       <mat-icon>settings</mat-icon>
     </button>
