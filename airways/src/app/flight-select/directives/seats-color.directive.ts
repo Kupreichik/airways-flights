@@ -5,8 +5,7 @@ import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 })
 export class SeatsColorDirective {
   @Input() appSeatsColor = 0;
-
-  private static activeElement: HTMLElement;
+  @Input() isActiveCard = false;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
@@ -35,12 +34,14 @@ export class SeatsColorDirective {
       this.renderer.setStyle(this.el.nativeElement, 'background', `${itemColor}`);
     }
 
-    if (this.el.nativeElement instanceof HTMLDivElement) {
+    if (this.el.nativeElement instanceof HTMLDivElement && this.isActiveCard) {
       this.renderer.setStyle(
         this.el.nativeElement,
         'borderBottom',
         itemColor ? `5px solid ${itemColor}` : '',
       );
+    } else {
+      this.renderer.setStyle(this.el.nativeElement, 'borderBottom', '');
     }
     return itemColor;
   }

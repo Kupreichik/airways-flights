@@ -9,7 +9,7 @@
     <div class="slider__container" [ngClass]="{'transformed': isTransformed}">
       <div class="card" *ngFor="let item of searchDates; let cardId = index"
       [ngClass]="{'active': checkCardSelected(cardId)}"
-      (click)="handleSelectCard(cardId)" [appSeatsColor]="getSeatsById(cardId) || 0">
+      (click)="handleSelectCard(cardId)" [appSeatsColor]="getSeatsById(cardId) || 0" [isActiveCard]="checkCardSelected(cardId)">
         <span class="card__date" [ngClass]="{'active': checkCardSelected(cardId)}">{{ item | date: 'd MMM' }} </span>
         <span class="card__day" [ngClass]="{'active': checkCardSelected(cardId)}"> {{ item | date: 'EEEE' }}</span>
         <span class="card__price" [ngClass]="{'active': checkCardSelected(cardId)}">{{ getPriceById(cardId, searchDataService.currency) | currency: searchDataService.currency.toUpperCase() :'symbol'}}</span>
