@@ -89,11 +89,13 @@ export class MainPageComponent implements OnInit {
   }
 
   onSubmit() {
+    this.searchDataService.isOneWay = this.searchForm.value.isOneWay;
     this.searchDataService.startDate = this.searchForm.value.startDate;
     this.searchDataService.endDate = this.searchForm.value.endDate;
     this.searchDataService.origin = this.searchForm.value.destinationFrom;
     this.searchDataService.destination = this.searchForm.value.destinationTo;
     this.searchDataService.passengers = this.searchForm.value.passengers;
+
     if (this.searchForm.valid) this.router.navigateByUrl('/select');
   }
 }

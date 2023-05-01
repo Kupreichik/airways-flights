@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SearchDataService } from 'src/app/core/services/search-data.service';
 import { FlightSelectService } from '../../../services/flight-select.service';
-import { FlightSearchResponse } from '../../../models/flight-search-response-model';
+import { FlightItem } from '../../../models/flight-search-response-model';
 
 @Component({
   selector: 'app-flight-info',
@@ -9,15 +10,28 @@ import { FlightSearchResponse } from '../../../models/flight-search-response-mod
 })
 export class FlightInfoComponent implements OnInit {
   @Input() isReturnFlight = false;
-  @Input() flightSelectedData?: FlightSearchResponse;
 
-  constructor(private flightSelectService: FlightSelectService) {}
+  flightSelectedData2?: FlightItem;
+
+  constructor(
+    private flightSelectService: FlightSelectService,
+    public searchDataService: SearchDataService,
+  ) {}
 
   ngOnInit(): void {
-    this.flightSelectService.selectedCardId$.subscribe((id) => {
-      this.flightSelectedData =
-        this.flightSelectService.itemsResponse && this.flightSelectService.itemsResponse[id];
-      console.log('flight-info, selectedData-->', this.flightSelectedData);
-    });
+    if (this.isReturnFlight) {
+      this.flightSelectService.selectedReturnCardId$.subscribe((id) => {
+        this.flightSelectedData2 =
+          this.flightSelectService.itemsResponseReturn &&
+          this.flightSelectService.itemsResponseReturn[id][0];
+        console.log('flight-info, selectedData2-->', this.flightSelectedData2);
+      });
+    } else {
+      this.flightSelectService.selectedCardId$.subscribe((id) => {
+        this.flightSelectedData2 =
+          this.flightSelectService.itemsResponse && this.flightSelectService.itemsResponse[id][0];
+        console.log('flight-info, selectedData2-->', this.flightSelectedData2);
+      });
+    }
   }
 }

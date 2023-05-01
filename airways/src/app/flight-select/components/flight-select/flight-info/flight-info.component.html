@@ -1,28 +1,34 @@
-<div class="container flight-info" *ngIf="flightSelectedData">
+<div class="container flight-info" *ngIf="flightSelectedData2">
   <div class="flight-info__content">
 
-    <app-flight-date-city [flightDate]="flightSelectedData.data[0].departure_at" [isDepartureDate]="true"></app-flight-date-city>
+    <app-flight-date-city
+      [flightDate]="flightSelectedData2.takeoffDate"
+      [isDepartureDate]="true" [city]="isReturnFlight ? searchDataService.destination : searchDataService.origin">
+    </app-flight-date-city>
 
     <div class="flight-duration-type">
-      <span class="duration"> {{ flightSelectedData.data[0].duration_to | minToHours }} </span>
+      <span class="duration"> {{ flightSelectedData2.timeMins | minToHours }} </span>
       <img src="assets/airplane_takeoff_24px.svg" alt="airplane_takeoff" [ngClass]="{'rotate': isReturnFlight}">
-      <span class="flight-type"> {{ flightSelectedData.data[0].transfers ? 'with transfers' : 'direct' }} </span>
+      <span class="flight-type"> direct </span>
     </div>
 
-    <app-flight-date-city [flightDate]="flightSelectedData | arrivalTime" [isDepartureDate]="false"></app-flight-date-city>
+    <app-flight-date-city
+      [flightDate]="flightSelectedData2.landingDate"
+      [isDepartureDate]="false" [city]="isReturnFlight ? searchDataService.origin : searchDataService.destination">
+    </app-flight-date-city>
 
     <div class="flight-number">
       Flight no.
-      <span>{{ flightSelectedData.data[0].flight_number }}</span>
+      <span>{{ flightSelectedData2.flightNumber }}</span>
     </div>
 
   </div>
 
   <div class="flight-info__price">
     <div class="price-container">
-      <span class="seats"> 100 - FIX THIS!- seats <br> available</span>
+      <span class="seats"> {{ flightSelectedData2.avaible }} seats <br> available</span>
       <span>Price</span>
-      <span class="price"> {{ flightSelectedData.data[0].price | currency: flightSelectedData.currency.toUpperCase():'symbol'}} </span>
+      <span class="price"> {{ flightSelectedData2.price[searchDataService.currency] | currency: searchDataService.currency.toUpperCase():'symbol'}} </span>
     </div>
     <button mat-raised-button color="primary" class="select-btn">Select</button>
   </div>

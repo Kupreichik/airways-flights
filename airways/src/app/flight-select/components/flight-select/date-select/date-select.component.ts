@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SearchDataService } from 'src/app/core/services/search-data.service';
+import { Price } from 'src/app/flight-select/models/flight-search-response-model';
 import { FlightSelectService } from '../../../services/flight-select.service';
 import { getDatesArray } from '../../../utils/utils';
 
@@ -23,29 +24,43 @@ export class DateSelectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.searchDates = getDatesArray(new Date(this.searchDataService.startDate));
-    this.flightSelectService.getListData(this.searchDates, 'MOW', 'LED', 'eur');
-    // this.flightSelectService.getListData(
-    //   this.searchDates,
-    //   this.searchDataService.origin,
-    //   this.searchDataService.destination,
-    //   this.searchDataService.currency,
-    // );
+    const dateForSearch = this.isReturnFlight
+      ? this.searchDataService.endDate
+      : this.searchDataService.startDate;
+
+    this.searchDates = getDatesArray(new Date(dateForSearch));
+
+    let [origin, destination] = [this.searchDataService.origin, this.searchDataService.destination];
+
+    if (this.isReturnFlight) {
+      [origin, destination] = [destination, origin];
+    }
+
+    this.flightSelectService.getListData(
+      this.searchDates,
+      origin,
+      destination,
+      this.isReturnFlight,
+    );
   }
 
-  getPriceById(id: number) {
-    const price =
-      this.flightSelectService.itemsResponse &&
-      this.flightSelectService.itemsResponse[id].data[0].price;
-    const currency =
-      this.flightSelectService.itemsResponse &&
-      this.flightSelectService.itemsResponse[id].currency.toLocaleUpperCase();
-    return { price, currency };
+  getPriceByIdJeburin(id: number, currency: keyof Price) {
+    let price;
+    if (this.isReturnFlight) {
+      price =
+        this.flightSelectService.itemsResponseReturn &&
+        this.flightSelectService.itemsResponseReturn[id][0].price[currency];
+    } else {
+      price =
+        this.flightSelectService.itemsResponse &&
+        this.flightSelectService.itemsResponse[id][0].price[currency];
+    }
+    return price;
   }
 
   handleSelectCard(id: number) {
     this.selectedCardIndex = id;
-    this.flightSelectService.changeSelectedCardId(id);
+    this.flightSelectService.changeSelectedCardId(id, this.isReturnFlight);
   }
 
   handlePrev() {
