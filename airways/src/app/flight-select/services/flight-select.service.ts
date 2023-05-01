@@ -1,52 +1,63 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin } from 'rxjs';
-import { FlightSearchResponse } from '../models/flight-search-response-model';
+import { FlightItem } from '../models/flight-search-response-model';
 
-// https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin=MOW&destination=LED&departure_at=2023-05-01&one_way=true&currency=eur&limit=10&token=2fbb1de08be1472367b68094ed12482f
+const BASE_URL = '/api/search/flight';
 
-// const BASE_URL = 'https://api.travelpayouts.com/aviasales/v3/prices_for_dates';
-
-const BASE_URL = '/api/aviasales/v3/prices_for_dates';
-const API_TOKEN = '2fbb1de08be1472367b68094ed12482f';
 const initialSelectedDateId = 2;
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  }),
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class FlightSelectService {
-  itemsResponse?: FlightSearchResponse[];
+  itemsResponse?: FlightItem[][];
+
+  itemsResponseReturn?: FlightItem[][];
 
   selectedCardId$ = new BehaviorSubject(initialSelectedDateId);
 
+  selectedReturnCardId$ = new BehaviorSubject(initialSelectedDateId);
+
   constructor(private http: HttpClient) {}
 
-  getData(searchDate: string, origin: string, destination: string, currency: string) {
-    return this.http.get<FlightSearchResponse>(BASE_URL, {
-      params: {
-        origin,
-        destination,
-        currency,
-        departure_at: searchDate,
-        one_way: true,
-        limit: 10,
-        token: API_TOKEN,
+  getData(searchDate: string, origin: string, destination: string) {
+    return this.http.post<FlightItem[]>(
+      BASE_URL,
+      {
+        fromKey: origin,
+        toKey: destination,
+        forwardDate: searchDate,
       },
-    });
-  }
-
-  getListData(dataList: Date[], origin: string, destination: string, currency: string) {
-    const requests = dataList.map((item) =>
-      this.getData(item.toISOString().slice(0, 10), origin, destination, currency),
+      httpOptions,
     );
+  }
+
+  getListData(dataList: Date[], origin: string, destination: string, isReturn: boolean) {
+    const requests = dataList.map((item) => this.getData(item.toISOString(), origin, destination));
     forkJoin(requests).subscribe((data) => {
-      this.itemsResponse = data;
-      this.selectedCardId$.next(initialSelectedDateId);
-      console.log('from service, forkJoin, results', data);
+      if (isReturn) {
+        this.itemsResponseReturn = data;
+        this.selectedReturnCardId$.next(initialSelectedDateId);
+      } else {
+        this.itemsResponse = data;
+        this.selectedCardId$.next(initialSelectedDateId);
+      }
     });
   }
 
-  changeSelectedCardId(id: number) {
-    this.selectedCardId$.next(id);
+  changeSelectedCardId(id: number, isReturn: boolean) {
+    if (isReturn) {
+      this.selectedReturnCardId$.next(id);
+    } else {
+      this.selectedCardId$.next(id);
+    }
   }
 }

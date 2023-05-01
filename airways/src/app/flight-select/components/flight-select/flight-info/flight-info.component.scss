@@ -17,6 +17,10 @@
   padding: 0 30px;
   border-right: 2px dashed var(--background-secondary40);
 
+  &.selected {
+    border-right: unset;
+  }
+
   @media (max-width: 1280px) {
     column-gap: 5px;
     padding: 0 10px;
@@ -103,10 +107,15 @@
   color: var(--text-color-neutral30);
   text-align: right;
   gap: 3px;
+
+  &.selected span:not(:last-child) {
+    height: 0;
+    opacity: 0;
+    padding: 0;
+  }
 }
 
 .seats {
-  background: greenyellow;
   padding: 4px 8px;
   border-radius: 2px;
 }
@@ -119,4 +128,10 @@
 .select-btn {
   background: linear-gradient(108.75deg, #0090BD 59.91%, #073590 95.36%);
   border: 1px solid var(--primary-blue);
+
+  &.selected {
+    background: var(--background-secondary90);
+    border: unset;
+    color: var(--primary-blue);
+  }
 }

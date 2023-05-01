@@ -5,7 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { expandHeader } from '../../animations/animations';
-import { HeaderHeight, ScreenSizes } from '../../models';
+import { HeaderHeight, ScreenSizes, TPrice } from '../../models';
 import { BreakpointObserverService } from '../../services/breakpoint-observer.service';
 import { NavigateService } from '../../services/navigate.service';
 import { SearchDataService } from '../../services/search-data.service';
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isMainPage = true;
   currencies = ['eur', 'usa', 'rub', 'pln'];
   dateFormats = ['MM/dd/yyyy', 'dd/MM/yyyy', 'yyyy/dd/MM', 'yyyy/MM/dd'];
-  currency!: string;
+  currency!: TPrice;
   dateFormat!: string;
   currentScreen!: string;
   currentScreenSubscription!: Subscription;

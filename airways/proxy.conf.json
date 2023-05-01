@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://api.travelpayouts.com/",
+    "target": "https://api.air-ways.online/",
     "secure": true,
     "changeOrigin": true,
     "pathRewrite": {"^/api" : ""}

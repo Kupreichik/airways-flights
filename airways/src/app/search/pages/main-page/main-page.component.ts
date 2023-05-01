@@ -95,6 +95,7 @@ export class MainPageComponent implements OnInit, DoCheck {
   }
 
   onSubmit() {
+    this.searchDataService.isOneWay = this.searchForm.value.isOneWay;
     this.searchDataService.startDate = this.searchForm.value.startDate;
     this.searchDataService.endDate = this.searchForm.value.endDate;
 
