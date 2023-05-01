@@ -4,7 +4,7 @@
     <h3 class="title__name" *ngIf="!isReturnFlight">{{ searchDataService.origin }} to {{ searchDataService.destination }} </h3>
     <h3 class="title__name" *ngIf="isReturnFlight">{{ searchDataService.destination }} to {{ searchDataService.origin }} </h3>
   </div>
-  <div class="slider" *ngIf="searchDates" >
+  <div class="slider" *ngIf="searchDates" [ngClass]="{ selected: isFlightSelected }">
     <div class="slider__btn" (click)="handlePrev()">&#10094;</div>
     <div class="slider__container" [ngClass]="{'transformed': isTransformed}">
       <div class="card" *ngFor="let item of searchDates; let cardId = index"

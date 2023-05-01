@@ -10,13 +10,12 @@ import { getDatesArray } from '../../../utils/utils';
   styleUrls: ['./date-select.component.scss'],
 })
 export class DateSelectComponent implements OnInit {
-  searchDates?: Date[];
-
-  isTransformed = false;
-
-  selectedCardIndex = 2;
-
   @Input() isReturnFlight = false;
+  @Input() isFlightSelected = false;
+
+  searchDates?: Date[];
+  isTransformed = false;
+  selectedCardIndex = 2;
 
   constructor(
     private flightSelectService: FlightSelectService,

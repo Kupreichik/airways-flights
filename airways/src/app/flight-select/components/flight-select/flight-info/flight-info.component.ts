@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SearchDataService } from 'src/app/core/services/search-data.service';
 import { FlightSelectService } from '../../../services/flight-select.service';
 import { FlightItem } from '../../../models/flight-search-response-model';
@@ -10,8 +10,10 @@ import { FlightItem } from '../../../models/flight-search-response-model';
 })
 export class FlightInfoComponent implements OnInit {
   @Input() isReturnFlight = false;
+  @Output() handleSelectBtnEvent = new EventEmitter<boolean>();
 
-  flightSelectedData2?: FlightItem;
+  flightSelectedData?: FlightItem;
+  isFlightSelected = false;
 
   constructor(
     private flightSelectService: FlightSelectService,
@@ -21,17 +23,22 @@ export class FlightInfoComponent implements OnInit {
   ngOnInit(): void {
     if (this.isReturnFlight) {
       this.flightSelectService.selectedReturnCardId$.subscribe((id) => {
-        this.flightSelectedData2 =
+        this.flightSelectedData =
           this.flightSelectService.itemsResponseReturn &&
           this.flightSelectService.itemsResponseReturn[id][0];
-        console.log('flight-info, selectedData2-->', this.flightSelectedData2);
+        console.log('flight-info, selectedData2-->', this.flightSelectedData);
       });
     } else {
       this.flightSelectService.selectedCardId$.subscribe((id) => {
-        this.flightSelectedData2 =
+        this.flightSelectedData =
           this.flightSelectService.itemsResponse && this.flightSelectService.itemsResponse[id][0];
-        console.log('flight-info, selectedData2-->', this.flightSelectedData2);
+        console.log('flight-info, selectedData2-->', this.flightSelectedData);
       });
     }
+  }
+
+  handleSelectBtn() {
+    this.isFlightSelected = !this.isFlightSelected;
+    this.handleSelectBtnEvent.emit(this.isFlightSelected);
   }
 }
