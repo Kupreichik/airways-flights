@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CITIES } from 'src/app/mock/cities';
 import { Router } from '@angular/router';
@@ -14,8 +14,9 @@ interface Passengers {
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, DoCheck {
   searchForm!: FormGroup;
+  isSubmitDisabled = true;
 
   citiesList = CITIES.sort((item1, item2) => item1.name.localeCompare(item2.name));
 
@@ -46,11 +47,16 @@ export class MainPageComponent implements OnInit {
     });
   }
 
+  ngDoCheck() {
+    this.isSubmitDisabled = !this.searchForm.valid;
+  }
+
   onChangeTypeTrip() {
     if (!this.isRoundTrip()) {
-      this.searchForm.controls['endDate'].removeValidators(Validators.required);
+      this.searchForm.controls['endDate'].disable();
     } else {
-      this.searchForm.controls['endDate'].addValidators(Validators.required);
+      this.searchForm.controls['endDate'].enable();
+      this.searchForm.controls['endDate'].markAsTouched();
     }
   }
 

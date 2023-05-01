@@ -1,10 +1,10 @@
 :host {
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   padding-top: 25px;
   height: fit-content;
   width: 100%;
-  background: #74767a33;
+  border-bottom: 0.5px solid #74767a33;
 }
 
 .header {
@@ -12,6 +12,24 @@
   justify-content: space-between;
   align-items: flex-start;
   overflow: hidden;
+}
+
+.white-header {
+  .header-right-container {
+    color: var(--text-color-neutral10);
+
+    ::ng-deep .mat-mdc-select-value-text {
+      color: var(--text-color-neutral10);
+    }
+
+    ::ng-deep .mat-mdc-select-arrow path {
+      fill: var(--text-color-neutral10);
+    }
+
+    .basket::ng-deep svg path{
+      fill: var(--text-color-neutral10);
+    }
+  }
 }
 
 .logo {
@@ -116,7 +134,7 @@
 
 .settings-container {
   display: flex;
-  gap: 40px
+  gap: 40px;
 }
 
 .hidden-settings {
@@ -125,6 +143,13 @@
   top: 88px;
   right: 3%;
   height: auto;
+}
+
+.close-button {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: 5;
 }
 
 @media (max-width: 470px) {
@@ -136,7 +161,7 @@
     padding: 0 2px;
 
     mat-icon {
-    display: none;
+      display: none;
     }
   }
 
@@ -145,11 +170,11 @@
   }
 
   .date-format {
-  width: 138px;
+    width: 138px;
   }
 
   .currency {
-  width: 56px;
+    width: 56px;
   }
 
   mat-pseudo-checkbox {

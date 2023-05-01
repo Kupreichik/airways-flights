@@ -11,6 +11,7 @@ import { PassengersComponent } from './components/passengers/passengers.componen
 
 import { PassengerCardComponent } from './components/passenger-card/passenger-card.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
     NgxMaskPipe,
     LayoutModule,
     HttpClientModule,
+    AuthModule,
   ],
   exports: [HeaderComponent, FooterComponent, PassengersComponent],
 })

@@ -3,6 +3,7 @@
 
     <mat-radio-group class="radio">
       <mat-radio-button ngDefaultControl formControlName="isOneWay" value="false" checked
+        (change)="onChangeTypeTrip()"
         >Round Trip</mat-radio-button>
       <mat-radio-button ngDefaultControl 
         formControlName="isOneWay" 
@@ -102,6 +103,6 @@
       </mat-form-field>
     </div>
 
-    <button mat-raised-button class="submit-btn" type="submit" [disabled]="!searchForm.valid">Search</button>
+    <button mat-raised-button class="submit-btn" type="submit" [disabled]="isSubmitDisabled">Search</button>
   </form>
 </div>
