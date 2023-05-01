@@ -9,10 +9,10 @@
     <div class="slider__container" [ngClass]="{'transformed': isTransformed}">
       <div class="card" *ngFor="let item of searchDates; let cardId = index"
       [ngClass]="{'active': checkCardSelected(cardId)}"
-      (click)="handleSelectCard(cardId)">
+      (click)="handleSelectCard(cardId)" [appSeatsColor]="getSeatsById(cardId) || 0">
         <span class="card__date" [ngClass]="{'active': checkCardSelected(cardId)}">{{ item | date: 'd MMM' }} </span>
         <span class="card__day" [ngClass]="{'active': checkCardSelected(cardId)}"> {{ item | date: 'EEEE' }}</span>
-        <span class="card__price" [ngClass]="{'active': checkCardSelected(cardId)}">{{ getPriceByIdJeburin(cardId, searchDataService.currency) | currency: searchDataService.currency.toUpperCase() :'symbol'}}</span>
+        <span class="card__price" [ngClass]="{'active': checkCardSelected(cardId)}">{{ getPriceById(cardId, searchDataService.currency) | currency: searchDataService.currency.toUpperCase() :'symbol'}}</span>
         <img class="card__icon" src="assets/do_not_fly_24px.svg" alt="icon do not fly">
       </div>
     </div>

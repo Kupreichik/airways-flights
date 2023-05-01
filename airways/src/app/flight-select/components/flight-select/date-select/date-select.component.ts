@@ -43,7 +43,7 @@ export class DateSelectComponent implements OnInit {
     );
   }
 
-  getPriceByIdJeburin(id: number, currency: keyof Price) {
+  getPriceById(id: number, currency: keyof Price) {
     let price;
     if (this.isReturnFlight) {
       price =
@@ -55,6 +55,20 @@ export class DateSelectComponent implements OnInit {
         this.flightSelectService.itemsResponse[id][0].price[currency];
     }
     return price;
+  }
+
+  getSeatsById(id: number) {
+    let seats;
+    if (this.isReturnFlight) {
+      seats =
+        this.flightSelectService.itemsResponseReturn &&
+        this.flightSelectService.itemsResponseReturn[id][0].avaible;
+    } else {
+      seats =
+        this.flightSelectService.itemsResponse &&
+        this.flightSelectService.itemsResponse[id][0].avaible;
+    }
+    return seats;
   }
 
   handleSelectCard(id: number) {

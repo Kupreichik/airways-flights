@@ -10,6 +10,7 @@ import { FlightInfoComponent } from './components/flight-select/flight-info/flig
 import { FlightDateCityComponent } from './components/flight-select/flight-info/flight-date-city/flight-date-city.component';
 import { FlightSelectComponent } from './components/flight-select/flight-select.component';
 import { MinToHoursPipe } from './pipes/min-to-hours.pipe';
+import { SeatsColorDirective } from './directives/seats-color.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MinToHoursPipe } from './pipes/min-to-hours.pipe';
     FlightDateCityComponent,
     FlightSelectComponent,
     MinToHoursPipe,
+    SeatsColorDirective,
   ],
   imports: [CommonModule, SharedModule, FlightSelectRoutingModule],
 })
