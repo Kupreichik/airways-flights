@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [],
@@ -40,6 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTabsModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatStepperModule,
   ],
 })
 export class SharedModule {}

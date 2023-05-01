@@ -12,6 +12,7 @@ import { PassengersComponent } from './components/passengers/passengers.componen
 import { PassengerCardComponent } from './components/passenger-card/passenger-card.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { AuthModule } from '../auth/auth.module';
+import { StepperComponent } from './components/stepper/stepper.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AuthModule } from '../auth/auth.module';
     PassengersComponent,
     PassengerCardComponent,
     ContactDetailsComponent,
+    StepperComponent,
   ],
   imports: [
     CommonModule,
