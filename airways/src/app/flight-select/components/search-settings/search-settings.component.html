@@ -1,13 +1,13 @@
 <div class="container search-settings">
     <div class="from-to">
-      <span>{{ searchDataService.origin }}</span>
+      <span>{{ searchDataService.originName }}</span>
       <img src="assets/return_trip_24px.svg" alt="icon-trip-type">
-      <span> {{ searchDataService.destination }}</span>
+      <span> {{ searchDataService.destinationName }}</span>
     </div>
     <div class="trip-info">
-      <span>Return</span>
+      <span>{{ searchDataService.isOneWay ? 'Oneway' : 'Return' }}</span>
       <span class="dot"></span>
-      <span>{{ searchDataService.startDate | date: 'dMMM' }} - {{ searchDataService.endDate | date: 'dMMM' }}</span>
+      <span>{{ searchDataService.startDate | date: 'dMMM' }} {{ searchDataService.isOneWay ? '' : '-' }} {{ searchDataService.endDate | date: 'dMMM' }}</span>
       <span class="dot"></span>
       <span>{{ searchDataService.passengers }}</span>
       <img src="assets/account_24px.svg" alt="icon-person">

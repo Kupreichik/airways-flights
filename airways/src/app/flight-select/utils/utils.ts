@@ -1,4 +1,4 @@
-export const getDatesArray = (startDate: Date, offset = 2, interval = 1, arrayLength = 10) => {
+export const getDatesArray = (startDate: Date, offset = 1, interval = 1, arrayLength = 10) => {
   const res = [];
   const currentDate = new Date(startDate.setDate(startDate.getDate() - offset));
 

@@ -10,3 +10,5 @@ export const enum HeaderHeight {
   expanded = 'expanded',
   initial = 'initial',
 }
+
+export type TPrice = 'eur' | 'usd' | 'rub' | 'pln';

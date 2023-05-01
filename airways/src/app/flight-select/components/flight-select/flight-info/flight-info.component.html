@@ -3,7 +3,7 @@
 
     <app-flight-date-city
       [flightDate]="flightSelectedData.takeoffDate"
-      [isDepartureDate]="true" [city]="isReturnFlight ? searchDataService.destination : searchDataService.origin">
+      [isDepartureDate]="true" [city]="isReturnFlight ? searchDataService.destinationName : searchDataService.originName">
     </app-flight-date-city>
 
     <div class="flight-duration-type">
@@ -14,7 +14,7 @@
 
     <app-flight-date-city
       [flightDate]="flightSelectedData.landingDate"
-      [isDepartureDate]="false" [city]="isReturnFlight ? searchDataService.origin : searchDataService.destination">
+      [isDepartureDate]="false" [city]="isReturnFlight ? searchDataService.originName : searchDataService.destinationName">
     </app-flight-date-city>
 
     <div class="flight-number">

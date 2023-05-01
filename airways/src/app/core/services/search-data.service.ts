@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Price } from 'src/app/flight-select/models/flight-search-response-model';
+import { TPrice } from '../models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchDataService {
-  currency: keyof Price = 'eur';
+  currency: TPrice = 'eur';
   dateFormat = 'MM/dd/yyyy';
   isOneWay = false;
   startDate = new Date('2023-05-23');

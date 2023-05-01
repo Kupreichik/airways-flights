@@ -1,3 +1,5 @@
+import { TPrice } from 'src/app/core/models';
+
 export interface Airport {
   key: string;
   country: string;
@@ -20,5 +22,9 @@ export interface FlightItem {
   to: Airport;
   takeoffDate: string;
   landingDate: string;
-  price: Price;
+  price: PriceTest;
 }
+
+type PriceTest = {
+  [key in TPrice]: number;
+};

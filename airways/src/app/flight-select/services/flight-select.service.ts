@@ -50,7 +50,6 @@ export class FlightSelectService {
         this.itemsResponse = data;
         this.selectedCardId$.next(initialSelectedDateId);
       }
-      console.log('from service getListData, forkJoin, results', data);
     });
   }
 

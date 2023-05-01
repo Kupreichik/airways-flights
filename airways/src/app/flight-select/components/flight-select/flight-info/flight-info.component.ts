@@ -26,13 +26,11 @@ export class FlightInfoComponent implements OnInit {
         this.flightSelectedData =
           this.flightSelectService.itemsResponseReturn &&
           this.flightSelectService.itemsResponseReturn[id][0];
-        console.log('flight-info, selectedData2-->', this.flightSelectedData);
       });
     } else {
       this.flightSelectService.selectedCardId$.subscribe((id) => {
         this.flightSelectedData =
           this.flightSelectService.itemsResponse && this.flightSelectService.itemsResponse[id][0];
-        console.log('flight-info, selectedData2-->', this.flightSelectedData);
       });
     }
   }
