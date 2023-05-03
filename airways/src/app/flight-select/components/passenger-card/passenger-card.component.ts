@@ -1,9 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { dateValidation } from '../../directives/date-validation/date-validation.directive';
+import moment from 'moment';
+import { dateValidation } from '../../../core/directives/date-validation/date-validation.directive';
 import { NAME_REGEX, TOOLTIP_TEXT } from '../../../shared/constants/constants';
 import { GENDER } from '../../../shared/constants/types';
 
