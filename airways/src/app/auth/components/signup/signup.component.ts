@@ -1,14 +1,15 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NAME_REGEX, TOOLTIP_TEXT } from '../../../shared/constants/constants';
-import { dateValidation } from '../../../core/directives/date-validation/date-validation.directive';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { HotToastService } from '@ngneat/hot-toast';
 import moment from 'moment';
-
-import { GENDER } from '../../../shared/constants/types';
-import { countriesMockList } from '../../../mock/countries';
-import { citizenshipMockList } from '../../../mock/citizenship';
+import { dateValidation } from '../../../core/directives/date-validation/date-validation.directive';
 import { passwordValidation } from '../../../core/directives/password-validation.directive';
+import { citizenshipMockList } from '../../../mock/citizenship';
+import { countriesMockList } from '../../../mock/countries';
+import { NAME_REGEX, TOOLTIP_TEXT } from '../../../shared/constants/constants';
+import { GENDER } from '../../../shared/constants/types';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -33,7 +34,7 @@ export class SignupComponent {
     signupGender: [GENDER.MALE],
     signupPhone: ['', [Validators.required, Validators.minLength(10)]],
     signupCitizenship: ['', [Validators.required]],
-    signupCheckbox: ['', [Validators.required]],
+    signupCheckbox: [false, [Validators.requiredTrue]],
   });
 
   hidePassword = true;
@@ -45,7 +46,13 @@ export class SignupComponent {
   citizenshipList = [citizenshipMockList[0], citizenshipMockList[1], citizenshipMockList[2]];
   selectedCitizenship = '';
 
-  constructor(private formBuilder: FormBuilder) {}
+  signupButtonClicked = false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private hotToast: HotToastService,
+  ) {}
 
   get signupEmail() {
     return this.signupForm.get('signupEmail');
@@ -102,5 +109,27 @@ export class SignupComponent {
 
   checkGender(gender: GENDER) {
     return this.signupForm.controls.signupGender.value === gender;
+  }
+
+  onSubmit() {
+    if (!this.signupForm.valid) {
+      return;
+    }
+
+    const signupEmail = this.signupEmail?.value as string;
+    const signupPassword = this.signupPassword?.value as string;
+    const signupFirstName = this.signupFirstName?.value as string;
+    const signupLastName = this.signupLastName?.value as string;
+
+    this.authService
+      .signUp(signupEmail, signupPassword, signupFirstName, signupLastName)
+      .pipe(
+        this.hotToast.observe({
+          success: `Congrats! You are all signed up`,
+          loading: 'Signing in',
+          error: ({ message }) => `${message}`,
+        }),
+      )
+      .subscribe(() => {});
   }
 }

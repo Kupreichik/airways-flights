@@ -1,4 +1,4 @@
-<form class="signup-form" [formGroup]="signupForm">
+<form class="signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <mat-form-field class="signup-form__input" appearance="outline">
     <mat-label>Email</mat-label>
     <input type="text" matInput formControlName="signupEmail" />
@@ -168,17 +168,22 @@
     <mat-error *ngIf="signupCitizenship?.hasError('required')">Please select citizenship</mat-error>
   </mat-form-field>
 
-  <mat-checkbox
-    class="signup-form__terms"
-    formControlName="signupCheckbox"
-    color="primary"
-    required
-  >
+  <mat-checkbox class="signup-form__terms" formControlName="signupCheckbox" color="primary">
     I agree to Airway's Privacy Policy and Terms of Use
   </mat-checkbox>
-  <mat-error *ngIf="signupCheckbox?.errors && signupCheckbox?.touched">
+
+  <mat-error
+    *ngIf="signupCheckbox?.hasError('required') && (signupButtonClicked || signupCheckbox?.touched)"
+  >
     Accept terms is required
   </mat-error>
 
-  <button mat-raised-button class="signup-form__button" color="primary">Sign up</button>
+  <button
+    mat-raised-button
+    class="signup-form__button"
+    color="primary"
+    (click)="signupButtonClicked = true"
+  >
+    Sign up
+  </button>
 </form>
