@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../../auth/services/auth.service';
 import { expandHeader } from '../../animations/animations';
 import { HeaderHeight, ScreenSizes, TPrice } from '../../models';
 import { BreakpointObserverService } from '../../services/breakpoint-observer.service';
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
     public dialog: MatDialog,
+    public authService: AuthService,
   ) {
     iconRegistry.addSvgIcon(
       'basket',
@@ -100,5 +102,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   setDateFormat(): void {
     this.searchDataService.dateFormat = this.dateFormat;
+  }
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['']);
+    });
   }
 }

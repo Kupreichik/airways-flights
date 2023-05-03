@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { HotToastService } from '@ngneat/hot-toast';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,11 @@ export class LoginComponent {
 
   hidePassword = true;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private hotToast: HotToastService,
+  ) {}
 
   get loginEmail() {
     return this.loginForm.get('loginEmail');
@@ -22,5 +28,25 @@ export class LoginComponent {
 
   get loginPassword() {
     return this.loginForm.get('loginPassword');
+  }
+
+  onSubmit() {
+    if (!this.loginForm.valid) {
+      return;
+    }
+
+    const loginEmail = this.loginEmail?.value as string;
+    const loginPassword = this.loginPassword?.value as string;
+
+    this.authService
+      .login(loginEmail, loginPassword)
+      .pipe(
+        this.hotToast.observe({
+          success: 'Logged in successfully',
+          loading: 'Logging in',
+          error: 'The was an error',
+        }),
+      )
+      .subscribe(() => {});
   }
 }
