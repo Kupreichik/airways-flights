@@ -49,7 +49,7 @@ body {
   }
 }
 
-.cdk-overlay-pane {
+.signin-popup + * .cdk-overlay-pane {
   max-width: 494px;
   width: 100%;
 

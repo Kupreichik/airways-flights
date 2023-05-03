@@ -46,28 +46,31 @@
       </mat-select>
 
       <ng-container *ngIf="authService.currentUser$ | async as user; else loginButton">
-        <button mat-stroked-button class="auth-btn" (click)="logout()">
+        <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="authLogout">
           <mat-icon>person</mat-icon>
-          Log out
+          {{ user.displayName }}
         </button>
       </ng-container>
 
+      <mat-menu #authLogout="matMenu" xPosition="before" >
+        <button mat-icon-button class="logout-menu" (click)="logout()">Log out</button>
+      </mat-menu>
+
       <ng-template #loginButton>
-        <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="menu">
+        <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="authPopup">
           <mat-icon>person</mat-icon>
           Sign in
         </button>
       </ng-template>
-      <mat-menu #menu="matMenu" xPosition="before">
-        <ng-template matMenuContent>
-          <button mat-icon-button class="close-button">
-            <mat-icon>close</mat-icon>
-          </button>
-          <app-auth
-            (click)="$event.stopPropagation()"
-            (keydown)="$event.stopPropagation()"
-          ></app-auth>
-        </ng-template>
+
+      <mat-menu #authPopup="matMenu" xPosition="before" backdropClass="signin-popup">
+        <button mat-icon-button class="close-button">
+          <mat-icon>close</mat-icon>
+        </button>
+        <app-auth
+          (click)="$event.stopPropagation()"
+          (keydown)="$event.stopPropagation()"
+        ></app-auth>
       </mat-menu>
     </div>
 

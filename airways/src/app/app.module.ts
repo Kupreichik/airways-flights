@@ -21,9 +21,7 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     NgxMaskDirective,
     NgxMaskPipe,
-    HotToastModule.forRoot({
-      position: 'bottom-left',
-    }),
+    HotToastModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
   ],

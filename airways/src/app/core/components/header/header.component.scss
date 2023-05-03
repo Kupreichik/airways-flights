@@ -26,7 +26,7 @@
       fill: var(--text-color-neutral10);
     }
 
-    .basket::ng-deep svg path{
+    .basket::ng-deep svg path {
       fill: var(--text-color-neutral10);
     }
   }
@@ -53,7 +53,7 @@
   gap: 41px;
 
   ::ng-deep.mat-mdc-outlined-button:not(:disabled) {
-    border-color: #cecece
+    border-color: #cecece;
   }
 
   ::ng-deep .mat-mdc-select-value-text {
@@ -82,7 +82,7 @@
 .date-format {
   width: 162px;
   font-size: 1rem;
-  
+
   ::ng-deep .mat-mdc-select-trigger {
     justify-content: center;
     gap: 10px;
@@ -150,6 +150,12 @@
   top: -10px;
   right: -10px;
   z-index: 5;
+}
+
+.logout-menu {
+  max-width: 150px;
+  width: 100%;
+  font-size: 18px;
 }
 
 @media (max-width: 470px) {
