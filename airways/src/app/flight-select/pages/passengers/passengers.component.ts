@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { countriesMockList } from '../../../mock/countries';
-import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-passengers',

@@ -1,9 +1,10 @@
-<form class="login__form" [formGroup]="loginForm">
+<form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <section class="login__form-inputs">
     <mat-form-field class="login__form-input" appearance="outline">
       <mat-label>Email</mat-label>
       <input type="text" matInput formControlName="loginEmail" />
       <mat-error *ngIf="loginEmail?.hasError('required')">Please enter email</mat-error>
+      <mat-error *ngIf="loginEmail?.hasError('email')">Invalid email format</mat-error>
     </mat-form-field>
 
     <mat-form-field class="login__form-input" appearance="outline">

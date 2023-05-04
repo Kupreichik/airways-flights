@@ -1,5 +1,6 @@
-<header class="container header"
-  [ngClass]="{'white-header': !isMainPage}"
+<header
+  class="container header"
+  [ngClass]="{ 'white-header': !isMainPage }"
   [@expandHeader]="headerHeight"
   (@expandHeader.start)="onAnimationStart($event.toState)"
   (@expandHeader.done)="onAnimationEnd($event.toState)"
@@ -24,27 +25,52 @@
       [ngClass]="{ 'hidden-settings': isSmallScreen() }"
       [ngStyle]="{ height: settingsVisibility ? 'auto' : 0 }"
     >
-      <mat-select class="header-btn date-format" [(value)]="dateFormat" (selectionChange)="setDateFormat()">
+      <mat-select
+        class="header-btn date-format"
+        [(value)]="dateFormat"
+        (selectionChange)="setDateFormat()"
+      >
         <mat-option [value]="option" *ngFor="let option of dateFormats">{{
           option | uppercase
         }}</mat-option>
       </mat-select>
 
-      <mat-select class="header-btn currency" [(value)]="currency" (selectionChange)="setCurrency()">
-        <mat-option [value]="option" *ngFor="let option of currencies">{{ option | uppercase}}</mat-option>
+      <mat-select
+        class="header-btn currency"
+        [(value)]="currency"
+        (selectionChange)="setCurrency()"
+      >
+        <mat-option [value]="option" *ngFor="let option of currencies">{{
+          option | uppercase
+        }}</mat-option>
       </mat-select>
 
-      <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="menu">
-        <mat-icon>person</mat-icon>
-        Sign in
-      </button>
-      <mat-menu #menu="matMenu" xPosition="before">
-        <ng-template matMenuContent>
-          <button mat-icon-button class="close-button">
-            <mat-icon>close</mat-icon>
-          </button>
-          <app-auth (click)="$event.stopImmediatePropagation()"></app-auth>
-        </ng-template>
+      <ng-container *ngIf="authService.currentUser$ | async as user; else loginButton">
+        <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="authLogout">
+          <mat-icon>person</mat-icon>
+          {{ user.displayName }}
+        </button>
+      </ng-container>
+
+      <mat-menu #authLogout="matMenu" xPosition="before" >
+        <button mat-icon-button class="logout-menu" (click)="logout()">Log out</button>
+      </mat-menu>
+
+      <ng-template #loginButton>
+        <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="authPopup">
+          <mat-icon>person</mat-icon>
+          Sign in
+        </button>
+      </ng-template>
+
+      <mat-menu #authPopup="matMenu" xPosition="before" backdropClass="signin-popup">
+        <button mat-icon-button class="close-button">
+          <mat-icon>close</mat-icon>
+        </button>
+        <app-auth
+          (click)="$event.stopPropagation()"
+          (keydown)="$event.stopPropagation()"
+        ></app-auth>
       </mat-menu>
     </div>
 
