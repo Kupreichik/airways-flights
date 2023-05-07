@@ -8,4 +8,10 @@ import { SearchDataService } from 'src/app/core/services/search-data.service';
 })
 export class FlightSelectPageComponent {
   constructor(public searchDataService: SearchDataService) {}
+
+  isEditSettings = false;
+
+  handleEditSettings(value: boolean) {
+    this.isEditSettings = value;
+  }
 }

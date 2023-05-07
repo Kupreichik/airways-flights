@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { SearchModule } from '../search/search.module';
 import { SharedModule } from '../shared/shared.module';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 import { DateSelectComponent } from './components/flight-select/date-select/date-select.component';
@@ -29,6 +30,6 @@ import { MinToHoursPipe } from './pipes/min-to-hours.pipe';
     PassengerCardComponent,
     ContactDetailsComponent,
   ],
-  imports: [CommonModule, SharedModule, FlightSelectRoutingModule],
+  imports: [CommonModule, SharedModule, FlightSelectRoutingModule, SearchModule],
 })
 export class FlightSelectModule {}
