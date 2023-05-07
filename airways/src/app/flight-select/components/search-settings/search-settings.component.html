@@ -7,7 +7,8 @@
     <div class="trip-info">
       <span>{{ searchDataService.isOneWay ? 'Oneway' : 'Return' }}</span>
       <span class="dot"></span>
-      <span>{{ searchDataService.startDate | date: 'dMMM' }} {{ searchDataService.isOneWay ? '' : '-' }} {{ searchDataService.endDate | date: 'dMMM' }}</span>
+      <span *ngIf="searchDataService.isOneWay">{{ searchDataService.startDate | date: 'dMMM' }} </span>
+      <span *ngIf="!searchDataService.isOneWay">{{ searchDataService.startDate | date: 'dMMM' }} - {{ searchDataService.endDate | date: 'dMMM' }}</span>
       <span class="dot"></span>
       <span>{{ searchDataService.passengers }}</span>
       <img src="assets/account_24px.svg" alt="icon-person">

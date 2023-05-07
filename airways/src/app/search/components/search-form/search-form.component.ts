@@ -50,6 +50,14 @@ export class SearchFormComponent implements OnInit, DoCheck {
     });
 
     this.searchForm.controls['isOneWay'].setValue(`${this.searchDataService.isOneWay}`);
+    this.searchForm.controls['destinationFrom'].setValue(this.searchDataService.origin);
+    this.searchForm.controls['destinationTo'].setValue(this.searchDataService.destination);
+    this.searchForm.controls['startDate'].setValue(this.searchDataService.startDate);
+    this.searchForm.controls['endDate'].setValue(this.searchDataService.endDate);
+
+    this.passengers['Adults'].count = this.searchDataService.passengersCategories.Adults;
+    this.passengers['Child'].count = this.searchDataService.passengersCategories.Child;
+    this.passengers['Infant'].count = this.searchDataService.passengersCategories.Infant;
   }
 
   ngDoCheck() {
@@ -100,6 +108,8 @@ export class SearchFormComponent implements OnInit, DoCheck {
   }
 
   onSubmit() {
+    console.log('this.searchForm.value', this.searchForm.value);
+
     this.searchDataService.startDate = this.searchForm.value.startDate;
     this.searchDataService.endDate = this.searchForm.value.endDate;
 

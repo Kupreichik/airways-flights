@@ -2,13 +2,14 @@
   <form class="search-form" [ngClass]="{'select-page': isFlightSelectPage, 'hidden': isHidden}" [formGroup]="searchForm" (submit)="onSubmit()">
 
     <mat-radio-group class="radio" [ngClass]="{'select-page': isFlightSelectPage}">
-      <mat-radio-button ngDefaultControl formControlName="isOneWay" value="false" checked
+      <mat-radio-button ngDefaultControl formControlName="isOneWay" value="false" [checked]="isRoundTrip()"
         (change)="onChangeTypeTrip()"
         >Round Trip</mat-radio-button>
       <mat-radio-button ngDefaultControl
         formControlName="isOneWay"
         value="true"
         (change)="onChangeTypeTrip()"
+        [checked]="!isRoundTrip()"
       >One Way</mat-radio-button>
     </mat-radio-group>
 

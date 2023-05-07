@@ -62,11 +62,11 @@ export class DateSelectComponent implements OnInit {
     if (this.isReturnFlight) {
       seats =
         this.flightSelectService.itemsResponseReturn &&
-        this.flightSelectService.itemsResponseReturn[id][0].avaible;
+        this.flightSelectService.itemsResponseReturn[id][0].seats.avaible;
     } else {
       seats =
         this.flightSelectService.itemsResponse &&
-        this.flightSelectService.itemsResponse[id][0].avaible;
+        this.flightSelectService.itemsResponse[id][0].seats.avaible;
     }
     return seats;
   }

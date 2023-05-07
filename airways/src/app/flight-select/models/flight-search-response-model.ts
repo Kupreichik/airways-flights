@@ -15,7 +15,10 @@ export interface Price {
 }
 
 export interface FlightItem {
-  avaible: number;
+  seats: {
+    total: number;
+    avaible: number;
+  };
   flightNumber: string;
   timeMins: number;
   form: Airport;
