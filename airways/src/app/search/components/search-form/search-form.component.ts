@@ -2,6 +2,7 @@ import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SearchDataService } from 'src/app/core/services/search-data.service';
+import { FlightSelectService } from 'src/app/flight-select/services/flight-select.service';
 import { CITIES } from 'src/app/mock/cities';
 import { ValidateService } from '../../services/validate.service';
 
@@ -37,6 +38,7 @@ export class SearchFormComponent implements OnInit, DoCheck {
     private validateService: ValidateService,
     private router: Router,
     private searchDataService: SearchDataService,
+    private flightSelectService: FlightSelectService,
   ) {}
 
   ngOnInit(): void {
@@ -108,10 +110,15 @@ export class SearchFormComponent implements OnInit, DoCheck {
   }
 
   onSubmit() {
-    console.log('this.searchForm.value', this.searchForm.value);
+    this.searchDataService.startDate = new Date(
+      this.searchForm.value.startDate.getTime() -
+        this.searchForm.value.startDate.getTimezoneOffset() * 60 * 1000,
+    );
 
-    this.searchDataService.startDate = this.searchForm.value.startDate;
-    this.searchDataService.endDate = this.searchForm.value.endDate;
+    this.searchDataService.endDate = new Date(
+      this.searchForm.value.endDate.getTime() -
+        this.searchForm.value.endDate.getTimezoneOffset() * 60 * 1000,
+    );
 
     this.searchDataService.origin = this.isDestinationReverse
       ? this.searchForm.value.destinationTo
@@ -138,6 +145,19 @@ export class SearchFormComponent implements OnInit, DoCheck {
     this.searchDataService.passengersCategories.Child = this.passengers['Child'].count;
     this.searchDataService.passengersCategories.Infant = this.passengers['Infant'].count;
 
-    if (this.searchForm.valid) this.router.navigateByUrl('/select');
+    if (this.searchForm.valid) {
+      this.flightSelectService
+        .fetchData(
+          this.searchDataService.startDate.toISOString(),
+          this.searchDataService.endDate.toISOString(),
+          this.searchDataService.origin,
+          this.searchDataService.destination,
+        )
+        .subscribe((data) => {
+          this.flightSelectService.testDataNEW = data;
+          this.flightSelectService.setInitialSelectedCardId();
+        });
+      this.router.navigateByUrl('/select');
+    }
   }
 }

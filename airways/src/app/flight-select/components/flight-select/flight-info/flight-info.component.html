@@ -28,7 +28,7 @@
     <div class="price-container" [ngClass]="{ selected: isFlightSelected }">
       <span class="seats" [appSeatsColor] = "flightSelectedData.seats.avaible"> {{ flightSelectedData.seats.avaible }} seats <br> available</span>
       <span >Price</span>
-      <span class="price"> {{ flightSelectedData.price[searchDataService.currency] | currency: searchDataService.currency.toUpperCase():'symbol'}} </span>
+      <span class="price"> {{ flightSelectedData.price[searchDataService.currency] | currency: searchDataService.currency.toUpperCase():'symbol-narrow'}} </span>
     </div>
     <button mat-raised-button color="primary" class="select-btn" (click)="handleSelectBtn()" [ngClass]="{ selected: isFlightSelected }">{{ isFlightSelected ? 'Edit' : 'Select' }}</button>
   </div>

@@ -26,7 +26,12 @@ export interface FlightItem {
   takeoffDate: string;
   landingDate: string;
   price: PriceTest;
+  otherFlights: OtherFlights;
 }
+
+export type OtherFlights = {
+  [key in '1' | '2' | '3' | '4' | '5' | '-5' | '-4' | '-3' | '-2' | '-1']?: FlightItem;
+};
 
 type PriceTest = {
   [key in TPrice]: number;

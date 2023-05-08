@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SearchDataService } from 'src/app/core/services/search-data.service';
-import { FlightSelectService } from '../../../services/flight-select.service';
 import { FlightItem } from '../../../models/flight-search-response-model';
+import { FlightSelectService } from '../../../services/flight-select.service';
 
 @Component({
   selector: 'app-flight-info',
@@ -23,14 +23,17 @@ export class FlightInfoComponent implements OnInit {
   ngOnInit(): void {
     if (this.isReturnFlight) {
       this.flightSelectService.selectedReturnCardId$.subscribe((id) => {
-        this.flightSelectedData =
-          this.flightSelectService.itemsResponseReturn &&
-          this.flightSelectService.itemsResponseReturn[id][0];
+        this.flightSelectedData = this.flightSelectService.getDataById(
+          id.toString(),
+          this.isReturnFlight,
+        );
       });
     } else {
       this.flightSelectService.selectedCardId$.subscribe((id) => {
-        this.flightSelectedData =
-          this.flightSelectService.itemsResponse && this.flightSelectService.itemsResponse[id][0];
+        this.flightSelectedData = this.flightSelectService.getDataById(
+          id.toString(),
+          this.isReturnFlight,
+        );
       });
     }
   }

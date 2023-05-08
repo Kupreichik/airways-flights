@@ -4,18 +4,24 @@
     <h3 class="title__name" *ngIf="!isReturnFlight">{{ searchDataService.originName }} to {{ searchDataService.destinationName }} </h3>
     <h3 class="title__name" *ngIf="isReturnFlight">{{ searchDataService.destinationName }} to {{ searchDataService.originName }} </h3>
   </div>
-  <div class="slider" *ngIf="searchDates" [ngClass]="{ selected: isFlightSelected }">
-    <div class="slider__btn" (click)="handlePrev()">&#10094;</div>
-    <div class="slider__container" [ngClass]="{'transformed': isTransformed}">
-      <div class="card" *ngFor="let item of searchDates; let cardId = index"
-      [ngClass]="{'active': checkCardSelected(cardId)}"
-      (click)="handleSelectCard(cardId)" [appSeatsColor]="getSeatsById(cardId) || 0" [isActiveCard]="checkCardSelected(cardId)">
-        <span class="card__date" [ngClass]="{'active': checkCardSelected(cardId)}">{{ item | date: 'd MMM' : 'UTC' }} </span>
-        <span class="card__day" [ngClass]="{'active': checkCardSelected(cardId)}"> {{ item | date: 'EEEE': 'UTC' }}</span>
-        <span class="card__price" [ngClass]="{'active': checkCardSelected(cardId)}">{{ getPriceById(cardId, searchDataService.currency) | currency: searchDataService.currency.toUpperCase() :'symbol'}}</span>
-        <img class="card__icon" src="assets/do_not_fly_24px.svg" alt="icon do not fly">
+  <div class="slider" [ngClass]="{ selected: isFlightSelected }">
+    <div class="slider__btn" (click)="handleSliderPosition('right')">&#10094;</div>
+    <div class="slider__container" [ngClass]="{'transformed-left': currentSliderPosition === 'left', 'transformed-right': currentSliderPosition === 'right'}">
+      <div class="card" *ngFor="let ind of [-5,-4,-3,-2,-1,0,1,2,3,4,5]"
+      [ngClass]="{'active': checkCardSelected(ind), 'disabled': !getPrice(ind.toString(), searchDataService.currency)}"
+      (click)="handleSelectCard(ind)" [appSeatsColor]="getSeats(ind.toString()) || 0" [isActiveCard]="checkCardSelected(ind)">
+
+        <span class="card__date" [ngClass]="{'active': checkCardSelected(ind)}">{{ getDate(ind.toString()) | date: 'd MMM' : 'UTC' }} </span>
+        <span class="card__day" [ngClass]="{'active': checkCardSelected(ind)}"> {{ getDate(ind.toString()) | date: 'EEEE': 'UTC' }}</span>
+
+        <span class="card__price" *ngIf="getPrice(ind.toString(), searchDataService.currency)"
+          [ngClass]="{'active': checkCardSelected(ind)}">
+          {{ getPrice(ind.toString(), searchDataService.currency) | currency: searchDataService.currency.toUpperCase() :'symbol-narrow'}}
+        </span>
+
+        <img class="card__icon" src="assets/do_not_fly_24px.svg" alt="icon do not fly" *ngIf="!getPrice(ind.toString(), searchDataService.currency)">
       </div>
     </div>
-    <div class="slider__btn" (click)="handleNext()">&#10095;</div>
+    <div class="slider__btn" (click)="handleSliderPosition('left')">&#10095;</div>
   </div>
 </div>
