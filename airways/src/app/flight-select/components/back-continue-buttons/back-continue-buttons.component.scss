@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  gap: 30px;
+  justify-content: end;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+.back-btn {
+  min-width: 126px;
+  height: 60px;
+  color: var(--primary-blue);
+}
+
+.continue-btn {
+  min-width: 126px;
+  height: 60px;
+  background-color: var(--primary-blue);
+  color: #ffffff;
+}
