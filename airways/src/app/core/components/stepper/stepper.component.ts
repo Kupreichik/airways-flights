@@ -30,8 +30,8 @@ export class StepperComponent extends CdkStepper implements OnInit {
   }
 
   ngOnInit(): void {
-    this.stepIndexSubscription = this.stepService.stepIndex$.subscribe((val) => {
-      this.currentStepIndex = val;
+    this.stepIndexSubscription = this.stepService.stepIndex$.subscribe((index) => {
+      this.currentStepIndex = index;
     });
   }
 }
