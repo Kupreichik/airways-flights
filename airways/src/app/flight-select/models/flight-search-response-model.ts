@@ -15,10 +15,7 @@ export interface Price {
 }
 
 export interface FlightItem {
-  seats: {
-    total: number;
-    avaible: number;
-  };
+  seats: Seats;
   flightNumber: string;
   timeMins: number;
   form: Airport;
@@ -36,3 +33,8 @@ export type OtherFlights = {
 type PriceTest = {
   [key in TPrice]: number;
 };
+
+export interface Seats {
+  total: number;
+  avaible: number;
+}

@@ -77,13 +77,13 @@ export class FlightSelectService {
   getSeatsById(id: string, isReturn: boolean) {
     const dataIndex = isReturn ? 1 : 0;
     if (id === '0') {
-      return this.flightsData && this.flightsData[dataIndex].seats.avaible;
+      return this.flightsData && this.flightsData[dataIndex].seats;
     }
 
     return (
       (this.flightsData &&
-        this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights]?.seats.avaible) ||
-      0
+        this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights]?.seats) ||
+      undefined
     );
   }
 

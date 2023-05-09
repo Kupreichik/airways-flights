@@ -10,7 +10,7 @@
       [ngClass]="{'transformed-left': currentSliderPosition === sliderPositions.left, 'transformed-right': currentSliderPosition === sliderPositions.right}">
       <div class="card" *ngFor="let position of datesPositions"
       [ngClass]="{'active': checkCardSelected(position), 'disabled': !getPrice(position.toString(), searchDataService.currency)}"
-      (click)="handleSelectCard(position)" [appSeatsColor]="getSeats(position.toString()) || 0" [isActiveCard]="checkCardSelected(position)">
+      (click)="handleSelectCard(position)" [appSeatsColor]="getSeats(position.toString())" [isActiveCard]="checkCardSelected(position)">
 
         <span class="card__date" [ngClass]="{'active': checkCardSelected(position)}">{{ getDate(position.toString()) | date: 'd MMM' : 'UTC' }} </span>
         <span class="card__day" [ngClass]="{'active': checkCardSelected(position)}"> {{ getDate(position.toString()) | date: 'EEEE': 'UTC' }}</span>

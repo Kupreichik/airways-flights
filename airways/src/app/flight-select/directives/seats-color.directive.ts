@@ -1,10 +1,11 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, Renderer2 } from '@angular/core';
+import { Seats } from '../models/flight-search-response-model';
 
 @Directive({
   selector: '[appSeatsColor]',
 })
-export class SeatsColorDirective {
-  @Input() appSeatsColor = 0;
+export class SeatsColorDirective implements OnChanges {
+  @Input() appSeatsColor: Seats | undefined = undefined;
   @Input() isActiveCard = false;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
@@ -16,18 +17,20 @@ export class SeatsColorDirective {
   changeColor() {
     let itemColor = '';
 
-    switch (true) {
-      case this.appSeatsColor >= 200:
-        itemColor = 'greenyellow';
-        break;
-      case this.appSeatsColor >= 100:
-        itemColor = 'yellow';
-        break;
-      case this.appSeatsColor > 0:
-        itemColor = 'red';
-        break;
-      default:
-        itemColor = '';
+    if (this.appSeatsColor?.avaible && this.appSeatsColor?.total) {
+      switch (true) {
+        case this.appSeatsColor.avaible / this.appSeatsColor.total > 0.5:
+          itemColor = 'greenyellow';
+          break;
+        case this.appSeatsColor.avaible >= 10:
+          itemColor = 'orange';
+          break;
+        case this.appSeatsColor.avaible < 10:
+          itemColor = 'red';
+          break;
+        default:
+          itemColor = '';
+      }
     }
 
     if (this.el.nativeElement instanceof HTMLSpanElement) {
@@ -43,6 +46,5 @@ export class SeatsColorDirective {
     } else {
       this.renderer.setStyle(this.el.nativeElement, 'borderBottom', '');
     }
-    return itemColor;
   }
 }
