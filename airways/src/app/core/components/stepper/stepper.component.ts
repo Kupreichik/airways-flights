@@ -1,5 +1,8 @@
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Component } from '@angular/core';
+import { CdkStepper, STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Directionality } from '@angular/cdk/bidi';
+import { StepperService } from '../../services/stepper.service';
 
 @Component({
   selector: 'app-stepper',
@@ -12,4 +15,23 @@ import { Component } from '@angular/core';
     },
   ],
 })
-export class StepperComponent {}
+export class StepperComponent extends CdkStepper implements OnInit {
+  @ViewChild('stepper')
+  stepIndexSubscription!: Subscription;
+  currentStepIndex = 0;
+
+  constructor(
+    dir: Directionality,
+    changeDetectorRef: ChangeDetectorRef,
+    stepper: ElementRef,
+    private stepService: StepperService,
+  ) {
+    super(dir, changeDetectorRef, stepper);
+  }
+
+  ngOnInit(): void {
+    this.stepIndexSubscription = this.stepService.stepIndex$.subscribe((index) => {
+      this.currentStepIndex = index;
+    });
+  }
+}

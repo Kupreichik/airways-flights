@@ -14,6 +14,7 @@ import { FlightSelectRoutingModule } from './flight-select-routing.module';
 import { FlightSelectPageComponent } from './pages/flight-select-page/flight-select-page.component';
 import { PassengersComponent } from './pages/passengers/passengers.component';
 import { MinToHoursPipe } from './pipes/min-to-hours.pipe';
+import { BackContinueButtonsComponent } from './components/back-continue-buttons/back-continue-buttons.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MinToHoursPipe } from './pipes/min-to-hours.pipe';
     PassengersComponent,
     PassengerCardComponent,
     ContactDetailsComponent,
+    BackContinueButtonsComponent,
   ],
   imports: [CommonModule, SharedModule, FlightSelectRoutingModule],
 })
