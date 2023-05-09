@@ -23,7 +23,7 @@ export class FlightSelectService {
 
   selectedReturnCardId$ = new BehaviorSubject(initialSelectedDateId);
 
-  testDataNEW?: FlightItem[];
+  flightsData?: FlightItem[];
 
   constructor(private http: HttpClient) {}
 
@@ -41,48 +41,48 @@ export class FlightSelectService {
   }
 
   getDataById(id: string, isReturn: boolean) {
-    const ind = isReturn ? 1 : 0;
+    const dataIndex = isReturn ? 1 : 0;
 
     if (id === '0') {
-      return this.testDataNEW && this.testDataNEW[ind];
+      return this.flightsData && this.flightsData[dataIndex];
     }
 
-    return this.testDataNEW && this.testDataNEW[ind].otherFlights[id as keyof OtherFlights];
+    return this.flightsData && this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights];
   }
 
   getPriceById(id: string, currency: keyof Price, isReturn: boolean) {
-    const ind = isReturn ? 1 : 0;
+    const dataIndex = isReturn ? 1 : 0;
 
     if (id === '0') {
-      return this.testDataNEW && this.testDataNEW[ind].price[currency];
+      return this.flightsData && this.flightsData[dataIndex].price[currency];
     }
     return (
-      (this.testDataNEW &&
-        this.testDataNEW[ind].otherFlights[id as keyof OtherFlights]?.price[currency]) ||
+      (this.flightsData &&
+        this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights]?.price[currency]) ||
       0
     );
   }
 
   getDateById(id: string, isReturn: boolean) {
-    const ind = isReturn ? 1 : 0;
+    const dataIndex = isReturn ? 1 : 0;
 
-    const startDate = this.testDataNEW && this.testDataNEW[ind].takeoffDate;
+    const startDate = this.flightsData && this.flightsData[dataIndex].takeoffDate;
     return (
-      (this.testDataNEW &&
-        this.testDataNEW[ind].otherFlights[id as keyof OtherFlights]?.takeoffDate) ||
+      (this.flightsData &&
+        this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights]?.takeoffDate) ||
       getDateWithOffset(startDate, +id)
     );
   }
 
   getSeatsById(id: string, isReturn: boolean) {
-    const ind = isReturn ? 1 : 0;
+    const dataIndex = isReturn ? 1 : 0;
     if (id === '0') {
-      return this.testDataNEW && this.testDataNEW[ind].seats.avaible;
+      return this.flightsData && this.flightsData[dataIndex].seats.avaible;
     }
 
     return (
-      (this.testDataNEW &&
-        this.testDataNEW[ind].otherFlights[id as keyof OtherFlights]?.seats.avaible) ||
+      (this.flightsData &&
+        this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights]?.seats.avaible) ||
       0
     );
   }

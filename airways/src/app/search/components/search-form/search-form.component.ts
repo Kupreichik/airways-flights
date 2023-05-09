@@ -154,7 +154,7 @@ export class SearchFormComponent implements OnInit, DoCheck {
           this.searchDataService.destination,
         )
         .subscribe((data) => {
-          this.flightSelectService.testDataNEW = data;
+          this.flightSelectService.flightsData = data;
           this.flightSelectService.setInitialSelectedCardId();
         });
       this.router.navigateByUrl('/select');
