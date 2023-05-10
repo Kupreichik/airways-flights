@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, forkJoin } from 'rxjs';
-import { FlightItem } from '../models/flight-search-response-model';
+import { BehaviorSubject } from 'rxjs';
+import { FlightItem, OtherFlights, Price } from '../models/flight-search-response-model';
+import { getDateWithOffset } from '../utils/utils';
 
 const BASE_URL = '/api/search/flight';
 
-const initialSelectedDateId = 2;
+const initialSelectedDateId = 0;
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,39 +19,72 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class FlightSelectService {
-  itemsResponse?: FlightItem[][];
-
-  itemsResponseReturn?: FlightItem[][];
-
   selectedCardId$ = new BehaviorSubject(initialSelectedDateId);
 
   selectedReturnCardId$ = new BehaviorSubject(initialSelectedDateId);
 
+  flightsData?: FlightItem[];
+
   constructor(private http: HttpClient) {}
 
-  getData(searchDate: string, origin: string, destination: string) {
+  fetchData(searchDateFrom: string, searchDateBack: string, origin: string, destination: string) {
     return this.http.post<FlightItem[]>(
       BASE_URL,
       {
         fromKey: origin,
         toKey: destination,
-        forwardDate: searchDate,
+        forwardDate: searchDateFrom,
+        backDate: searchDateBack,
       },
       httpOptions,
     );
   }
 
-  getListData(dataList: Date[], origin: string, destination: string, isReturn: boolean) {
-    const requests = dataList.map((item) => this.getData(item.toISOString(), origin, destination));
-    forkJoin(requests).subscribe((data) => {
-      if (isReturn) {
-        this.itemsResponseReturn = data;
-        this.selectedReturnCardId$.next(initialSelectedDateId);
-      } else {
-        this.itemsResponse = data;
-        this.selectedCardId$.next(initialSelectedDateId);
-      }
-    });
+  getDataById(id: string, isReturn: boolean) {
+    const dataIndex = isReturn ? 1 : 0;
+
+    if (id === '0') {
+      return this.flightsData && this.flightsData[dataIndex];
+    }
+
+    return this.flightsData && this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights];
+  }
+
+  getPriceById(id: string, currency: keyof Price, isReturn: boolean) {
+    const dataIndex = isReturn ? 1 : 0;
+
+    if (id === '0') {
+      return this.flightsData && this.flightsData[dataIndex].price[currency];
+    }
+    return (
+      (this.flightsData &&
+        this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights]?.price[currency]) ||
+      0
+    );
+  }
+
+  getDateById(id: string, isReturn: boolean) {
+    const dataIndex = isReturn ? 1 : 0;
+
+    const startDate = this.flightsData && this.flightsData[dataIndex].takeoffDate;
+    return (
+      (this.flightsData &&
+        this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights]?.takeoffDate) ||
+      getDateWithOffset(startDate, +id)
+    );
+  }
+
+  getSeatsById(id: string, isReturn: boolean) {
+    const dataIndex = isReturn ? 1 : 0;
+    if (id === '0') {
+      return this.flightsData && this.flightsData[dataIndex].seats;
+    }
+
+    return (
+      (this.flightsData &&
+        this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights]?.seats) ||
+      undefined
+    );
   }
 
   changeSelectedCardId(id: number, isReturn: boolean) {
@@ -59,5 +93,10 @@ export class FlightSelectService {
     } else {
       this.selectedCardId$.next(id);
     }
+  }
+
+  setInitialSelectedCardId() {
+    this.selectedReturnCardId$.next(initialSelectedDateId);
+    this.selectedCardId$.next(initialSelectedDateId);
   }
 }

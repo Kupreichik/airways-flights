@@ -19,7 +19,7 @@ import { SearchDataService } from '../../services/search-data.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isMainPage = true;
-  currencies = ['eur', 'usa', 'rub', 'pln'];
+  currencies = ['eur', 'usd', 'rub', 'pln'];
   dateFormats = ['MM/dd/yyyy', 'dd/MM/yyyy', 'yyyy/dd/MM', 'yyyy/MM/dd'];
   currency!: TPrice;
   dateFormat!: string;

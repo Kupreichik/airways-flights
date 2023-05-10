@@ -44,11 +44,16 @@ mat-icon {
 
 .slider__container {
   display: inline-flex;
-  width: 200%;
+  width: 220%;
   transition: transform 0.5s ease;
+  transform: translate(-28%);
 
-  &.transformed {
-    transform: translate(-50%);
+  &.transformed-left {
+    transform: translate(-56%);
+  }
+
+  &.transformed-right {
+    transform: translate(0);
   }
 }
 
@@ -62,6 +67,10 @@ mat-icon {
 
   &.active {
     border-bottom: '';
+  }
+
+  &.disabled {
+    pointer-events: none;
   }
 }
 
@@ -94,6 +103,7 @@ mat-icon {
   font-weight: 700;
   font-size: 20px;
   transition: all 0.3s ease;
+  padding: 5px;
 
   &.active {
     font-size: 30px;

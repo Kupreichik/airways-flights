@@ -15,7 +15,7 @@ export interface Price {
 }
 
 export interface FlightItem {
-  avaible: number;
+  seats: Seats;
   flightNumber: string;
   timeMins: number;
   form: Airport;
@@ -23,8 +23,18 @@ export interface FlightItem {
   takeoffDate: string;
   landingDate: string;
   price: PriceTest;
+  otherFlights: OtherFlights;
 }
+
+export type OtherFlights = {
+  [key in '1' | '2' | '3' | '4' | '5' | '-5' | '-4' | '-3' | '-2' | '-1']?: FlightItem;
+};
 
 type PriceTest = {
   [key in TPrice]: number;
 };
+
+export interface Seats {
+  total: number;
+  avaible: number;
+}

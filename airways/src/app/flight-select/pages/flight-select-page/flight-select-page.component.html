@@ -1,4 +1,5 @@
-<app-search-settings></app-search-settings>
+<app-search-settings (handleEditBtnEvent)="handleEditSettings($event)"></app-search-settings>
+<app-search-form [isFlightSelectPage]="true" [isHidden]="!isEditSettings"></app-search-form>
 <app-flight-select></app-flight-select>
 <app-flight-select *ngIf="!searchDataService.isOneWay" [isReturnFlight]="true"></app-flight-select>
 <app-back-continue-buttons></app-back-continue-buttons>

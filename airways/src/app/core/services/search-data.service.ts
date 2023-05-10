@@ -10,8 +10,8 @@ export class SearchDataService {
   isOneWay = false;
   startDate = new Date('2023-05-23');
   endDate = new Date('2023-05-28');
-  origin = 'MOW';
-  destination = 'LED';
+  origin = 'AMS';
+  destination = 'MAD';
   passengers = 1;
   originName = '';
   destinationName = '';
