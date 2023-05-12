@@ -7,10 +7,10 @@
 .summary-item {
   padding: 20px 24px;
   background: white;
+  font-size: 16px;
 }
 
 .summary-item__title {
-  font-size: 16px;
   text-transform: uppercase;
 }
 
@@ -19,5 +19,18 @@
   flex-direction: column;
   gap: 6px;
   margin-left: 28px;
-  font-size: 16px;
+}
+
+@media (max-width: 850px) {
+  .summary-item {
+    font-size: 14px;
+  }
+
+  .summary-item__title {
+    margin-bottom: 8px;
+  }
+
+  .summary-item__description {
+    margin-left: 20px;
+  }
 }

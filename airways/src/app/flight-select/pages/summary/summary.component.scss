@@ -56,16 +56,17 @@
   padding-bottom: 16px;
   max-width: 440px;
   width: 100%;
+
+  font-size: 16px;
 }
 
 .summary-total__flex {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .summary-total__item-header {
-  font-size: 16px;
   font-weight: 700;
 }
 
@@ -74,7 +75,6 @@
   flex-direction: column;
   gap: 6px;
   margin-left: 40px;
-  font-size: 16px;
 }
 
 .summary-total__price {
@@ -94,15 +94,34 @@
   color: var(--primary-blue);
 }
 
-@media (max-width: 1024px) {
-}
-
-@media (max-width: 550px) {
+@media (max-width: 850px) {
   .summary-content {
     grid-template-columns: 1fr;
   }
 
   .summary-total {
     grid-column: 1/2;
+  }
+
+  .summary-total__items {
+    padding: 20px 24px 0;
+  }
+
+  .summary-total__item {
+    max-width: 100%;
+  }
+
+  .summary-total__price-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .summary-total__item-description {
+    margin-left: 20px;
+  }
+
+  .summary-total__item {
+    font-size: 14px;
   }
 }
