@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.summary-item {
+  padding: 20px 24px;
+  background: white;
+}
+
+.summary-item__title {
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.summary-item__description {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-left: 28px;
+  font-size: 16px;
+}

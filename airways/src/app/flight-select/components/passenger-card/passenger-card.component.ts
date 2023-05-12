@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
