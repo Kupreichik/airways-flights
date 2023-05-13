@@ -5,26 +5,17 @@
       <h2 class="summary-header__title">Summary</h2>
     </div>
     <div class="summary-content">
-      <app-summary-card></app-summary-card>
-      <app-summary-card></app-summary-card>
+      <app-summary-card
+        *ngFor="let cardItem of cardItems"
+        [cardItem]="cardItem"
+        [peopleItems]="peopleItems"
+      ></app-summary-card>
       <div class="summary-total">
         <div class="summary-total__items">
-          <div class="summary-total__item">
-            <div class="summary-total__item-header summary-total__flex">
-              <span>1 x Adult Fare</span>
-              <span>€257.31</span>
-            </div>
-            <div class="summary-total__item-description">
-              <div class="summary-total__item-fare summary-total__flex">
-                <span>Fare</span>
-                <span>€166.00</span>
-              </div>
-              <div class="summary-total__item-tax summary-total__flex">
-                <span>Tax & Service Charge</span>
-                <span>€91.31</span>
-              </div>
-            </div>
-          </div>
+          <app-summary-total-item
+            *ngFor="let peopleItem of peopleItems"
+            [peopleItem]="peopleItem"
+          ></app-summary-total-item>
         </div>
         <div class="summary-total__price">
           <div class="summary-total__price-content summary-total__flex">

@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-summary-item',
   templateUrl: './summary-item.component.html',
-  styleUrls: ['./summary-item.component.scss']
+  styleUrls: ['./summary-item.component.scss'],
 })
 export class SummaryItemComponent {
-
+  @Input() peopleItem: any;
 }

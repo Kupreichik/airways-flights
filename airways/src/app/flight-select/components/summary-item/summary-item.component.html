@@ -1,16 +1,8 @@
 <div class="summary-item">
-  <p class="summary-item__title">Harry Potter</p>
+  <p class="summary-item__title">{{ peopleItem.title }}</p>
   <div class="summary-item__description">
-    <span>1checked bag (total 23 kg) included</span>
-    <span>1 cabin bag + 1 personal item (max. 8 kg) included</span>
-    <span>Seat 19E</span>
-  </div>
-</div>
-<div class="summary-item">
-  <p class="summary-item__title">Harry Potter</p>
-  <div class="summary-item__description">
-    <span>1checked bag (total 23 kg) included</span>
-    <span>1 cabin bag + 1 personal item (max. 8 kg) included</span>
-    <span>Seat 19E</span>
+    <span>{{ peopleItem.checkedBag }}</span>
+    <span>{{ peopleItem.cabinBag }}</span>
+    <span *ngIf="peopleItem.seat">Seat {{ peopleItem.seat }}</span>
   </div>
 </div>
