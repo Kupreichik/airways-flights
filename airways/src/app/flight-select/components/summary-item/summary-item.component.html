@@ -1,0 +1,8 @@
+<div class="summary-item">
+  <p class="summary-item__title">{{ peopleItem.title }}</p>
+  <div class="summary-item__description">
+    <span>{{ peopleItem.checkedBag }}</span>
+    <span>{{ peopleItem.cabinBag }}</span>
+    <span *ngIf="peopleItem.seat">Seat {{ peopleItem.seat }}</span>
+  </div>
+</div>

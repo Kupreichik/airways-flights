@@ -6,18 +6,36 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class StepperService {
-  stepIndex$ = new BehaviorSubject<number>(0);
+  private stepIndexSubject = new BehaviorSubject<number>(0);
+  stepIndex$ = this.stepIndexSubject.asObservable();
 
-  constructor(private router: Router) {}
-
-  nextStep(): void {
-    let currentIndex = this.stepIndex$.value;
-    if (currentIndex < 2) this.stepIndex$.next((currentIndex += 1));
+  constructor(private router: Router) {
+    this.stepIndex$.subscribe((stepIndex) => {
+      const path = this.getPathForStepIndex(stepIndex);
+      if (path) {
+        this.router.navigate([path]);
+      }
+    });
   }
 
-  prevStep(): void {
-    let currentIndex = this.stepIndex$.value;
-    if (currentIndex === 0) this.router.navigateByUrl('/');
-    if (currentIndex > 0) this.stepIndex$.next((currentIndex -= 1));
+  setStepIndex(index: number) {
+    this.stepIndexSubject.next(index);
+  }
+
+  getStepIndex(): number {
+    return this.stepIndexSubject.value;
+  }
+
+  private getPathForStepIndex(stepIndex: number): string | null {
+    switch (stepIndex) {
+      case 0:
+        return '/select';
+      case 1:
+        return '/passengers';
+      case 2:
+        return '/summary';
+      default:
+        return null;
+    }
   }
 }

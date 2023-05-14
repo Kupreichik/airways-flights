@@ -1,8 +1,10 @@
 <div class="wrapper container">
-  <button mat-stroked-button class="back-btn" (click)="stepperService.prevStep()">
-    Back
-  </button>
-  <button mat-raised-button class="continue-btn" (click)="stepperService.nextStep()">
+  <button mat-button class="back-btn" (click)="prevStep()">Back</button>
+  <button mat-raised-button class="continue-btn" *ngIf="!showButtons()" (click)="nextStep()">
     Continue
   </button>
+  <ng-container *ngIf="showButtons()">
+    <button mat-stroked-button class="back-btn">Add to order cart</button>
+    <button mat-raised-button class="continue-btn">Buy now</button>
+  </ng-container>
 </div>

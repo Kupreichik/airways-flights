@@ -1,0 +1,16 @@
+<div class="summary-total__item">
+  <div class="summary-total__item-header summary-total__flex">
+    <span>1 x {{ peopleItem.passenger | titlecase }} Fare</span>
+    <span>{{ peopleItem.fare + peopleItem.tax | currency:'EUR':'symbol':'1.2-2' }}</span>
+  </div>
+  <div class="summary-total__item-description">
+    <div class="summary-total__item-fare summary-total__flex">
+      <span>Fare</span>
+      <span>{{ peopleItem.fare | currency:'EUR':'symbol':'1.2-2' }}</span>
+    </div>
+    <div class="summary-total__item-tax summary-total__flex">
+      <span>Tax & Service Charge</span>
+      <span>{{ peopleItem.tax | currency:'EUR':'symbol':'1.2-2' }}</span>
+    </div>
+  </div>
+</div>

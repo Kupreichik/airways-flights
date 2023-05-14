@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 import { PassengersComponent } from './flight-select/pages/passengers/passengers.component';
+import { SummaryComponent } from './flight-select/pages/summary/summary.component';
 
 const redirectToHome = () => redirectUnauthorizedTo(['']);
 
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'passengers',
     component: PassengersComponent,
+    ...canActivate(redirectToHome),
+  },
+  {
+    path: 'summary',
+    component: SummaryComponent,
     ...canActivate(redirectToHome),
   },
 ];
