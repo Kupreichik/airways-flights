@@ -1,12 +1,12 @@
 <div class="summary-card">
-  <div class="summary-card__header">
+  <div class="summary-card__header" *ngIf="cardItem">
     <div class="summary-card__header-top">
       <h4 class="summary-card__color">{{ cardItem.flightNumber }}</h4>
-      <h5>{{ cardItem.path }}</h5>
+      <h5>{{ cardItem.form.city }} - {{ cardItem.to.city }}</h5>
     </div>
     <div class="summary-card__header-bottom">
-      <span>{{ cardItem.date }}</span>
-      <span>{{ cardItem.time }}</span>
+      <span>{{ cardItem.takeoffDate | date: 'EEEE, d MMMM, y' : 'UTC' }}</span>
+      <span>{{ cardItem.takeoffDate | date: 'HH:mm': 'UTC' }} - {{ cardItem.landingDate | date: 'HH:mm' : 'UTC' }}</span>
     </div>
   </div>
   <app-summary-item

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FlightItem } from '../../models/flight-search-response-model';
 
 @Component({
   selector: 'app-summary-card',
@@ -6,6 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./summary-card.component.scss'],
 })
 export class SummaryCardComponent {
-  @Input() cardItem: any;
+  @Input() cardItem?: FlightItem;
   @Input() peopleItems: any;
 }

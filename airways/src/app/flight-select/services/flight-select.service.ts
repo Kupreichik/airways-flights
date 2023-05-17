@@ -50,6 +50,15 @@ export class FlightSelectService {
     return this.flightsData && this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights];
   }
 
+  getSelectedCardsData(isOneWay: boolean) {
+    const idFrom = this.selectedCardId$.value.toString();
+    const idReturn = this.selectedReturnCardId$.value.toString();
+    const dataFrom = this.getDataById(idFrom, false);
+    const dataReturn = this.getDataById(idReturn, true);
+
+    return isOneWay ? [dataFrom] : [dataFrom, dataReturn];
+  }
+
   getPriceById(id: string, currency: keyof Price, isReturn: boolean) {
     const dataIndex = isReturn ? 1 : 0;
 
