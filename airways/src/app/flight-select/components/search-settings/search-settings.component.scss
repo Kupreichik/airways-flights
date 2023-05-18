@@ -1,9 +1,11 @@
 :host {
-  display: flex;
+  position: fixed;
+  width: 100%;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   background: var(--background-secondary100);
   padding: 22px 0;
-  position: relative;
+  margin: 0 auto;
+  z-index: 10;
 }
 
 .search-settings {
@@ -12,7 +14,14 @@
   column-gap: 40px;
 }
 
-.from-to, .trip-info {
+.search-settings__inner {
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
+}
+
+.from-to,
+.trip-info {
   display: flex;
   align-items: center;
   font-weight: bold;

@@ -7,6 +7,8 @@ import { SearchDataService } from 'src/app/core/services/search-data.service';
   styleUrls: ['./search-settings.component.scss'],
 })
 export class SearchSettingsComponent {
+  // @Input() showEditButton = true;
+
   @Output() handleEditBtnEvent = new EventEmitter<boolean>();
 
   isEditBtn = false;

@@ -87,6 +87,7 @@
       <mat-form-field
         *ngIf="isRoundTrip(); else oneWayInput"
         class="date-input"
+        [ngClass]="{ 'select-page': isFlightSelectPage }"
         appearance="fill"
         hideRequiredMarker="always"
         floatLabel="always"
@@ -138,6 +139,7 @@
 
       <mat-form-field
         class="passengers"
+        [ngClass]="{ 'select-page': isFlightSelectPage }"
         appearance="fill"
         hideRequiredMarker="always"
         floatLabel="always"
@@ -176,7 +178,13 @@
       </mat-form-field>
     </div>
 
-    <button mat-raised-button class="submit-btn" type="submit" [disabled]="isSubmitDisabled">
+    <button
+      mat-raised-button
+      class="submit-btn"
+      [ngClass]="{ 'select-page': isFlightSelectPage }"
+      type="submit"
+      [disabled]="isSubmitDisabled"
+    >
       Search
     </button>
   </form>
