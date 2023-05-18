@@ -1,56 +1,105 @@
 <div class="container">
-  <form class="search-form" [ngClass]="{'select-page': isFlightSelectPage, 'hidden': isHidden}" [formGroup]="searchForm" (submit)="onSubmit()">
-
-    <mat-radio-group class="radio" [ngClass]="{'select-page': isFlightSelectPage}">
-      <mat-radio-button ngDefaultControl formControlName="isOneWay" value="false" [checked]="isRoundTrip()"
+  <form
+    class="search-form"
+    [ngClass]="{ 'select-page': isFlightSelectPage, hidden: isHidden }"
+    [formGroup]="searchForm"
+    (submit)="onSubmit()"
+  >
+    <mat-radio-group class="radio" [ngClass]="{ 'select-page': isFlightSelectPage }">
+      <mat-radio-button
+        ngDefaultControl
+        formControlName="isOneWay"
+        value="false"
+        [checked]="isRoundTrip()"
         (change)="onChangeTypeTrip()"
-        >Round Trip</mat-radio-button>
-      <mat-radio-button ngDefaultControl
+        >Round Trip</mat-radio-button
+      >
+      <mat-radio-button
+        ngDefaultControl
         formControlName="isOneWay"
         value="true"
         (change)="onChangeTypeTrip()"
         [checked]="!isRoundTrip()"
-      >One Way</mat-radio-button>
+      >
+        One Way
+      </mat-radio-button>
     </mat-radio-group>
 
-    <div class="destination-wrapper" [ngClass]="{'destination-reverse': isDestinationReverse, 'select-page': isFlightSelectPage}">
-      <mat-form-field class="destination" appearance="fill" hideRequiredMarker="always" floatLabel="always">
-        <mat-label>{{isDestinationReverse ? 'Destination' : 'From'}}</mat-label>
-        <mat-select required placeholder="Choose your destination from" formControlName="destinationFrom">
-          <mat-option *ngFor="let city of citiesList" value="{{city.code}}"
-          [disabled]="city.code === searchForm.value.destinationTo">
-            {{city.name}} ({{city.code}})
-            <div class="country-code">{{city.country_code}}</div>
+    <div
+      class="destination-wrapper"
+      [ngClass]="{ 'destination-reverse': isDestinationReverse, 'select-page': isFlightSelectPage }"
+    >
+      <mat-form-field
+        class="destination"
+        appearance="fill"
+        hideRequiredMarker="always"
+        floatLabel="always"
+      >
+        <mat-label>{{ isDestinationReverse ? 'Destination' : 'From' }}</mat-label>
+        <mat-select
+          required
+          placeholder="Choose your destination from"
+          formControlName="destinationFrom"
+        >
+          <mat-option
+            *ngFor="let city of citiesList"
+            value="{{ city.code }}"
+            [disabled]="city.code === searchForm.value.destinationTo"
+          >
+            {{ city.name }} ({{ city.code }})
+            <div class="country-code">{{ city.country_code }}</div>
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="destination" [ngClass]="{'select-page': isFlightSelectPage}" appearance="fill" hideRequiredMarker="always" floatLabel="always">
-        <mat-label>{{isDestinationReverse ? 'From' : 'Destination'}}</mat-label>
+      <mat-form-field
+        class="destination"
+        [ngClass]="{ 'select-page': isFlightSelectPage }"
+        appearance="fill"
+        hideRequiredMarker="always"
+        floatLabel="always"
+      >
+        <mat-label>{{ isDestinationReverse ? 'From' : 'Destination' }}</mat-label>
         <mat-select required placeholder="Choose your destination" formControlName="destinationTo">
-          <mat-option *ngFor="let city of citiesList" value="{{city.code}}"
-          [disabled]="city.code === searchForm.value.destinationFrom">
-            {{city.name}} ({{city.code}})
-            <div class="country-code">{{city.country_code}}</div>
+          <mat-option
+            *ngFor="let city of citiesList"
+            value="{{ city.code }}"
+            [disabled]="city.code === searchForm.value.destinationFrom"
+          >
+            {{ city.name }} ({{ city.code }})
+            <div class="country-code">{{ city.country_code }}</div>
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <button mat-stroked-button class="change-btn" [ngClass]="{'select-page': isFlightSelectPage}" type="button" (click)="switchDestination()">
+      <button
+        mat-stroked-button
+        class="change-btn"
+        [ngClass]="{ 'select-page': isFlightSelectPage }"
+        type="button"
+        (click)="switchDestination()"
+      >
         <mat-icon>swap_horiz</mat-icon>
       </button>
     </div>
 
-    <div class="field-wrapper" [ngClass]="{'select-page': isFlightSelectPage}">
-      <mat-form-field *ngIf="isRoundTrip(); else oneWayInput" class="date-input"
-          appearance="fill"
-          hideRequiredMarker="always"
-          floatLabel="always">
-        <mat-label>{{hasDateError() ? 'Invalid Date' : 'Dates'}}</mat-label>
+    <div class="field-wrapper" [ngClass]="{ 'select-page': isFlightSelectPage }">
+      <mat-form-field
+        *ngIf="isRoundTrip(); else oneWayInput"
+        class="date-input"
+        appearance="fill"
+        hideRequiredMarker="always"
+        floatLabel="always"
+      >
+        <mat-label>{{ hasDateError() ? 'Invalid Date' : 'Dates' }}</mat-label>
         <mat-date-range-input [rangePicker]="picker" disabled>
-          <input matStartDate placeholder="Start date" formControlName="startDate"
-          ngDefaultControl>
-          <input matEndDate placeholder="End date" formControlName="endDate" ngDefaultControl>
+          <input
+            matStartDate
+            placeholder="Start date"
+            formControlName="startDate"
+            ngDefaultControl
+          />
+          <input matEndDate placeholder="End date" formControlName="endDate" ngDefaultControl />
         </mat-date-range-input>
         <mat-hint *ngIf="!isFlightSelectPage">MM/DD/YYYY – MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -62,42 +111,63 @@
         </mat-date-range-picker>
       </mat-form-field>
       <ng-template #oneWayInput>
-      <mat-form-field class="date-input disabled-input"
+        <mat-form-field
+          class="date-input disabled-input"
           appearance="fill"
           hideRequiredMarker="always"
-          floatLabel="always">
-        <mat-label class="disabled-input">Date</mat-label>
-        <input matInput [matDatepicker]="picker" placeholder="Start date"
-          formControlName="startDate" ngDefaultControl>
-        <mat-hint *ngIf="!isFlightSelectPage">MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker disabled="false">
-          <mat-datepicker-actions>
-            <button mat-button matDateRangePickerCancel>Cancel</button>
-            <button mat-button matDateRangePickerApply>Ok</button>
-          </mat-datepicker-actions>
-        </mat-datepicker>
-      </mat-form-field>
+          floatLabel="always"
+        >
+          <mat-label class="disabled-input">Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Start date"
+            formControlName="startDate"
+            ngDefaultControl
+          />
+          <mat-hint *ngIf="!isFlightSelectPage">MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker disabled="false">
+            <mat-datepicker-actions>
+              <button mat-button matDateRangePickerCancel>Cancel</button>
+              <button mat-button matDateRangePickerApply>Ok</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+        </mat-form-field>
       </ng-template>
 
-      <mat-form-field class="passengers" appearance="fill" hideRequiredMarker="always" floatLabel="always" panelOpen>
+      <mat-form-field
+        class="passengers"
+        appearance="fill"
+        hideRequiredMarker="always"
+        floatLabel="always"
+        panelOpen
+      >
         <mat-label>Passengers</mat-label>
         <mat-select
           class="passengers-input"
           [value]="selectedPassengers"
-          placeholder="{{selectedPassengers}}"
+          placeholder="{{ selectedPassengers }}"
           formControlName="passengers"
         >
-          <mat-option *ngFor="let passengerCategory of passengerCategories"
-            class="passengers-option">
+          <mat-option
+            *ngFor="let passengerCategory of passengerCategories"
+            class="passengers-option"
+          >
             <div class="passengers-wrapper">
-              <span class="passengers-category" [ngClass]="{'active': passengers[passengerCategory].count > 0}">{{passengerCategory}}</span>
-              <span class="passengers-description">{{passengers[passengerCategory].description}}</span>
+              <span
+                class="passengers-category"
+                [ngClass]="{ active: passengers[passengerCategory].count > 0 }"
+                >{{ passengerCategory }}</span
+              >
+              <span class="passengers-description">{{
+                passengers[passengerCategory].description
+              }}</span>
             </div>
             <div class="counter-wrapper">
               <button mat-flat-button (click)="decrement($event, passengerCategory)">-</button>
-              <span [ngClass]="{'active': passengers[passengerCategory].count > 0}">
-                {{passengers[passengerCategory].count}}
+              <span [ngClass]="{ active: passengers[passengerCategory].count > 0 }">
+                {{ passengers[passengerCategory].count }}
               </span>
               <button mat-flat-button (click)="increment($event, passengerCategory)">+</button>
             </div>
@@ -106,7 +176,8 @@
       </mat-form-field>
     </div>
 
-    <button mat-raised-button class="submit-btn" type="submit" [disabled]="isSubmitDisabled">Search</button>
+    <button mat-raised-button class="submit-btn" type="submit" [disabled]="isSubmitDisabled">
+      Search
+    </button>
   </form>
 </div>
-

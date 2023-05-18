@@ -16,7 +16,7 @@ export class SearchDataService {
   originName = '';
   destinationName = '';
   passengersCategories = {
-    Adults: 0,
+    Adults: 1,
     Child: 0,
     Infant: 0,
   };
