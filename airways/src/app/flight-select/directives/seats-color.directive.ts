@@ -20,13 +20,13 @@ export class SeatsColorDirective implements OnChanges {
     if (this.appSeatsColor?.avaible && this.appSeatsColor?.total) {
       switch (true) {
         case this.appSeatsColor.avaible / this.appSeatsColor.total > 0.5:
-          itemColor = 'greenyellow';
+          itemColor = '#4CAF50';
           break;
         case this.appSeatsColor.avaible >= 10:
-          itemColor = 'orange';
+          itemColor = '#F1C933';
           break;
         case this.appSeatsColor.avaible < 10:
-          itemColor = 'red';
+          itemColor = '#B3261E';
           break;
         default:
           itemColor = '';
@@ -34,7 +34,7 @@ export class SeatsColorDirective implements OnChanges {
     }
 
     if (this.el.nativeElement instanceof HTMLSpanElement) {
-      this.renderer.setStyle(this.el.nativeElement, 'background', `${itemColor}`);
+      this.renderer.setStyle(this.el.nativeElement, 'background', `${itemColor}4d`);
     }
 
     if (this.el.nativeElement instanceof HTMLDivElement && this.isActiveCard) {
