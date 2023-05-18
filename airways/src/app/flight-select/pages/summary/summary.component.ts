@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SearchDataService } from 'src/app/core/services/search-data.service';
+import { FlightSelectService } from '../../services/flight-select.service';
 
 @Component({
   selector: 'app-summary',
@@ -6,20 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./summary.component.scss'],
 })
 export class SummaryComponent {
-  cardItems = [
-    {
-      flightNumber: 'OX-8973',
-      path: 'Aachen — Abakan',
-      date: 'Wednesday, 24 May, 2023',
-      time: '8:40 — 12:00',
-    },
-    {
-      flightNumber: 'FR 1925',
-      path: 'Abakan — Aachen',
-      date: 'Wednesday, 25 May, 2023',
-      time: '8:40 — 12:00',
-    },
-  ];
+  cardItems = this.flightSelectService.getSelectedCardsData(this.searchDataService.isOneWay);
 
   peopleItems = [
     {
@@ -49,6 +38,11 @@ export class SummaryComponent {
       tax: 10,
     },
   ];
+
+  constructor(
+    private flightSelectService: FlightSelectService,
+    private searchDataService: SearchDataService,
+  ) {}
 
   getTotal(): number {
     return this.peopleItems.reduce((acc, item) => acc + item.fare + item.tax, 0);
