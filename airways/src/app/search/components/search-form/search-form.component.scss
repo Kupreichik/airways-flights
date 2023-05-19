@@ -1,3 +1,7 @@
+.container.select-page {
+  position: relative;
+}
+
 .search-form {
   margin-top: 150px;
   height: 390px;
@@ -17,7 +21,7 @@
     gap: 5px;
     flex-direction: unset;
     height: unset;
-    width: unset;
+    width: 100%;
     align-items: center;
     flex-wrap: wrap;
     border-radius: unset;

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [ngClass]="{ 'select-page': isFlightSelectPage }">
   <form
     class="search-form"
     [ngClass]="{ 'select-page': isFlightSelectPage, hidden: isHidden }"
