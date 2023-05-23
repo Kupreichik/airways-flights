@@ -1,4 +1,4 @@
-<app-search-settings></app-search-settings>
+<app-search-settings [showEditButton]="false"></app-search-settings>
 <div class="summary">
   <div class="container">
     <div class="summary-header">
@@ -14,14 +14,16 @@
       <div class="summary-total">
         <div class="summary-total__items">
           <app-summary-total-item
-            *ngFor="let peopleItem of peopleItems"
+            *ngFor="let peopleItem of peopleItemsGroup"
             [peopleItem]="peopleItem"
           ></app-summary-total-item>
         </div>
         <div class="summary-total__price">
           <div class="summary-total__price-content summary-total__flex">
             <span>TOTAL:</span>
-            <span class="summary-total__color">€551.38</span>
+            <span class="summary-total__color">{{
+              getTotal() | currency : searchDataService.currency.toUpperCase() : 'symbol' : '1.2-2'
+            }}</span>
           </div>
         </div>
       </div>

@@ -20,7 +20,13 @@
         <span>{{ searchDataService.passengers }}</span>
         <img src="assets/account_24px.svg" alt="icon-person" />
       </div>
-      <button mat-button color="primary" *ngIf="showEditButton" (click)="handleEditBtn()">
+      <button
+        mat-button
+        color="primary"
+        *ngIf="showEditButton"
+        (click)="handleEditBtn()"
+        style="height: 24px"
+      >
         Edit
       </button>
     </div>
