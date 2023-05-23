@@ -27,7 +27,12 @@ export class FlightSelectService {
   selectedPrice = 0;
   selectedReturnPrice = 0;
 
+  isSelectCard = false;
+  isSelectReturnCard = false;
+
   flightsData?: FlightItem[];
+
+  isValid$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private searchDataService: SearchDataService) {}
 

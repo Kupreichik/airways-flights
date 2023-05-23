@@ -36,10 +36,27 @@ export class FlightInfoComponent implements OnInit {
         );
       });
     }
+
+    this.flightSelectService.isSelectCard = false;
+    this.flightSelectService.isSelectReturnCard = this.searchDataService.isOneWay;
   }
 
   handleSelectBtn() {
     this.isFlightSelected = !this.isFlightSelected;
     this.handleSelectBtnEvent.emit(this.isFlightSelected);
+
+    if (this.isReturnFlight) {
+      this.flightSelectService.isSelectReturnCard = !this.flightSelectService.isSelectReturnCard;
+
+      this.flightSelectService.isValid$.next(
+        this.flightSelectService.isSelectReturnCard && this.flightSelectService.isSelectCard,
+      );
+    } else {
+      this.flightSelectService.isSelectCard = !this.flightSelectService.isSelectCard;
+
+      this.flightSelectService.isValid$.next(
+        this.flightSelectService.isSelectReturnCard && this.flightSelectService.isSelectCard,
+      );
+    }
   }
 }

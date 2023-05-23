@@ -65,9 +65,6 @@ export class PassengersService {
     const childPrice = adultsPrice - adultsPrice * 0.4;
     const infantPrice = adultsPrice - adultsPrice * 0.5;
 
-    console.log(this.passengersList);
-    console.log(this.passengerFormList);
-
     const passengers = this.passengerFormList.map((el, i) => {
       const isAdult = this.passengersList[i].title === 'Adults';
       const isChild = this.passengersList[i].title === 'Child';
@@ -96,8 +93,6 @@ export class PassengersService {
     });
 
     this.passengersList = passengers;
-
-    console.log(this.passengersList);
   }
 
   deletePassengersList() {

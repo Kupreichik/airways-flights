@@ -5,4 +5,4 @@
   <app-flight-select *ngIf="!searchDataService.isOneWay" [isReturnFlight]="true">
   </app-flight-select>
 </div>
-<app-back-continue-buttons></app-back-continue-buttons>
+<app-back-continue-buttons [isValid]="isValid"></app-back-continue-buttons>

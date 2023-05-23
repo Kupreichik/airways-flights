@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { FlightSelectService } from '../../services/flight-select.service';
 
 @Component({
   selector: 'app-flight-select',
@@ -9,8 +8,6 @@ import { FlightSelectService } from '../../services/flight-select.service';
 export class FlightSelectComponent {
   @Input() isReturnFlight = false;
   isFlightSelected = false;
-
-  constructor(private flightService: FlightSelectService) {}
 
   handleSelectEvent() {
     this.isFlightSelected = !this.isFlightSelected;

@@ -43,8 +43,6 @@ export class SummaryComponent {
   ) {}
 
   getTotal(): number {
-    console.log(this.peopleItems);
-
     return this.peopleItems.reduce(
       (acc, item) => (item.fare && item.tax ? acc + item.fare + item.tax : acc),
       0,
