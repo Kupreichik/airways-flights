@@ -5,6 +5,6 @@
   </button>
   <ng-container *ngIf="showButtons()">
     <button mat-stroked-button class="back-btn">Add to order cart</button>
-    <button mat-raised-button class="continue-btn">Buy now</button>
+    <button mat-raised-button class="continue-btn" [routerLink]="['/','cart']">Buy now</button>
   </ng-container>
 </div>

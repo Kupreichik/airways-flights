@@ -1,0 +1,125 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 128px;
+}
+
+.cart {
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+
+  @media (max-width: 880px) {
+    overflow-x: scroll;
+  }
+}
+
+.cart__title {
+  font-weight: 700;
+  font-size: 24px;
+  margin: 33px 27px;
+  color: var(--primary-blue);
+}
+
+tr.mat-mdc-header-row th {
+  font-size: 20px;
+  font-weight: 700;
+  background-color: var(--background-main);
+}
+
+tr.mat-mdc-row td {
+  font-weight: 500;
+  font-size: 20px;
+  padding: 10px;
+}
+
+tr.mat-mdc-footer-row {
+  border-top: 1px solid red;
+}
+
+tr.mat-mdc-footer-row td {
+  font-weight: bold;
+
+  border-top: 1px solid rgb(206, 204, 204);
+  border-bottom: 1px solid rgb(206, 204, 204);
+  padding: 20px;
+}
+
+tr.mat-mdc-footer-row .mat-column-passengers {
+  font-weight: 500;
+  font-size: 20px;
+  text-align: right;
+}
+
+tr.mat-mdc-footer-row .mat-column-price {
+  font-weight: 700;
+  font-size: 30px;
+  background: linear-gradient(90deg, #11397E 0%, #005ABC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cart__payment {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+    gap: 10px;
+  }
+
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+td.mat-column-number {
+  color: var(--background-secondary0);
+}
+
+td.mat-column-price {
+  color: #7F8906;
+}
+
+.button-payment {
+  min-width: 126px;
+  height: 60px;
+  background-color: var(--primary-blue);
+  color: #ffffff;
+}
+
+
+.cart__total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-top: 1px solid rgb(206, 204, 204);
+  border-bottom: 1px solid rgb(206, 204, 204);
+
+  @media (max-width: 600px) {
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+.price {
+  font-weight: 500;
+  font-size: 20px;
+  & span {
+    margin-left: 10px;
+    font-weight: 700;
+    font-size: 30px;
+    background: linear-gradient(90deg, #11397E 0%, #005ABC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
