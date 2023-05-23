@@ -34,7 +34,11 @@ export class PassengerCardComponent implements OnInit {
       this.passengersService.checkAllFormsValid(this.passengerForm, this.passenger.id);
     });
 
-    this.passengersService.updatePassengerFormValidity(this.passengerForm, this.passenger.id);
+    this.passengersService.updatePassengerFormValidity(
+      this.passengerForm,
+      this.passenger.id,
+      this.passenger.title,
+    );
   }
 
   get firstName() {

@@ -4,22 +4,24 @@ import { BehaviorSubject } from 'rxjs';
 import { SearchDataService } from '../../core/services/search-data.service';
 import { FlightSelectService } from './flight-select.service';
 
-interface PassengersList {
+export interface PassengersList {
   id: string;
   title: string;
   firstName?: string;
   lastName?: string;
   cabinBag?: string;
   checkedBag?: string;
+  seat?: string;
   fare?: number;
   tax?: number;
+  valid?: boolean;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class PassengersService {
-  passengerFormList: any[] = [];
+  passengerFormList: PassengersList[] = [];
 
   contactForm!: FormGroup;
 
@@ -100,10 +102,10 @@ export class PassengersService {
     this.passengerFormList = [];
   }
 
-  updatePassengerFormValidity(formList: FormGroup, id: string) {
+  updatePassengerFormValidity(formList: FormGroup, id: string, title: string) {
     this.passengerFormList = [
       ...this.passengerFormList,
-      { id, ...formList.value, valid: formList.valid },
+      { id, title, ...formList.value, valid: formList.valid },
     ];
   }
 
@@ -111,7 +113,7 @@ export class PassengersService {
     this.contactForm = formList;
   }
 
-  checkAllFormsValid(formList: FormGroup, id: string) {
+  checkAllFormsValid(formList: FormGroup, id = 'id') {
     this.isValidPageSource$.next(true);
 
     this.passengerFormList.forEach((el, i) => {

@@ -20,14 +20,23 @@ export class PassengersComponent implements OnInit {
     email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
   });
 
+  isValid = false;
+
   constructor(private formBuilder: FormBuilder, private passengersService: PassengersService) {}
 
   ngOnInit(): void {
     this.contactForm.valueChanges.subscribe(() => {
       this.passengersService.updateContactFormValidity(this.contactForm);
+      this.passengersService.checkAllFormsValid(this.contactForm);
+    });
+
+    this.passengersService.isValidPageSource$.subscribe((value) => {
+      this.isValid = value;
     });
 
     this.passengersService.updateContactFormValidity(this.contactForm);
+
+    this.passengersService.checkAllFormsValid(this.contactForm);
   }
 
   get phone() {

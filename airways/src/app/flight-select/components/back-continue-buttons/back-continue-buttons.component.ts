@@ -46,6 +46,10 @@ export class BackContinueButtonsComponent implements OnInit {
       this.passengersService.deletePassengersList();
     }
 
+    if (newStepIndex === 2) {
+      this.passengersService.isValidPageSource$.next(false);
+    }
+
     if (newStepIndex < 0) this.router.navigate(['/']);
   }
 
