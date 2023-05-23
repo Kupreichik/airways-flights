@@ -7,8 +7,8 @@
         <input
           type="text"
           matInput
-          formControlName="name"
-          (input)="onInputChange('name', $event)"
+          formControlName="firstName"
+          (input)="onInputChange('firstName', $event)"
         />
         <mat-icon
           class="passenger__icon"
@@ -17,14 +17,17 @@
           matTooltipPosition="right"
           matTooltipClass="mat-tooltip"
           [ngClass]="{
-            error: name?.errors && name?.touched,
-            '': !name?.errors || !name?.touched
+            error: firstName?.errors && firstName?.touched,
+            '': !firstName?.errors || !firstName?.touched
           }"
         >
-          {{ name?.errors && name?.touched ? 'error' : 'error_outline' }}
+          {{ firstName?.errors && firstName?.touched ? 'error' : 'error_outline' }}
         </mat-icon>
-        <mat-error *ngIf="name?.hasError('required')">Please enter a name</mat-error>
-        <mat-error *ngIf="name?.hasError('pattern')">Invalid character</mat-error>
+        <mat-error *ngIf="firstName?.hasError('required')">Please enter a first name</mat-error>
+        <mat-error *ngIf="firstName?.hasError('minlength')"
+          >Your first name must be at least 3 characters</mat-error
+        >
+        <mat-error *ngIf="firstName?.hasError('pattern')">Invalid character</mat-error>
       </mat-form-field>
 
       <mat-form-field class="passenger__input" appearance="outline">
@@ -49,6 +52,9 @@
           {{ lastName?.errors && lastName?.touched ? 'error' : 'error_outline' }}
         </mat-icon>
         <mat-error *ngIf="lastName?.hasError('required')">Please enter a last name</mat-error>
+        <mat-error *ngIf="lastName?.hasError('minlength')"
+          >Your last name must be at least 3 characters</mat-error
+        >
         <mat-error *ngIf="lastName?.hasError('pattern')">Invalid character</mat-error>
       </mat-form-field>
 

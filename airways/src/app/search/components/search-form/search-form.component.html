@@ -47,7 +47,9 @@
             [disabled]="city.code === searchForm.value.destinationTo"
           >
             {{ city.name }} ({{ city.code }})
-            <div class="country-code">{{ city.country_code }}</div>
+            <div class="country-code">
+              {{ city.country }}
+            </div>
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -67,7 +69,9 @@
             [disabled]="city.code === searchForm.value.destinationFrom"
           >
             {{ city.name }} ({{ city.code }})
-            <div class="country-code">{{ city.country_code }}</div>
+            <div class="country-code">
+              {{ city.country }}
+            </div>
           </mat-option>
         </mat-select>
       </mat-form-field>

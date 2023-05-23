@@ -16,7 +16,7 @@
     position: absolute;
     z-index: 10;
     background: white;
-    margin-top: 82px;
+    margin-top: 70px;
     padding: 10px;
     gap: 5px;
     flex-direction: unset;
@@ -256,7 +256,7 @@
   }
 
   &:disabled {
-    background-color: #374a69;
+    background-color: var(--text-color-neutral30);
   }
 }
 
