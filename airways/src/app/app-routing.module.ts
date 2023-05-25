@@ -11,7 +11,6 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./search/search.module').then((m) => m.SearchModule),
   },
-
   {
     path: 'select',
     loadChildren: () =>
@@ -26,6 +25,10 @@ const routes: Routes = [
     path: 'summary',
     component: SummaryComponent,
     ...canActivate(redirectToHome),
+  },
+  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then((mod) => mod.CartModule),
   },
 ];
 

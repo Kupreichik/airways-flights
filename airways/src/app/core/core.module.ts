@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { SharedModule } from '../shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
@@ -23,6 +24,7 @@ import { StepperComponent } from './components/stepper/stepper.component';
     LayoutModule,
     HttpClientModule,
     AuthModule,
+    RouterModule,
   ],
   exports: [HeaderComponent, FooterComponent],
 })

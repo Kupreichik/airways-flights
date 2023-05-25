@@ -11,7 +11,8 @@ export class NavigateService {
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        this.isMainPageCurrent$.next(event.url === '/');
+        // this.isMainPageCurrent$.next(event.url === '/');
+        this.isMainPageCurrent$.next(event.url === '/' || event.url === '/cart');
       }
     });
   }
