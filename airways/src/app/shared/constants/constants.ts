@@ -1,5 +1,8 @@
 export const NAME_REGEX = /^[a-zA-Z]+(-[a-zA-Z]+)*$/;
 
+export const EMAIL_REGEX =
+  /^[_a-z0-9-+-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i;
+
 export const PASSWORD_CHARACTERS_REGEX = /^(?=.*[a-z])(?=.*[A-Z])/;
 
 export const PASSWORD_NUMBER_REGEX = /^(?=.*[0-9])/;

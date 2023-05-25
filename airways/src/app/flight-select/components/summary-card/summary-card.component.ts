@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FlightItem } from '../../models/flight-search-response-model';
+import { PassengersList } from '../../services/passengers.service';
 
 @Component({
   selector: 'app-summary-card',
@@ -8,5 +9,5 @@ import { FlightItem } from '../../models/flight-search-response-model';
 })
 export class SummaryCardComponent {
   @Input() cardItem?: FlightItem;
-  @Input() peopleItems: any;
+  @Input() peopleItems!: PassengersList[];
 }

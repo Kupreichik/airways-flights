@@ -17,4 +17,8 @@
   height: 60px;
   background-color: var(--primary-blue);
   color: #ffffff;
+
+  &:disabled {
+    background-color: var(--text-color-neutral30);
+  }
 }

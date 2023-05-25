@@ -1,35 +1,48 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import moment from 'moment';
 import { dateValidation } from '../../../core/directives/date-validation/date-validation.directive';
 import { NAME_REGEX, TOOLTIP_TEXT } from '../../../shared/constants/constants';
 import { GENDER } from '../../../shared/constants/types';
+import { PassengersService } from '../../services/passengers.service';
 
 @Component({
   selector: 'app-passenger-card',
   templateUrl: './passenger-card.component.html',
   styleUrls: ['./passenger-card.component.scss'],
 })
-export class PassengerCardComponent {
+export class PassengerCardComponent implements OnInit {
   @ViewChild('dateInput', { static: false }) dateInput!: ElementRef<HTMLInputElement>;
 
-  @Input() passenger!: { title: string };
+  @Input() passenger!: { id: string; title: string };
   @Input() sequenceNumber!: number;
 
   tooltipText = TOOLTIP_TEXT;
 
   passengerForm = this.formBuilder.group({
-    name: ['', [Validators.required, Validators.pattern(NAME_REGEX)]],
-    lastName: ['', [Validators.required, Validators.pattern(NAME_REGEX)]],
+    firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(NAME_REGEX)]],
+    lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(NAME_REGEX)]],
     gender: [GENDER.MALE],
     date: ['', [Validators.required, dateValidation()]],
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private passengersService: PassengersService) {}
 
-  get name() {
-    return this.passengerForm.get('name');
+  ngOnInit(): void {
+    this.passengerForm.valueChanges.subscribe(() => {
+      this.passengersService.checkAllFormsValid(this.passengerForm, this.passenger.id);
+    });
+
+    this.passengersService.updatePassengerFormValidity(
+      this.passengerForm,
+      this.passenger.id,
+      this.passenger.title,
+    );
+  }
+
+  get firstName() {
+    return this.passengerForm.get('firstName');
   }
 
   get lastName() {

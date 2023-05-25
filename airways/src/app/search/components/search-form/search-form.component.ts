@@ -25,7 +25,7 @@ export class SearchFormComponent implements OnInit, DoCheck {
   citiesList = CITIES.sort((item1, item2) => item1.name.localeCompare(item2.name));
 
   passengers: Passengers = {
-    Adults: { count: 0, description: '14+ years' },
+    Adults: { count: 1, description: '14+ years' },
     Child: { count: 0, description: '2-14 years' },
     Infant: { count: 0, description: '0-2 years' },
   };
@@ -60,6 +60,9 @@ export class SearchFormComponent implements OnInit, DoCheck {
     this.passengers['Adults'].count = this.searchDataService.passengersCategories.Adults;
     this.passengers['Child'].count = this.searchDataService.passengersCategories.Child;
     this.passengers['Infant'].count = this.searchDataService.passengersCategories.Infant;
+
+    this.setSelectedPassengers();
+    this.searchForm.controls['passengers'].setValue(this.searchDataService.passengers);
   }
 
   ngDoCheck() {

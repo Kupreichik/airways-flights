@@ -1,3 +1,4 @@
+<app-search-settings [showEditButton]="false"></app-search-settings>
 <div class="passengers">
   <div class="container">
     <div class="passengers-header">
@@ -63,10 +64,11 @@
             placeholder="e.g. example@email.com"
           />
           <mat-error *ngIf="email?.hasError('required')">Please enter a email</mat-error>
-          <mat-error *ngIf="email?.hasError('email')">Invalid email format</mat-error>
+          <mat-error *ngIf="email?.hasError('pattern')">Invalid email format</mat-error>
         </mat-form-field>
       </form>
     </div>
-    <app-back-continue-buttons></app-back-continue-buttons>
+
+    <app-back-continue-buttons [isValid]="isValid"></app-back-continue-buttons>
   </div>
 </div>

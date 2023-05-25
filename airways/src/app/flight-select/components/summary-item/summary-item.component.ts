@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { PassengersList } from '../../services/passengers.service';
 
 @Component({
   selector: 'app-summary-item',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./summary-item.component.scss'],
 })
 export class SummaryItemComponent {
-  @Input() peopleItem: any;
+  @Input() peopleItem!: PassengersList;
 }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { SearchDataService } from '../../core/services/search-data.service';
 import { FlightItem, OtherFlights, Price } from '../models/flight-search-response-model';
 import { getDateWithOffset } from '../utils/utils';
 
@@ -23,9 +24,17 @@ export class FlightSelectService {
 
   selectedReturnCardId$ = new BehaviorSubject(initialSelectedDateId);
 
+  selectedPrice = 0;
+  selectedReturnPrice = 0;
+
+  isSelectCard = false;
+  isSelectReturnCard = false;
+
   flightsData?: FlightItem[];
 
-  constructor(private http: HttpClient) {}
+  isValid$ = new BehaviorSubject<boolean>(false);
+
+  constructor(private http: HttpClient, private searchDataService: SearchDataService) {}
 
   fetchData(searchDateFrom: string, searchDateBack: string, origin: string, destination: string) {
     return this.http.post<FlightItem[]>(
@@ -44,6 +53,14 @@ export class FlightSelectService {
     const dataIndex = isReturn ? 1 : 0;
 
     if (id === '0') {
+      if (isReturn) {
+        this.selectedReturnPrice =
+          (this.flightsData && this.flightsData[1]?.price[this.searchDataService.currency]) ?? 0;
+      } else {
+        this.selectedPrice =
+          (this.flightsData && this.flightsData[0]?.price[this.searchDataService.currency]) ?? 0;
+      }
+
       return this.flightsData && this.flightsData[dataIndex];
     }
 
@@ -55,7 +72,6 @@ export class FlightSelectService {
     const idReturn = this.selectedReturnCardId$.value.toString();
     const dataFrom = this.getDataById(idFrom, false);
     const dataReturn = this.getDataById(idReturn, true);
-
     return isOneWay ? [dataFrom] : [dataFrom, dataReturn];
   }
 
@@ -65,6 +81,7 @@ export class FlightSelectService {
     if (id === '0') {
       return this.flightsData && this.flightsData[dataIndex].price[currency];
     }
+
     return (
       (this.flightsData &&
         this.flightsData[dataIndex].otherFlights[id as keyof OtherFlights]?.price[currency]) ||
@@ -101,6 +118,14 @@ export class FlightSelectService {
       this.selectedReturnCardId$.next(id);
     } else {
       this.selectedCardId$.next(id);
+    }
+
+    if (isReturn) {
+      this.selectedReturnPrice =
+        (this.flightsData && this.flightsData[1]?.price[this.searchDataService.currency]) ?? 0;
+    } else {
+      this.selectedPrice =
+        (this.flightsData && this.flightsData[0]?.price[this.searchDataService.currency]) ?? 0;
     }
   }
 

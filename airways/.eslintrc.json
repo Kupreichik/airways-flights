@@ -3,13 +3,9 @@
   "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "tsconfig.json"
-        ]
+        "project": ["tsconfig.json"]
       },
       "extends": [
         "eslint:recommended",
@@ -43,7 +39,8 @@
         "import/named": "off",
         "import/no-unresolved": "off",
         "class-methods-use-this": "off",
-        "no-restricted-syntax": "off"
+        "no-restricted-syntax": "off",
+        "no-underscore-dangle": "off"
       }
     },
     {

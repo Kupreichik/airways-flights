@@ -1,18 +1,34 @@
-<div class="container search-settings">
-    <div class="from-to">
-      <span>{{ searchDataService.originName }}</span>
-      <img src="assets/return_trip_24px.svg" alt="icon-trip-type">
-      <span> {{ searchDataService.destinationName }}</span>
+<div class="search-settings">
+  <div class="container">
+    <div class="search-settings__inner">
+      <div class="from-to">
+        <span>{{ searchDataService.originName }}</span>
+        <img src="assets/return_trip_24px.svg" alt="icon-trip-type" />
+        <span> {{ searchDataService.destinationName }}</span>
+      </div>
+      <div class="trip-info">
+        <span>{{ searchDataService.isOneWay ? 'Oneway' : 'Return' }}</span>
+        <span class="dot"></span>
+        <span *ngIf="searchDataService.isOneWay"
+          >{{ searchDataService.startDate | date : 'dMMM' }}
+        </span>
+        <span *ngIf="!searchDataService.isOneWay"
+          >{{ searchDataService.startDate | date : 'dMMM' }} -
+          {{ searchDataService.endDate | date : 'dMMM' }}</span
+        >
+        <span class="dot"></span>
+        <span>{{ searchDataService.passengers }}</span>
+        <img src="assets/account_24px.svg" alt="icon-person" />
+      </div>
+      <button
+        mat-button
+        color="primary"
+        *ngIf="showEditButton"
+        (click)="handleEditBtn()"
+        style="height: 24px"
+      >
+        Edit
+      </button>
     </div>
-    <div class="trip-info">
-      <span>{{ searchDataService.isOneWay ? 'Oneway' : 'Return' }}</span>
-      <span class="dot"></span>
-      <span *ngIf="searchDataService.isOneWay">{{ searchDataService.startDate | date: 'dMMM' }} </span>
-      <span *ngIf="!searchDataService.isOneWay">{{ searchDataService.startDate | date: 'dMMM' }} - {{ searchDataService.endDate | date: 'dMMM' }}</span>
-      <span class="dot"></span>
-      <span>{{ searchDataService.passengers }}</span>
-      <img src="assets/account_24px.svg" alt="icon-person">
-    </div>
-    <button mat-button color="primary" (click)="handleEditBtn()">Edit</button>
+  </div>
 </div>
-
