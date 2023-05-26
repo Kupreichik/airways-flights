@@ -8,8 +8,8 @@ export class SearchDataService {
   currency: TPrice = 'eur';
   dateFormat = 'MM/dd/yyyy';
   isOneWay = false;
-  startDate = new Date('2023-05-23');
-  endDate = new Date('2023-05-28');
+  startDate = new Date();
+  endDate = new Date(new Date().setDate(new Date().getDate() + 7));
   origin = '';
   destination = '';
   passengers = 1;
