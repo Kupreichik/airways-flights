@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { SearchDataService } from '../../core/services/search-data.service';
+import { Price } from '../models/flight-search-response-model';
+import { multiplyPrice } from '../utils/utils';
 import { FlightSelectService } from './flight-select.service';
 
 export interface PassengersList {
@@ -12,8 +14,8 @@ export interface PassengersList {
   cabinBag?: string;
   checkedBag?: string;
   seat?: string;
-  fare?: number;
-  tax?: number;
+  fare?: Price;
+  tax?: Price;
   valid?: boolean;
 }
 
@@ -62,10 +64,7 @@ export class PassengersService {
       }
     }
 
-    const adultsPrice =
-      this.flightSelectService.selectedPrice + this.flightSelectService.selectedReturnPrice;
-    const childPrice = adultsPrice - adultsPrice * 0.4;
-    const infantPrice = adultsPrice - adultsPrice * 0.5;
+    const adultsPrice = this.flightSelectService.getSelectedCardsPriceData();
 
     const passengers = this.passengerFormList.map((el, i) => {
       const isAdult = this.passengersList[i].title === 'Adults';
@@ -74,13 +73,13 @@ export class PassengersService {
       let tax;
       if (isAdult) {
         fare = adultsPrice;
-        tax = fare * 0.1;
+        tax = multiplyPrice(adultsPrice, 0.1);
       } else if (isChild) {
-        fare = childPrice;
-        tax = fare * 0.1;
+        fare = multiplyPrice(adultsPrice, 0.6);
+        tax = multiplyPrice(adultsPrice, 0.1);
       } else {
-        fare = infantPrice;
-        tax = fare * 0.1;
+        fare = multiplyPrice(adultsPrice, 0.5);
+        tax = multiplyPrice(adultsPrice, 0.1);
       }
 
       return {

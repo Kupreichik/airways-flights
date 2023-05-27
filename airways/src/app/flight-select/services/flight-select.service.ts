@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { SearchDataService } from '../../core/services/search-data.service';
 import { FlightItem, OtherFlights, Price } from '../models/flight-search-response-model';
-import { getDateWithOffset } from '../utils/utils';
+import { getDateWithOffset, sumPrices } from '../utils/utils';
 
 const BASE_URL = '/api/search/flight';
 
@@ -73,6 +73,16 @@ export class FlightSelectService {
     const dataFrom = this.getDataById(idFrom, false);
     const dataReturn = this.getDataById(idReturn, true);
     return isOneWay ? [dataFrom] : [dataFrom, dataReturn];
+  }
+
+  getSelectedCardsPriceData() {
+    const idFrom = this.selectedCardId$.value.toString();
+    const idReturn = this.selectedReturnCardId$.value.toString();
+
+    const dataFrom = this.getDataById(idFrom, false)?.price;
+    const dataReturn = this.getDataById(idReturn, true)?.price;
+
+    return this.searchDataService.isOneWay ? dataFrom : sumPrices(dataFrom, dataReturn);
   }
 
   getPriceById(id: string, currency: keyof Price, isReturn: boolean) {
