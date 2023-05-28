@@ -72,5 +72,23 @@ export class BackContinueButtonsComponent implements OnInit {
 
   addToCart() {
     this.cartService.addToCart();
+
+    this.searchDataService.isOneWay = false;
+    this.searchDataService.startDate = new Date();
+    this.searchDataService.endDate = new Date(new Date().setDate(new Date().getDate() + 7));
+    this.searchDataService.origin = '';
+    this.searchDataService.destination = '';
+    this.searchDataService.passengers = 1;
+    this.searchDataService.originName = '';
+    this.searchDataService.destinationName = '';
+    this.searchDataService.passengersCategories = {
+      Adults: 1,
+      Child: 0,
+      Infant: 0,
+    };
+
+    this.flightSelectService.isValid$.next(false);
+    this.passengersService.isValidPageSource$.next(false);
+    this.passengersService.deletePassengersList();
   }
 }

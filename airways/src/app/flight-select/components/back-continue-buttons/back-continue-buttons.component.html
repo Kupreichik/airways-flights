@@ -10,7 +10,16 @@
     Continue
   </button>
   <ng-container *ngIf="showCartButtons()">
-    <button mat-stroked-button class="back-btn" (click)="addToCart()">Add to order cart</button>
-    <button mat-raised-button class="continue-btn" (click)="addToCart()" [routerLink]="['/','cart']">Buy now</button>
+    <button mat-stroked-button class="back-btn" (click)="addToCart()" [routerLink]="['/', 'cart']">
+      Add to order cart
+    </button>
+    <button
+      mat-raised-button
+      class="continue-btn"
+      (click)="addToCart()"
+      [routerLink]="['/', 'cart']"
+    >
+      Buy now
+    </button>
   </ng-container>
 </div>

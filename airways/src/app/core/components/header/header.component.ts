@@ -5,6 +5,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/cart/services/cart.service';
+import { FlightSelectService } from 'src/app/flight-select/services/flight-select.service';
+import { PassengersService } from 'src/app/flight-select/services/passengers.service';
 import { AuthService } from '../../../auth/services/auth.service';
 import { expandHeader } from '../../animations/animations';
 import { HeaderHeight, ScreenSizes, TPrice } from '../../models';
@@ -41,6 +43,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public authService: AuthService,
     private cartService: CartService,
+    private flightSelectService: FlightSelectService,
+    private passengersService: PassengersService,
   ) {
     iconRegistry.addSvgIcon(
       'basket',
@@ -74,6 +78,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogoClick() {
+    this.searchDataService.isOneWay = false;
+    this.searchDataService.startDate = new Date();
+    this.searchDataService.endDate = new Date(new Date().setDate(new Date().getDate() + 7));
+    this.searchDataService.origin = '';
+    this.searchDataService.destination = '';
+    this.searchDataService.passengers = 1;
+    this.searchDataService.originName = '';
+    this.searchDataService.destinationName = '';
+    this.searchDataService.passengersCategories = {
+      Adults: 1,
+      Child: 0,
+      Infant: 0,
+    };
+
+    this.flightSelectService.isValid$.next(false);
+    this.passengersService.isValidPageSource$.next(false);
+    this.passengersService.deletePassengersList();
+
     this.router.navigateByUrl('/');
   }
 
