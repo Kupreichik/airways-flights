@@ -171,11 +171,23 @@
               }}</span>
             </div>
             <div class="counter-wrapper">
-              <button mat-flat-button (click)="decrement($event, passengerCategory)">-</button>
+              <button
+                mat-flat-button
+                class="counter-btn"
+                (click)="decrement($event, passengerCategory)"
+              >
+                -
+              </button>
               <span [ngClass]="{ active: passengers[passengerCategory].count > 0 }">
                 {{ passengers[passengerCategory].count }}
               </span>
-              <button mat-flat-button (click)="increment($event, passengerCategory)">+</button>
+              <button
+                mat-flat-button
+                class="counter-btn"
+                (click)="increment($event, passengerCategory)"
+              >
+                +
+              </button>
             </div>
           </mat-option>
         </mat-select>

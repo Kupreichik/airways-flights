@@ -40,10 +40,10 @@ export class SignupComponent {
   hidePassword = true;
   tooltipText = TOOLTIP_TEXT;
 
-  countriesList = [countriesMockList[0], countriesMockList[1], countriesMockList[2]];
+  countriesList = countriesMockList;
   selectedCountry = this.countriesList[0].countryName;
 
-  citizenshipList = [citizenshipMockList[0], citizenshipMockList[1], citizenshipMockList[2]];
+  citizenshipList = citizenshipMockList;
   selectedCitizenship = '';
 
   signupButtonClicked = false;

@@ -12,7 +12,7 @@ import { PassengersService } from '../../services/passengers.service';
 export class PassengersComponent implements OnInit {
   passengers = this.passengersService.getPassengersList();
 
-  countriesList = [countriesMockList[0], countriesMockList[1], countriesMockList[2]];
+  countriesList = countriesMockList;
   selectedCountry = this.countriesList[0].countryName;
 
   contactForm = this.formBuilder.group({
