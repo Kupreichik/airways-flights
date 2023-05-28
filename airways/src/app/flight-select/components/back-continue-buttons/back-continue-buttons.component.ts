@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/cart/services/cart.service';
 import { StepperService } from 'src/app/core/services/stepper.service';
 import { SearchDataService } from '../../../core/services/search-data.service';
 import { FlightSelectService } from '../../services/flight-select.service';
@@ -20,6 +21,7 @@ export class BackContinueButtonsComponent implements OnInit {
     private passengersService: PassengersService,
     private flightSelectService: FlightSelectService,
     private searchDataService: SearchDataService,
+    private cartService: CartService,
   ) {}
 
   ngOnInit() {
@@ -66,5 +68,9 @@ export class BackContinueButtonsComponent implements OnInit {
   showCartButtons(): boolean {
     const currentStepIndex = this.stepperService.getStepIndex();
     return currentStepIndex === 2;
+  }
+
+  addToCart() {
+    this.cartService.addToCart();
   }
 }
