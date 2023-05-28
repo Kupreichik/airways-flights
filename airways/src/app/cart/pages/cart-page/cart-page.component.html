@@ -73,7 +73,7 @@
   </table>
 
   <div class="cart__total">
-    <button mat-button color="primary"> +&nbsp;Add&nbsp;new&nbsp;trip</button>
+    <button mat-button color="primary" [routerLink]="['/']"> +&nbsp;Add&nbsp;new&nbsp;trip</button>
     <div class="price">Total <span> {{ getTotalPrice() | currency:searchDataService.currency.toUpperCase() : 'symbol-narrow' }} </span></div>
   </div>
 

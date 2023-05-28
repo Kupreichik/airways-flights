@@ -74,7 +74,10 @@
       </mat-menu>
     </div>
 
-    <mat-icon class="basket" svgIcon="basket" aria-hidden="false" [routerLink]="['cart']"></mat-icon>
+    <div class="basket">
+      <mat-icon svgIcon="basket" aria-hidden="false" [routerLink]="['cart']"></mat-icon>
+      <span class="basket__count" *ngIf="getCartCount()">{{ getCartCount() }}</span>
+    </div>
 
   </div>
 </header>

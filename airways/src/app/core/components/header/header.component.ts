@@ -4,6 +4,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/cart/services/cart.service';
 import { AuthService } from '../../../auth/services/auth.service';
 import { expandHeader } from '../../animations/animations';
 import { HeaderHeight, ScreenSizes, TPrice } from '../../models';
@@ -39,6 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     sanitizer: DomSanitizer,
     public dialog: MatDialog,
     public authService: AuthService,
+    private cartService: CartService,
   ) {
     iconRegistry.addSvgIcon(
       'basket',
@@ -108,5 +110,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout().subscribe(() => {
       this.router.navigate(['']);
     });
+  }
+
+  getCartCount() {
+    return this.cartService.getCartCount();
   }
 }

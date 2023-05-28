@@ -50,6 +50,16 @@ export class CartService {
       .filter((item) => item[1])
       .map((item) => item.reverse().join(' x '));
 
-    this.cartData.push({ price, type: tripType, ...selectedFlightsData, passengers });
+    const newCartItem = { price, type: tripType, ...selectedFlightsData, passengers };
+
+    const isItemInCart = this.cartData.find(
+      (item) => JSON.stringify(item) === JSON.stringify(newCartItem),
+    );
+
+    if (!isItemInCart) this.cartData.push(newCartItem);
+  }
+
+  getCartCount() {
+    return this.cartData.length;
   }
 }
