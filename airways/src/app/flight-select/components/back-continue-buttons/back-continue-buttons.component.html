@@ -1,0 +1,25 @@
+<div class="wrapper container">
+  <button mat-button class="back-btn" (click)="prevStep()">Back</button>
+  <button
+    mat-raised-button
+    class="continue-btn"
+    *ngIf="!showCartButtons()"
+    (click)="nextStep()"
+    [disabled]="!isValid"
+  >
+    Continue
+  </button>
+  <ng-container *ngIf="showCartButtons()">
+    <button mat-stroked-button class="back-btn" (click)="addToCart()" [routerLink]="['/', 'cart']">
+      Add to order cart
+    </button>
+    <button
+      mat-raised-button
+      class="continue-btn"
+      (click)="addToCart()"
+      [routerLink]="['/', 'cart']"
+    >
+      Buy now
+    </button>
+  </ng-container>
+</div>

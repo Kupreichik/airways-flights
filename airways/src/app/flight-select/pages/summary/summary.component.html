@@ -1,0 +1,33 @@
+<app-search-settings [showEditButton]="false"></app-search-settings>
+<div class="summary">
+  <div class="container">
+    <div class="summary-header">
+      <img class="summary-header__img" src="assets/summary.svg" alt="summary" />
+      <h2 class="summary-header__title">Summary</h2>
+    </div>
+    <div class="summary-content">
+      <app-summary-card
+        *ngFor="let cardItem of cardItems"
+        [cardItem]="cardItem"
+        [peopleItems]="peopleItems"
+      ></app-summary-card>
+      <div class="summary-total">
+        <div class="summary-total__items">
+          <app-summary-total-item
+            *ngFor="let peopleItem of peopleItemsGroup"
+            [peopleItem]="peopleItem"
+          ></app-summary-total-item>
+        </div>
+        <div class="summary-total__price">
+          <div class="summary-total__price-content summary-total__flex">
+            <span>TOTAL:</span>
+            <span class="summary-total__color">{{
+              getTotal() | currency : searchDataService.currency.toUpperCase() : 'symbol-narrow'
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-back-continue-buttons [isValid]="true"></app-back-continue-buttons>
+  </div>
+</div>

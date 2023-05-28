@@ -1,0 +1,140 @@
+.title {
+  display: flex;
+  align-items: center;
+  padding-bottom: 16px;
+}
+
+mat-icon {
+  transform: rotate(90deg);
+  &.rotate {
+    transform: rotate(-90deg);
+  }
+}
+
+.title__name {
+  margin: 0;
+  color: var(--primary-blue);
+  font-weight: 700;
+  font-size: 24px;
+  padding-left: 7px;
+
+  @media (max-width: 440px) {
+    font-size: 20px;
+  }
+}
+
+.slider {
+  overflow: hidden;
+  position: relative;
+  background: var(--background-secondary100);
+
+  &.selected {
+    height: 0;
+    opacity: 0;
+  }
+
+  @media (max-width: 500px) {
+    overflow-x: scroll;
+  }
+}
+
+.slider__container {
+  display: inline-flex;
+  width: 220%;
+  transition: transform 0.5s ease;
+  transform: translate(-28%);
+
+  &.transformed-left {
+    transform: translate(-56%);
+  }
+
+  &.transformed-right {
+    transform: translate(0);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  border-left: 1px solid var(--text-color-neutral60);
+  cursor: pointer;
+
+  &.active {
+    border-bottom: '';
+  }
+
+  &.disabled {
+    pointer-events: none;
+  }
+}
+
+.card__date {
+  color: var(--background-secondary0);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  &.active {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-blue);
+  }
+}
+
+.card__day {
+  color: var(--text-color-neutral30);
+  font-size: 12px;
+  font-weight: 100;
+  transition: all 0.3s ease;
+  padding-bottom: 5px;
+
+  &.active {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.card__price {
+  color: var(--primary-blue);
+  font-weight: 700;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  padding: 5px;
+
+  &.active {
+    font-size: 30px;
+  }
+}
+
+.card__icon {
+  height: 24px;
+  width: 24px;
+}
+
+.slider__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-secondary60);
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &:last-child {
+    right: 0;
+  }
+
+  &:hover {
+    background: lightgray;
+  }
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+}

@@ -1,0 +1,189 @@
+<form class="signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="signup-form__input" appearance="outline">
+    <mat-label>Email</mat-label>
+    <input type="text" matInput formControlName="signupEmail" />
+    <mat-error *ngIf="signupEmail?.hasError('required')">Please enter a email</mat-error>
+    <mat-error *ngIf="signupEmail?.hasError('email')">Invalid email format</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="signup-form__input" appearance="outline">
+    <mat-label>Password</mat-label>
+    <input
+      type="{{ hidePassword ? 'password' : 'text' }}"
+      matInput
+      formControlName="signupPassword"
+    />
+    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+      <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+    </button>
+    <mat-error *ngIf="signupPassword?.hasError('required')">Please enter a email</mat-error>
+    <mat-error *ngIf="signupPassword?.hasError('minlength')">
+      Your password must be at least 8 characters
+    </mat-error>
+    <mat-error *ngIf="signupPassword?.hasError('isNotLetter')">
+      Your password must be uppercase and lowercase letters!
+    </mat-error>
+    <mat-error *ngIf="signupPassword?.hasError('isNotNumber')">
+      Your password must be a numbers
+    </mat-error>
+    <mat-error *ngIf="signupPassword?.hasError('isNotSymbol')">
+      Your password must be special character!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="signup-form__input" appearance="outline">
+    <mat-label>First name</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="signupFirstName"
+      (input)="onInputChange('signupFirstName', $event)"
+    />
+    <mat-icon
+      class="signup-form__icon"
+      matSuffix
+      [matTooltip]="tooltipText"
+      matTooltipPosition="right"
+      matTooltipClass="mat-tooltip"
+      [ngClass]="{
+        error: signupFirstName?.errors && signupFirstName?.touched,
+        '': !signupFirstName?.errors || !signupFirstName?.touched
+      }"
+    >
+      {{ signupFirstName?.errors && signupFirstName?.touched ? 'error' : 'error_outline' }}
+    </mat-icon>
+    <mat-error *ngIf="signupFirstName?.hasError('required')">Please enter a first name</mat-error>
+    <mat-error *ngIf="signupFirstName?.hasError('minlength')"
+      >Your first name must be at least 3 characters</mat-error
+    >
+    <mat-error *ngIf="signupFirstName?.hasError('pattern')">Invalid character</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="signup-form__input" appearance="outline">
+    <mat-label>Last name</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="signupLastName"
+      (input)="onInputChange('signupLastName', $event)"
+    />
+    <mat-icon
+      class="signup-form__icon"
+      matSuffix
+      [matTooltip]="tooltipText"
+      matTooltipPosition="right"
+      matTooltipClass="mat-tooltip"
+      [ngClass]="{
+        error: signupLastName?.errors && signupLastName?.touched,
+        '': !signupLastName?.errors || !signupLastName?.touched
+      }"
+    >
+      {{ signupLastName?.errors && signupLastName?.touched ? 'error' : 'error_outline' }}
+    </mat-icon>
+    <mat-error *ngIf="signupLastName?.hasError('required')">Please enter a last name</mat-error>
+    <mat-error *ngIf="signupFirstName?.hasError('minlength')"
+      >Your last name must be at least 3 characters</mat-error
+    >
+    <mat-error *ngIf="signupLastName?.hasError('pattern')">Invalid character</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="signup-form__input" appearance="outline">
+    <mat-label>Date of birth</mat-label>
+    <input
+      matInput
+      formControlName="signupDateBirth"
+      mask="00/00/0000"
+      maxlength="10"
+      (change)="onDateInputChange()"
+      #dateBirthInput
+    />
+    <input
+      matInput
+      [matDatepicker]="picker"
+      style="display: none"
+      (dateChange)="onDatepickerChange($event)"
+    />
+    <mat-datepicker-toggle matIconSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>
+        <img src="assets/calendar.svg" alt="calendar" />
+      </mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="signupDateBirth?.hasError('required')">
+      Please enter a creation date!
+    </mat-error>
+    <mat-error *ngIf="signupDateBirth?.hasError('isFuture')">The date is invalid!</mat-error>
+  </mat-form-field>
+
+  <mat-button-toggle-group class="signup-form__checkbox" formControlName="signupGender">
+    <mat-button-toggle
+      class="signup-form__checkbox-item"
+      value="Male"
+      [ngClass]="{ active: checkGender(signupGender.MALE) }"
+    >
+      <mat-icon *ngIf="checkGender(signupGender.MALE)">check-small</mat-icon>
+      Male
+    </mat-button-toggle>
+    <mat-button-toggle
+      class="signup-form__checkbox-item"
+      value="Female"
+      [ngClass]="{ active: checkGender(signupGender.FEMALE) }"
+    >
+      <mat-icon *ngIf="checkGender(signupGender.FEMALE)"> check-small </mat-icon>
+      Female
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <section class="signup-form__block">
+    <mat-form-field class="signup-form__select" appearance="outline">
+      <mat-label>Country code</mat-label>
+      <mat-select [(value)]="selectedCountry" required>
+        <mat-option *ngFor="let country of countriesList" value="{{ country.countryName }}">
+          {{ country.countryName }} ({{ country.countryPrefixNumber }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="signup-form__input" appearance="outline">
+      <mat-label>Mobile phone number</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="signupPhone"
+        mask="0000000000"
+        placeholder="e.g. 1111111111"
+      />
+      <mat-error *ngIf="signupPhone?.hasError('required')">Please enter a phone number</mat-error>
+      <mat-error *ngIf="signupPhone?.hasError('minlength')">Number too short</mat-error>
+    </mat-form-field>
+  </section>
+
+  <mat-form-field class="signup-form__select" appearance="outline">
+    <mat-label>Citizenship</mat-label>
+    <mat-select [(value)]="selectedCitizenship" formControlName="signupCitizenship">
+      <mat-option *ngFor="let citizenship of citizenshipList" value="{{ citizenship.citizenship }}">
+        {{ citizenship.citizenship }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="signupCitizenship?.hasError('required')">Please select citizenship</mat-error>
+  </mat-form-field>
+
+  <mat-checkbox class="signup-form__terms" formControlName="signupCheckbox" color="primary">
+    I agree to Airway's Privacy Policy and Terms of Use
+  </mat-checkbox>
+
+  <mat-error
+    *ngIf="signupCheckbox?.hasError('required') && (signupButtonClicked || signupCheckbox?.touched)"
+  >
+    Accept terms is required
+  </mat-error>
+
+  <button
+    mat-raised-button
+    class="signup-form__button"
+    color="primary"
+    (click)="signupButtonClicked = true"
+  >
+    Sign up
+  </button>
+</form>

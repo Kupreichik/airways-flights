@@ -1,0 +1,23 @@
+<div class="summary-total__item">
+  <div class="summary-total__item-header summary-total__flex">
+    <span>{{ peopleItem.count }} x {{ peopleItem.title | titlecase }} Fare</span>
+    <span>{{
+      peopleItem.fare[searchDataService.currency] + peopleItem.tax[searchDataService.currency]
+        | currency : searchDataService.currency.toUpperCase() : 'symbol-narrow'
+    }}</span>
+  </div>
+  <div class="summary-total__item-description">
+    <div class="summary-total__item-fare summary-total__flex">
+      <span>Fare</span>
+      <span>{{
+        peopleItem.fare[searchDataService.currency] | currency : searchDataService.currency.toUpperCase() : 'symbol-narrow'
+      }}</span>
+    </div>
+    <div class="summary-total__item-tax summary-total__flex">
+      <span>Tax & Service Charge</span>
+      <span>{{
+        peopleItem.tax[searchDataService.currency] | currency : searchDataService.currency.toUpperCase() : 'symbol-narrow'
+      }}</span>
+    </div>
+  </div>
+</div>

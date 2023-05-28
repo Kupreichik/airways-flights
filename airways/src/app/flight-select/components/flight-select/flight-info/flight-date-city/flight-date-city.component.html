@@ -1,0 +1,8 @@
+<div class="flight-date-city" *ngIf="flightDate">
+  <span class="date" [style.textAlign] = "isDepartureDate ? '' : 'right'">{{ flightDate | date:'EE, MMMM d, y' : 'UTC'}}</span>
+  <div class="time" >
+    <span class="time__time" [style.order] = "isDepartureDate ? '' : '1'">{{ flightDate | date:'HH:mm' : 'UTC' }}</span>
+    <span class="time__utc">UTC +0 </span>
+  </div>
+  <span class="city" [style.textAlign] = "isDepartureDate ? '' : 'right'">{{ city }}</span>
+</div>

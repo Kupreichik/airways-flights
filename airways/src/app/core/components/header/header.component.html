@@ -1,0 +1,83 @@
+<header
+  class="container header"
+  [ngClass]="{ 'white-header': !isMainPage }"
+  [@expandHeader]="headerHeight"
+  (@expandHeader.start)="onAnimationStart($event.toState)"
+  (@expandHeader.done)="onAnimationEnd($event.toState)"
+>
+  <h1 class="logo" (click)="onLogoClick()">
+    <img class="logo-img" src="assets/logo.png" alt="logo" />
+    AIRWAYS
+  </h1>
+
+  <div class="booking-steps" *ngIf="!isMainPage && isLargeScreen()">
+    <app-stepper></app-stepper>
+  </div>
+
+  <div class="header-right-container">
+    <h2 class="heading" *ngIf="isMainPage">Book flights</h2>
+    <button *ngIf="isSmallScreen()" (click)="toggleSettingsVisibility()" mat-icon-button>
+      <mat-icon>settings</mat-icon>
+    </button>
+
+    <div
+      class="settings-container"
+      [ngClass]="{ 'hidden-settings': isSmallScreen() }"
+      [ngStyle]="{ height: settingsVisibility ? 'auto' : 0 }"
+    >
+      <mat-select
+        class="header-btn date-format"
+        [(value)]="dateFormat"
+        (selectionChange)="setDateFormat()"
+      >
+        <mat-option [value]="option" *ngFor="let option of dateFormats">{{
+          option | uppercase
+        }}</mat-option>
+      </mat-select>
+
+      <mat-select
+        class="header-btn currency"
+        [(value)]="currency"
+        (selectionChange)="setCurrency()"
+      >
+        <mat-option [value]="option" *ngFor="let option of currencies">{{
+          option | uppercase
+        }}</mat-option>
+      </mat-select>
+
+      <ng-container *ngIf="authService.currentUser$ | async as user; else loginButton">
+        <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="authLogout">
+          <mat-icon>person</mat-icon>
+          {{ user.displayName }}
+        </button>
+      </ng-container>
+
+      <mat-menu #authLogout="matMenu" xPosition="before" >
+        <button mat-icon-button class="logout-menu" (click)="logout()">Log out</button>
+      </mat-menu>
+
+      <ng-template #loginButton>
+        <button mat-stroked-button class="auth-btn" [matMenuTriggerFor]="authPopup">
+          <mat-icon>person</mat-icon>
+          Sign in
+        </button>
+      </ng-template>
+
+      <mat-menu #authPopup="matMenu" xPosition="before" backdropClass="signin-popup">
+        <button mat-icon-button class="close-button">
+          <mat-icon>close</mat-icon>
+        </button>
+        <app-auth
+          (click)="$event.stopPropagation()"
+          (keydown)="$event.stopPropagation()"
+        ></app-auth>
+      </mat-menu>
+    </div>
+
+    <div class="basket">
+      <mat-icon svgIcon="basket" aria-hidden="false" [routerLink]="['cart']"></mat-icon>
+      <span class="basket__count" *ngIf="getCartCount()">{{ getCartCount() }}</span>
+    </div>
+
+  </div>
+</header>

@@ -1,0 +1,75 @@
+@use 'node_modules/@ngneat/hot-toast/src/styles/styles.scss';
+
+:root {
+  --primary-blue: #11397e;
+  --text-color-neutral0: #1c1b1f;
+  --text-color-neutral10: #49454f;
+  --text-color-neutral30: #74767a;
+  --text-color-neutral60: #cecece;
+  --background-main: #f5f5f5;
+  --background-secondary0: #0090bd;
+  --background-secondary60: #e9edf1;
+  --background-secondary40: #d0d9df;
+  --background-secondary50: #e1e5eb;
+  --background-secondary90: #f4f6f9;
+  --background-secondary100: #fafafa;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.container {
+  width: 1128px;
+  margin: 0 auto;
+}
+
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  color: var(--primary-blue);
+}
+
+.mat-tooltip {
+  .mdc-tooltip__surface {
+    color: black;
+    background: white;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 16px 24px;
+    font-size: 12px;
+  }
+}
+
+.signin-popup + * .cdk-overlay-pane {
+  max-width: 494px;
+  width: 100%;
+
+  & > .mat-mdc-menu-panel.mat-mdc-menu-panel {
+    max-width: 494px;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    & > .mat-mdc-menu-content {
+      padding: 0;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 94%;
+    margin: 0 3vw;
+  }
+}

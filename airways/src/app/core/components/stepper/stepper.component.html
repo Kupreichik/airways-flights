@@ -1,0 +1,8 @@
+<mat-stepper #stepper="matStepper" [selectedIndex]="currentStepIndex">
+  <mat-step label="Flights"> </mat-step>
+  <mat-step label="Passengers"> </mat-step>
+  <mat-step label="Review & Payment"> </mat-step>
+</mat-stepper>
+<ng-template matStepperIcon="current">
+  <mat-icon>create</mat-icon>
+</ng-template>

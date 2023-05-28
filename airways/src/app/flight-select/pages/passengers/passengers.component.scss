@@ -1,0 +1,102 @@
+:host {
+  display: inline-block;
+  width: 100%;
+  margin-top: 88px;
+}
+
+.passengers {
+  background: #f5f5f5;
+  height: 100%;
+  margin-top: 108px;
+}
+
+.passengers-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--primary-blue);
+  margin-bottom: 8px;
+}
+
+.passengers-header__img {
+  width: 24px;
+  height: 24px;
+}
+
+.passengers-header__title {
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0;
+}
+
+.passengers-header__description {
+  margin: 0;
+}
+
+.passenger-contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 32px 44px 0;
+  background: white;
+  margin: 20px 0;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+
+  &::ng-deep .mdc-text-field {
+    background: whitesmoke;
+  }
+  &::ng-deep .mdc-text-field--focused {
+    background: rgba(0, 0, 0, 0.12);
+  }
+}
+
+.passenger-contact__select {
+  width: 25%;
+  &::ng-deep .mat-mdc-select-value-text {
+    color: black;
+  }
+
+  &::ng-deep .mat-mdc-select-arrow path {
+    fill: black;
+  }
+}
+
+.passenger-contact__input {
+  width: 25%;
+}
+
+.passenger-contact__input.email {
+  width: 47%;
+}
+
+@media (max-width: 1024px) {
+  .passenger-contact {
+    flex-wrap: wrap;
+    gap: 3px 0px;
+  }
+
+  .passenger-contact__select {
+    flex-basis: calc(50% - 10px);
+  }
+  .passenger-contact__input {
+    flex-basis: calc(50% - 10px);
+  }
+
+  .passenger-contact__input.email {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .passenger-contact {
+    flex-direction: column;
+
+    & > * {
+      flex-basis: 100%;
+      width: 100%;
+    }
+  }
+}

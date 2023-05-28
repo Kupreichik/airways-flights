@@ -1,0 +1,35 @@
+<div class="container flight-info" *ngIf="flightSelectedData"  >
+  <div class="flight-info__content" [ngClass]="{ selected: isFlightSelected }">
+
+    <app-flight-date-city
+      [flightDate]="flightSelectedData.takeoffDate"
+      [isDepartureDate]="true" [city]="isReturnFlight ? searchDataService.destinationName : searchDataService.originName">
+    </app-flight-date-city>
+
+    <div class="flight-duration-type">
+      <span class="duration"> {{ flightSelectedData.timeMins | minToHours }} </span>
+      <img src="assets/airplane_takeoff_24px.svg" alt="airplane_takeoff" [ngClass]="{'rotate': isReturnFlight}">
+      <span class="flight-type"> direct </span>
+    </div>
+
+    <app-flight-date-city
+      [flightDate]="flightSelectedData.landingDate"
+      [isDepartureDate]="false" [city]="isReturnFlight ? searchDataService.originName : searchDataService.destinationName">
+    </app-flight-date-city>
+
+    <div class="flight-number">
+      Flight no.
+      <span>{{ flightSelectedData.flightNumber }}</span>
+    </div>
+
+  </div>
+
+  <div class="flight-info__price">
+    <div class="price-container" [ngClass]="{ selected: isFlightSelected }">
+      <span class="seats" [appSeatsColor] = "flightSelectedData.seats"> {{ flightSelectedData.seats.avaible }} seats <br> available</span>
+      <span >Price</span>
+      <span class="price"> {{ flightSelectedData.price[searchDataService.currency] | currency: searchDataService.currency.toUpperCase():'symbol-narrow'}} </span>
+    </div>
+    <button mat-raised-button color="primary" class="select-btn" (click)="handleSelectBtn()" [ngClass]="{ selected: isFlightSelected }">{{ isFlightSelected ? 'Edit' : 'Select' }}</button>
+  </div>
+</div>
