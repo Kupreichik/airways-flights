@@ -92,11 +92,17 @@ export class SearchFormComponent implements OnInit, DoCheck {
 
   setSelectedPassengers() {
     this.selectedPassengers = this.passengerCategories
-      .reduce(
-        (acc, cur) =>
-          this.passengers[cur].count > 0 ? `${acc} ${this.passengers[cur].count} ${cur},` : acc,
-        '',
-      )
+      .reduce((acc, cur) => {
+        if (cur === 'Adults' && this.passengers[cur].count < 1) {
+          this.passengers[cur].count = 1;
+        }
+        if (cur !== 'Adults' && this.passengers[cur].count < 0) {
+          this.passengers[cur].count = 0;
+        }
+        return this.passengers[cur].count > 0
+          ? `${acc} ${this.passengers[cur].count} ${cur},`
+          : acc;
+      }, '')
       .slice(0, -1);
   }
 

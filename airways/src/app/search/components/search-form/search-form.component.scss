@@ -195,6 +195,10 @@
   color: var(--text-color-neutral30);
 }
 
+.passengers-option {
+  pointer-events: none;
+}
+
 .passengers-option button {
   padding: 0;
   min-width: 24px;
@@ -209,6 +213,10 @@
 .counter-wrapper {
   display: flex;
   gap: 4px;
+}
+
+.counter-btn {
+  pointer-events: auto;
 }
 
 .active {
